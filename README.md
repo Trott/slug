@@ -1,4 +1,4 @@
-# [slug](https://github.com/dodo/node-slug)
+# [slug](https://github.com/Trott/node-slug)
 
 slugifies every string, even when it contains unicode!
 
@@ -81,6 +81,3 @@ browserify slug.js --ignore unicode/category/So -s slug > slug-browser.js
 ```
 
 [![Build Status](https://secure.travis-ci.org/dodo/node-slug.png)](http://travis-ci.org/dodo/node-slug)
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/dodo/node-slug/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
-

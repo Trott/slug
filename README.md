@@ -15,10 +15,6 @@ Make strings url-safe.
 npm install slug
 ```
 
-```
-bower install slug
-```
-
 ## example
 
 ```javascript

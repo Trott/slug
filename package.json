@@ -1,7 +1,7 @@
 {
     "name": "slug",
     "description": "slugifies even utf-8 chars!",
-    "version": "0.9.3",
+    "version": "0.9.4",
     "homepage": "https://github.com/Trott/node-slug",
     "author": "dodo (https://github.com/dodo)",
     "repository": {

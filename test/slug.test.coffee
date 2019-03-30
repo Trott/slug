@@ -232,3 +232,6 @@ describe 'slug', ->
       text = "It's Your Journey We Guide You Through."
       expected = "Its-Your-Journey-We-Guide-You-Through."
       [slug text, mode:'rfc3986', lower:off].should.eql [expected]
+
+    it 'should replace arabic characters', ->
+      slug('مرحبا بك').should.eql 'mrhb-bk'

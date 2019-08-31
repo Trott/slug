@@ -19,13 +19,14 @@
         "url"
     ],
     "scripts": {
-        "test": "./node_modules/.bin/mocha ./test/*.test.* --require should --reporter spec --colors --compilers coffee:coffee-script/register"
+        "test": "./node_modules/.bin/mocha ./test/*.test.* --require should --require coffeescript/register --reporter spec --colors"
     },
     "dependencies": {
         "unicode": ">= 0.3.1"
     },
     "devDependencies": {
         "coffee-script": "~1.7.1",
+        "coffeescript": "^2.4.1",
         "mocha": "^5.2.0",
         "should": "~13.2.3"
     },

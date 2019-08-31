@@ -27,7 +27,7 @@
     "devDependencies": {
         "coffee-script": "~1.7.1",
         "mocha": "^5.2.0",
-        "should": "~3.1.2"
+        "should": "~13.2.3"
     },
     "bin": {
         "slug": "bin/slug.js"

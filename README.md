@@ -7,7 +7,7 @@ Make strings url-safe.
 - respecting [RFC 3986](https://tools.ietf.org/html/rfc3986)
 - Comprehensive tests
 - No dependencies (except the unicode table)
-- Not in coffee-script (except the tests lol)
+- Not in coffee-script
 - Coerces foreign symbols to their english equivalent
 - Works in browser (window.slug) and AMD/CommonJS-flavoured module loaders (except the unicode symbols unless you use browserify but who wants to download a ~2mb js file, right?)
 

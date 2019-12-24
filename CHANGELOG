@@ -1,0 +1,10 @@
+2.0.0
+-----
+
+Add support for Farsi. (Thanks, @hassan-jahan!)
+
+This is being released as a breaking change because it changes some of
+the slugs for Arabic strings. It probably won't break anything, but just
+in case....
+
+

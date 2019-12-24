@@ -19,12 +19,13 @@
         "url"
     ],
     "scripts": {
-        "test": "./node_modules/.bin/mocha ./test/*.test.* --require should --reporter spec --colors"
+        "test": "eslint . && mocha ./test/*.test.* --require should --reporter spec --colors"
     },
     "dependencies": {
         "unicode": ">= 0.3.1"
     },
     "devDependencies": {
+        "eslint": "^6.8.0",
         "mocha": "^6.2.1",
         "should": "~13.2.3"
     },

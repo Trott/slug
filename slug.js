@@ -17,14 +17,14 @@ function slug(string, opts) {
     opts.mode = opts.mode || slug.defaults.mode;
     var defaults = slug.defaults.modes[opts.mode];
     var keys = ['replacement','multicharmap','charmap','remove','lower'];
-    for (var key, i = 0, l = keys.length; i < l; i++) { key = keys[i];
+    for (let key, i = 0, l = keys.length; i < l; i++) { key = keys[i];
         opts[key] = (key in opts) ? opts[key] : defaults[key];
     }
     if ('undefined' === typeof opts.symbols)
         opts.symbols = defaults.symbols;
 
     var lengths = [];
-    for (var key in opts.multicharmap) {
+    for (let key in opts.multicharmap) {
         if (!opts.multicharmap.hasOwnProperty(key))
             continue;
 
@@ -34,7 +34,7 @@ function slug(string, opts) {
     }
 
     var code, unicode, result = "";
-    for (var char, i = 0, l = string.length; i < l; i++) { char = string[i];
+    for (let char, i = 0, l = string.length; i < l; i++) { char = string[i];
         if (!lengths.some(function (len) {
             var str = string.substr(i, len);
             if (opts.multicharmap[str]) {
@@ -57,7 +57,7 @@ function slug(string, opts) {
                 char = char.trim();
             }
         }
-        char = char.replace(/[^\w\s\-\.\_~]/g, ''); // allowed
+        char = char.replace(/[^\w\s\-._~]/g, ''); // allowed
         if (opts.remove) char = char.replace(opts.remove, ''); // add flavour
         result += char;
     }
@@ -67,7 +67,7 @@ function slug(string, opts) {
     if (opts.lower)
       result = result.toLowerCase();
     return result;
-};
+}
 
 slug.defaults = {
     mode: 'pretty',
@@ -193,7 +193,7 @@ slug.defaults.modes = {
 
 if (typeof define !== 'undefined' && define.amd) { // AMD
     // dont load symbols table in the browser
-    for (var key in slug.defaults.modes) {
+    for (let key in slug.defaults.modes) {
         if (!slug.defaults.modes.hasOwnProperty(key))
             continue;
 
@@ -205,7 +205,7 @@ if (typeof define !== 'undefined' && define.amd) { // AMD
     module.exports = slug;
 } else { // Script tag
     // dont load symbols table in the browser
-    for (var key in slug.defaults.modes) {
+    for (let key in slug.defaults.modes) {
         if (!slug.defaults.modes.hasOwnProperty(key))
             continue;
 

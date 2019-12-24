@@ -268,7 +268,6 @@ describe('slug', function() {
         return (() => {
             const result = [];
             for (let char in char_map) {
-                const replacement = char_map[char];
                 result.push([slug(`foo ${char} bar baz`)].should.eql(["foo-bar-baz"]));
             }
             return result;

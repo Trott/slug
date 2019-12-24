@@ -337,5 +337,5 @@ describe('slug', function() {
       return [slug(text, {mode:'rfc3986', lower:false})].should.eql([expected]);
 });
 
-    return it('should replace arabic characters', () => slug('مرحبا بك').should.eql('mrhb-bk'));
+    return it('should replace arabic characters', () => slug('مرحبا بك').should.eql('mrhba-bk'));
 });

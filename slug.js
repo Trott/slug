@@ -77,7 +77,7 @@ slug.multicharmap = slug.defaults.multicharmap = {
     '<3': 'love', '&&': 'and', '||': 'or', 'w/': 'with',
 };
 
-// https://code.djangoproject.com/browser/django/trunk/django/contrib/admin/media/js/urlify.js
+// https://github.com/django/django/blob/master/django/contrib/admin/static/admin/js/urlify.js
 slug.charmap  = slug.defaults.charmap = {
     // latin
     'À': 'A', 'Á': 'A', 'Â': 'A', 'Ã': 'A', 'Ä': 'A', 'Å': 'A', 'Æ': 'AE',

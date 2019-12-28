@@ -9,7 +9,24 @@ function symbols(code) {
     return _symbols[code];
 }
 
+var base64;
+if (typeof window === 'undefined') {
+    base64 = (input) => Buffer.from(input).toString('base64');
+} else {
+    // eslint-disable-next-line no-undef
+    base64 = (input) => btoa(unescape(encodeURIComponent(input)))
+}
+
 function slug(string, opts) {
+    var result = slugify(string, opts);
+    // If output is an empty string, try slug for base64 of string.
+    if (result === '') {
+        result = slugify(base64(string), opts);
+    }
+    return result;
+}
+
+function slugify(string, opts) {
     string = string.toString();
     if ('string' === typeof opts)
         opts = {replacement:opts};
@@ -64,8 +81,9 @@ function slug(string, opts) {
     result = result.trim();
     result = result.replace(/[-\s]+/g, opts.replacement); // convert spaces
     result = result.replace(opts.replacement+"$",''); // remove trailing separator
-    if (opts.lower)
-      result = result.toLowerCase();
+    if (opts.lower) {
+        result = result.toLowerCase();
+    }
     return result;
 }
 

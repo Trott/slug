@@ -70,7 +70,7 @@ slug.defaults.modes['pretty'] = {
 When using browserify you might want to remove the symbols table from your bundle by using `--ignore` similar to this:
 ```bash
 # generates a standalone slug browser bundle:
-browserify slug.js --ignore unicode/category/So -s slug > slug-browser.js
+browserify slug.js --detect-globals false --ignore unicode/category/So -s slug > slug-browser.js
 ```
 
 [![Build Status](https://secure.travis-ci.org/dodo/node-slug.png)](http://travis-ci.org/dodo/node-slug)

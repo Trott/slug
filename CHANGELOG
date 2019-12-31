@@ -1,3 +1,9 @@
+2.1.0
+-----
+
+Fallback to base64 if slug is empty. This allows minimal out-of-the-box support
+for character sets not in the default mappings.
+
 2.0.0
 -----
 

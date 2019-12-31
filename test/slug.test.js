@@ -11,13 +11,13 @@ describe('slug', function() {
     it('should convert input to string', function() {
         [slug(1)].should.eql(['1']);
         return [slug(567890)].should.eql(['567890']);
-});
+    });
 
     it('should replace whitespaces with replacement', function() {
         [slug('foo bar baz')].should.eql(['foo-bar-baz']);
         [slug('foo bar baz', '_')].should.eql(['foo_bar_baz']);
         return [slug('foo bar baz', '')].should.eql(['foobarbaz']);
-});
+    });
 
     it('should remove trailing space if any', () => [slug(' foo bar baz ')].should.eql(['foo-bar-baz']));
 
@@ -25,20 +25,20 @@ describe('slug', function() {
         [slug('foo, bar baz')].should.eql(['foo-bar-baz']);
         [slug('foo- bar baz')].should.eql(['foo-bar-baz']);
         return [slug('foo] bar baz')].should.eql(['foo-bar-baz']);
-});
+    });
 
     it('should leave allowed chars in rfc3986 mode', function() {
         const allowed = ['.', '_', '~'];
         return Array.from(allowed).map((a) =>
             [slug(`foo ${a} bar baz`,
                 {mode: "rfc3986"})].should.eql([`foo-${a}-bar-baz`]));
-});
+    });
 
     it('should leave allowed chars in pretty mode', function() {
         const allowed = ['_', '~'];
         return Array.from(allowed).map((a) =>
             [slug(`foo ${a} bar baz`)].should.eql([`foo-${a}-bar-baz`]));
-});
+    });
 
     it('should replace latin chars', function() {
         const char_map = {
@@ -61,7 +61,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace greek chars', function() {
         const char_map = {
@@ -84,7 +84,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace turkish chars', function() {
         const char_map = {
@@ -99,7 +99,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace cyrillic chars', function() {
         const char_map = {
@@ -124,7 +124,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace czech chars', function() {
         const char_map = {
@@ -140,7 +140,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace polish chars', function() {
         const char_map = {
@@ -156,7 +156,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace latvian chars', function() {
         const char_map = {
@@ -172,7 +172,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace vietnamese chars', function() {
         const char_map = {
@@ -200,7 +200,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace currencies', function() {
         const char_map = {
@@ -221,7 +221,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace symbols in rfc3986 mode', function() {
         const char_map = {
@@ -241,7 +241,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace symbols in pretty mode', function() {
         const char_map = {
@@ -259,7 +259,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should remove ellipsis in pretty mode', function() {
         const char_map = {
@@ -272,7 +272,7 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should strip … symbols in pretty mode', () => [slug("foo … bar baz")].should.eql(["foo-bar-baz"]));
 
@@ -282,7 +282,7 @@ describe('slug', function() {
         ];
         return Array.from(char_map).map((char) =>
             [slug(`foo ${char} bar baz`)].should.eql(["foo-bar-baz"]));
-});
+    });
 
     it('should replace unicode', function() {
         const char_map = {
@@ -300,20 +300,20 @@ describe('slug', function() {
             }
             return result;
         })();
-});
+    });
 
     it('should replace no unicode when disabled', function() {
         const char_map = '😹☢☠☤☣☭☯☮☏☔☎☀★☂☃✈✉✊'.split('');
         return Array.from(char_map).map((char) =>
             [slug(`foo ${char} bar baz`, {symbols:false})].should.eql(["foo-bar-baz"]));
-});
+    });
 
     it('should allow altering the charmap', function() {
         const charmap = {
             'f': 'ph', 'o':'0', 'b':'8', 'a':'4', 'r':'2', 'z':'5'
         };
         return [slug("foo bar baz", {charmap}).toUpperCase()].should.eql(['PH00-842-845']);
-});
+    });
 
     it('should replace lithuanian characters', () => slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ').should.eql('aceeisuuzACEEISUUZ'));
 
@@ -323,19 +323,21 @@ describe('slug', function() {
         const text = "It's your journey ... we guide you through.";
         const expected = "Its-your-journey-we-guide-you-through";
         return [slug(text, {mode:'pretty'})].should.eql([expected]);
-});
+    });
 
     it('should default to lowercase in rfc3986 mode', function() {
       const text = "It's Your Journey We Guide You Through.";
       const expected = "its-your-journey-we-guide-you-through.";
       return [slug(text, {mode:'rfc3986'})].should.eql([expected]);
-});
+    });
 
     it('should allow disabling of lowercase', function() {
       const text = "It's Your Journey We Guide You Through.";
       const expected = "Its-Your-Journey-We-Guide-You-Through.";
       return [slug(text, {mode:'rfc3986', lower:false})].should.eql([expected]);
-});
+    });
 
-    return it('should replace arabic characters', () => slug('مرحبا بك').should.eql('mrhba-bk'));
+    it('should replace arabic characters', () => slug('مرحبا بك').should.eql('mrhba-bk'));
+
+    it('should replace zh characters', () => slug('鳄梨').should.eql('6bOE5qKo'));
 });

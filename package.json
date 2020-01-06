@@ -19,12 +19,13 @@
         "url"
     ],
     "scripts": {
-        "test": "eslint . && mocha ./test/*.test.* --require should --reporter spec --colors"
+        "test": "eslint . && c8 mocha ./test/*.test.* --require should --reporter spec --colors"
     },
     "dependencies": {
         "unicode": ">= 0.3.1"
     },
     "devDependencies": {
+        "c8": "^7.0.0",
         "eslint": "^6.8.0",
         "mocha": "^7.0.0",
         "should": "~13.2.3"

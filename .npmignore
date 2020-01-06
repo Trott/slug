@@ -1,2 +1,4 @@
-Cakefile
-src/
+.eslintrc.js
+.travis.yml
+coverage/
+test/

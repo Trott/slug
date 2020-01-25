@@ -1,3 +1,8 @@
+2.1.1
+-----
+
+Restore IE 11 support by removing arrow functions.
+
 2.1.0
 -----
 

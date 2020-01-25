@@ -11,10 +11,14 @@ function symbols(code) {
 
 var base64;
 if (typeof window === 'undefined') {
-    base64 = (input) => Buffer.from(input).toString('base64');
+    base64 = function(input) {
+        return Buffer.from(input).toString('base64');
+    } 
 } else {
-    // eslint-disable-next-line no-undef
-    base64 = (input) => btoa(unescape(encodeURIComponent(input)))
+    base64 = function(input) {
+        // eslint-disable-next-line no-undef
+        return btoa(unescape(encodeURIComponent(input)))
+    }
 }
 
 function slug(string, opts) {

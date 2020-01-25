@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS101: Remove unnecessary use of Array.from
  * DS102: Remove unnecessary code created because of implicit returns
  * DS205: Consider reworking code to avoid use of IIFEs
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
@@ -29,14 +28,14 @@ describe('slug', function() {
 
     it('should leave allowed chars in rfc3986 mode', function() {
         const allowed = ['.', '_', '~'];
-        return Array.from(allowed).map((a) =>
+        return allowed.map((a) =>
             [slug(`foo ${a} bar baz`,
                 {mode: "rfc3986"})].should.eql([`foo-${a}-bar-baz`]));
     });
 
     it('should leave allowed chars in pretty mode', function() {
         const allowed = ['_', '~'];
-        return Array.from(allowed).map((a) =>
+        return allowed.map((a) =>
             [slug(`foo ${a} bar baz`)].should.eql([`foo-${a}-bar-baz`]));
     });
 
@@ -280,7 +279,7 @@ describe('slug', function() {
         const char_map = [
             '†', '“', '”', '‘', '’', '•'
         ];
-        return Array.from(char_map).map((char) =>
+        return char_map.map((char) =>
             [slug(`foo ${char} bar baz`)].should.eql(["foo-bar-baz"]));
     });
 
@@ -304,7 +303,7 @@ describe('slug', function() {
 
     it('should replace no unicode when disabled', function() {
         const char_map = '😹☢☠☤☣☭☯☮☏☔☎☀★☂☃✈✉✊'.split('');
-        return Array.from(char_map).map((char) =>
+        return char_map.map((char) =>
             [slug(`foo ${char} bar baz`, {symbols:false})].should.eql(["foo-bar-baz"]));
     });
 

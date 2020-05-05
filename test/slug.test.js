@@ -1,10 +1,5 @@
 /* global describe, it */
 
-/*
- * decaffeinate suggestions:
- * DS205: Consider reworking code to avoid use of IIFEs
- * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
- */
 const slug = require('../slug')
 
 describe('slug', function () {
@@ -113,13 +108,11 @@ describe('slug', function () {
       þ: 'th',
       ÿ: 'y',
       ẞ: 'SS'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should replace greek chars', function () {
@@ -193,13 +186,11 @@ describe('slug', function () {
       Ώ: 'W',
       Ϊ: 'I',
       Ϋ: 'Y'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should replace turkish chars', function () {
@@ -216,13 +207,11 @@ describe('slug', function () {
       Ö: 'O',
       ğ: 'g',
       Ğ: 'G'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should replace cyrillic chars', function () {
@@ -301,15 +290,13 @@ describe('slug', function () {
       і: 'i',
       ї: 'yi',
       ґ: 'g'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        let expected = `foo-${replacement}-bar-baz`
-        if (!replacement) { expected = 'foo-bar-baz' }
-        slug(`foo ${char} bar baz`).should.eql(expected)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      let expected = `foo-${replacement}-bar-baz`
+      if (!replacement) { expected = 'foo-bar-baz' }
+      slug(`foo ${char} bar baz`).should.eql(expected)
+    }
   })
 
   it('should replace czech chars', function () {
@@ -332,13 +319,11 @@ describe('slug', function () {
       Ť: 'T',
       Ů: 'U',
       Ž: 'Z'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should replace polish chars', function () {
@@ -360,13 +345,11 @@ describe('slug', function () {
       Ś: 'S',
       Ź: 'Z',
       Ż: 'Z'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should replace latvian chars', function () {
@@ -393,13 +376,11 @@ describe('slug', function () {
       Š: 'S',
       Ū: 'U',
       Ž: 'Z'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should replace vietnamese chars', function () {
@@ -504,13 +485,11 @@ describe('slug', function () {
       ỷ: 'y',
       ỹ: 'y',
       đ: 'd'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should replace currencies', function () {
@@ -546,14 +525,12 @@ describe('slug', function () {
       '¤': 'currency',
       '฿': 'baht',
       $: 'dollar'
-    };
-    (() => {
-      for (const char in charMap) {
-        let replacement = charMap[char]
-        replacement = replacement.replace(' ', '-')
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      let replacement = charMap[char]
+      replacement = replacement.replace(' ', '-')
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should replace symbols in rfc3986 mode', function () {
@@ -578,15 +555,13 @@ describe('slug', function () {
       '|': 'or',
       '<': 'less',
       '>': 'greater'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`,
-          { mode: 'rfc3986' }).should.eql(
-                        `foo-${replacement}-bar-baz`.toLowerCase())
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`,
+        { mode: 'rfc3986' }).should.eql(
+                      `foo-${replacement}-bar-baz`.toLowerCase())
+    }
   })
 
   it('should replace symbols in pretty mode', function () {
@@ -610,24 +585,20 @@ describe('slug', function () {
       '|': 'or',
       '<': 'less',
       '>': 'greater'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should remove ellipsis in pretty mode', function () {
     const charMap = {
       '…': '...'
-    };
-    (() => {
-      for (const char in charMap) {
-        slug(`foo ${char} bar baz`).should.eql('foo-bar-baz')
-      }
-    })()
+    }
+    for (const char in charMap) {
+      slug(`foo ${char} bar baz`).should.eql('foo-bar-baz')
+    }
   })
 
   it('should strip … symbols in pretty mode', () => slug('foo … bar baz').should.eql('foo-bar-baz'))
@@ -659,13 +630,11 @@ describe('slug', function () {
       '✈': 'airplane',
       '✉': 'envelope',
       '✊': 'raised-fist'
-    };
-    (() => {
-      for (const char in charMap) {
-        const replacement = charMap[char]
-        slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
-      }
-    })()
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+    }
   })
 
   it('should replace no unicode when disabled', function () {

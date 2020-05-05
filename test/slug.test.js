@@ -7,9 +7,13 @@
 const slug = require('../slug');
 
 describe('slug', function() {
-    it('should convert input to string', function() {
-        [slug(1)].should.eql(['1']);
-        return [slug(567890)].should.eql(['567890']);
+    it('requires an argument', function() {
+        try {
+            slug()
+        } catch (err) {
+            return [err.message].should.eql(['slug() requires a string argument'])
+        }
+        throw new Error('should have thrown');
     });
 
     it('should replace whitespaces with replacement', function() {

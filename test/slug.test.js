@@ -1,6 +1,5 @@
 /*
  * decaffeinate suggestions:
- * DS102: Remove unnecessary code created because of implicit returns
  * DS205: Consider reworking code to avoid use of IIFEs
  * Full docs: https://github.com/decaffeinate/decaffeinate/blob/master/docs/suggestions.md
  */
@@ -10,37 +9,37 @@ describe('slug', function() {
     it('requires an argument', function() {
         try {
             slug()
+            throw new Error('should have thrown')
         } catch (err) {
-            return [err.message].should.eql(['slug() requires a string argument'])
+            err.message.should.eql('slug() requires a string argument')
         }
-        throw new Error('should have thrown');
     });
 
     it('should replace whitespaces with replacement', function() {
-        [slug('foo bar baz')].should.eql(['foo-bar-baz']);
-        [slug('foo bar baz', '_')].should.eql(['foo_bar_baz']);
-        return [slug('foo bar baz', '')].should.eql(['foobarbaz']);
+        slug('foo bar baz').should.eql('foo-bar-baz');
+        slug('foo bar baz', '_').should.eql('foo_bar_baz');
+        slug('foo bar baz', '').should.eql('foobarbaz');
     });
 
-    it('should remove trailing space if any', () => [slug(' foo bar baz ')].should.eql(['foo-bar-baz']));
+    it('should remove trailing space if any', () => slug(' foo bar baz ').should.eql('foo-bar-baz'));
 
     it('should remove not allowed chars', function() {
-        [slug('foo, bar baz')].should.eql(['foo-bar-baz']);
-        [slug('foo- bar baz')].should.eql(['foo-bar-baz']);
-        return [slug('foo] bar baz')].should.eql(['foo-bar-baz']);
+        slug('foo, bar baz').should.eql('foo-bar-baz');
+        slug('foo- bar baz').should.eql('foo-bar-baz');
+        slug('foo] bar baz').should.eql('foo-bar-baz');
     });
 
     it('should leave allowed chars in rfc3986 mode', function() {
         const allowed = ['.', '_', '~'];
-        return allowed.map((a) =>
-            [slug(`foo ${a} bar baz`,
-                {mode: "rfc3986"})].should.eql([`foo-${a}-bar-baz`]));
+        allowed.forEach((a) =>
+            slug(`foo ${a} bar baz`,
+                {mode: "rfc3986"}).should.eql(`foo-${a}-bar-baz`));
     });
 
     it('should leave allowed chars in pretty mode', function() {
         const allowed = ['_', '~'];
-        return allowed.map((a) =>
-            [slug(`foo ${a} bar baz`)].should.eql([`foo-${a}-bar-baz`]));
+        allowed.forEach((a) =>
+            slug(`foo ${a} bar baz`).should.eql(`foo-${a}-bar-baz`));
     });
 
     it('should replace latin chars', function() {
@@ -56,13 +55,11 @@ describe('slug', function() {
             'ő': 'o', 'ø': 'o', 'ù': 'u', 'ú': 'u', 'û': 'u', 'ü': 'u', 'ű': 'u',
             'ý': 'y', 'þ': 'th', 'ÿ': 'y', 'ẞ': 'SS'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
@@ -79,13 +76,11 @@ describe('slug', function() {
             'Ά':'A', 'Έ':'E', 'Ί':'I', 'Ό':'O', 'Ύ':'Y', 'Ή':'H', 'Ώ':'W', 'Ϊ':'I',
             'Ϋ':'Y'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
@@ -94,13 +89,11 @@ describe('slug', function() {
             'ş':'s', 'Ş':'S', 'ı':'i', 'İ':'I', 'ç':'c', 'Ç':'C', 'ü':'u', 'Ü':'U',
             'ö':'o', 'Ö':'O', 'ğ':'g', 'Ğ':'G'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
@@ -117,15 +110,13 @@ describe('slug', function() {
             'Ч':'Ch', 'Ш':'Sh', 'Щ':'Sh', 'Ъ':'U', 'Ы':'Y', 'Ь':'', 'Э':'E', 'Ю':'Yu',
             'Я':'Ya', 'Є':'Ye', 'І':'I', 'Ї':'Yi', 'Ґ':'G', 'є':'ye', 'і':'i', 'ї':'yi', 'ґ':'g'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
                 let expected = `foo-${replacement}-bar-baz`;
                 if (!replacement) { expected = "foo-bar-baz"; }
-                result.push([slug(`foo ${char} bar baz`)].should.eql([expected]));
+                slug(`foo ${char} bar baz`).should.eql(expected);
             }
-            return result;
         })();
     });
 
@@ -135,13 +126,11 @@ describe('slug', function() {
             'ž':'z', 'Č':'C', 'Ď':'D', 'Ě':'E', 'Ň': 'N', 'Ř':'R', 'Š':'S', 'Ť':'T',
             'Ů':'U', 'Ž':'Z'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
@@ -151,13 +140,11 @@ describe('slug', function() {
             'ż':'z', 'Ą':'A', 'Ć':'C', 'Ę':'E', 'Ł':'L', 'Ń':'N', 'Ś':'S',
             'Ź':'Z', 'Ż':'Z'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
@@ -167,13 +154,11 @@ describe('slug', function() {
             'š':'s', 'ū':'u', 'ž':'z', 'Ā':'A', 'Č':'C', 'Ē':'E', 'Ģ':'G', 'Ī':'I',
             'Ķ':'K', 'Ļ':'L', 'Ņ':'N', 'Š':'S', 'Ū':'U', 'Ž':'Z'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
@@ -195,13 +180,11 @@ describe('slug', function() {
             'ứ': 'u', 'ự': 'u', 'ử': 'u', 'ữ': 'u', 'ỳ': 'y', 'ỵ': 'y', 'ỷ': 'y',
             'ỹ': 'y', 'đ': 'd'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
@@ -215,14 +198,12 @@ describe('slug', function() {
             '円': 'yen', '﷼': 'rial', '₠': 'ecu', '¤': 'currency', '฿': 'baht',
             "$": 'dollar'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 let replacement = char_map[char];
                 replacement = replacement.replace(' ', '-');
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
@@ -234,15 +215,13 @@ describe('slug', function() {
             '∆': 'delta', '∞': 'infinity', '♥': 'love', '&': 'and', '|': 'or',
             '<': 'less', '>': 'greater'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`,
-                    {mode: "rfc3986"})].should.eql([
-                        `foo-${replacement}-bar-baz`.toLowerCase()]));
+                slug(`foo ${char} bar baz`,
+                    {mode: "rfc3986"}).should.eql(
+                        `foo-${replacement}-bar-baz`.toLowerCase());
             }
-            return result;
         })();
     });
 
@@ -254,13 +233,11 @@ describe('slug', function() {
             '∆': 'delta', '∞': 'infinity', '♥': 'love', '&': 'and', '|': 'or',
             '<': 'less', '>': 'greater'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
@@ -268,23 +245,21 @@ describe('slug', function() {
         const char_map = {
             '…': '...'
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
-                result.push([slug(`foo ${char} bar baz`)].should.eql(["foo-bar-baz"]));
+                slug(`foo ${char} bar baz`).should.eql("foo-bar-baz");
             }
-            return result;
         })();
     });
 
-    it('should strip … symbols in pretty mode', () => [slug("foo … bar baz")].should.eql(["foo-bar-baz"]));
+    it('should strip … symbols in pretty mode', () => slug("foo … bar baz").should.eql("foo-bar-baz"));
 
     it('should strip symbols', function() {
         const char_map = [
             '†', '“', '”', '‘', '’', '•'
         ];
-        return char_map.map((char) =>
-            [slug(`foo ${char} bar baz`)].should.eql(["foo-bar-baz"]));
+        char_map.forEach((char) =>
+            slug(`foo ${char} bar baz`).should.eql("foo-bar-baz"));
     });
 
     it('should replace unicode', function() {
@@ -295,49 +270,47 @@ describe('slug', function() {
             '☀':"sun-with-rays",'★':"star",'☂':"umbrella",'☃':"snowman",
             '✈':"airplane",'✉':"envelope",'✊':"raised-fist"
         };
-        return (() => {
-            const result = [];
+        (() => {
             for (let char in char_map) {
                 const replacement = char_map[char];
-                result.push([slug(`foo ${char} bar baz`)].should.eql([`foo-${replacement}-bar-baz`]));
+                slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`);
             }
-            return result;
         })();
     });
 
     it('should replace no unicode when disabled', function() {
         const char_map = '😹☢☠☤☣☭☯☮☏☔☎☀★☂☃✈✉✊'.split('');
-        return char_map.map((char) =>
-            [slug(`foo ${char} bar baz`, {symbols:false})].should.eql(["foo-bar-baz"]));
+        char_map.forEach((char) =>
+            slug(`foo ${char} bar baz`, {symbols:false}).should.eql("foo-bar-baz"));
     });
 
     it('should allow altering the charmap', function() {
         const charmap = {
             'f': 'ph', 'o':'0', 'b':'8', 'a':'4', 'r':'2', 'z':'5'
         };
-        return [slug("foo bar baz", {charmap}).toUpperCase()].should.eql(['PH00-842-845']);
+        slug("foo bar baz", {charmap}).toUpperCase().should.eql('PH00-842-845');
     });
 
     it('should replace lithuanian characters', () => slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ').should.eql('aceeisuuzACEEISUUZ'));
 
-    it('should replace multichars', () => [slug("w/ <3 && sugar || ☠")].should.eql(['with-love-and-sugar-or-skull-and-bones']));
+    it('should replace multichars', () => slug("w/ <3 && sugar || ☠").should.eql('with-love-and-sugar-or-skull-and-bones'));
 
     it('should be flavourable', function() {
         const text = "It's your journey ... we guide you through.";
         const expected = "Its-your-journey-we-guide-you-through";
-        return [slug(text, {mode:'pretty'})].should.eql([expected]);
+        slug(text, {mode:'pretty'}).should.eql(expected);
     });
 
     it('should default to lowercase in rfc3986 mode', function() {
       const text = "It's Your Journey We Guide You Through.";
       const expected = "its-your-journey-we-guide-you-through.";
-      return [slug(text, {mode:'rfc3986'})].should.eql([expected]);
+      slug(text, {mode:'rfc3986'}).should.eql(expected);
     });
 
     it('should allow disabling of lowercase', function() {
       const text = "It's Your Journey We Guide You Through.";
       const expected = "Its-Your-Journey-We-Guide-You-Through.";
-      return [slug(text, {mode:'rfc3986', lower:false})].should.eql([expected]);
+      slug(text, {mode:'rfc3986', lower:false}).should.eql(expected);
     });
 
     it('should replace arabic characters', () => slug('مرحبا بك').should.eql('mrhba-bk'));

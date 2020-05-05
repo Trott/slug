@@ -31,7 +31,9 @@ function slug(string, opts) {
 }
 
 function slugify(string, opts) {
-    string = string.toString();
+    if (typeof string !== 'string') {
+        throw new Error('slug() requires a string argument')
+    }
     if ('string' === typeof opts)
         opts = {replacement:opts};
     opts = opts || {};

@@ -2,45 +2,42 @@
 
 const slug = require('../slug')
 
+const assert = require('assert')
+
 describe('slug', function () {
   it('requires an argument', function () {
-    try {
-      slug()
-      throw new Error('should have thrown')
-    } catch (err) {
-      err.message.should.eql('slug() requires a string argument')
-    }
+    assert.throws(slug, { message: 'slug() requires a string argument' })
   })
 
   it('should replace whitespaces with replacement', function () {
-    slug('foo bar baz').should.eql('foo-bar-baz')
-    slug('foo bar baz', '_').should.eql('foo_bar_baz')
-    slug('foo bar baz', '').should.eql('foobarbaz')
+    assert.strictEqual(slug('foo bar baz'), 'foo-bar-baz')
+    assert.strictEqual(slug('foo bar baz', '_'), 'foo_bar_baz')
+    assert.strictEqual(slug('foo bar baz', ''), 'foobarbaz')
   })
 
   it('should replace multiple spaces and dashes with a single instance by default', () => {
-    slug('foo  bar--baz').should.eql('foo-bar-baz')
+    assert.strictEqual(slug('foo  bar--baz'), 'foo-bar-baz')
   })
 
-  it('should remove trailing space if any', () => slug(' foo bar baz ').should.eql('foo-bar-baz'))
+  it('should remove trailing space if any', () => assert.strictEqual(slug(' foo bar baz '), 'foo-bar-baz'))
 
   it('should remove not allowed chars', function () {
-    slug('foo, bar baz').should.eql('foo-bar-baz')
-    slug('foo- bar baz').should.eql('foo-bar-baz')
-    slug('foo] bar baz').should.eql('foo-bar-baz')
+    assert.strictEqual(slug('foo, bar baz'), 'foo-bar-baz')
+    assert.strictEqual(slug('foo- bar baz'), 'foo-bar-baz')
+    assert.strictEqual(slug('foo] bar baz'), 'foo-bar-baz')
   })
 
   it('should leave allowed chars in rfc3986 mode', function () {
     const allowed = ['.', '_', '~']
     allowed.forEach((a) =>
-      slug(`foo ${a} bar baz`,
-        { mode: 'rfc3986' }).should.eql(`foo-${a}-bar-baz`))
+      assert.strictEqual(slug(`foo ${a} bar baz`,
+        { mode: 'rfc3986' }), `foo-${a}-bar-baz`))
   })
 
   it('should leave allowed chars in pretty mode', function () {
     const allowed = ['_', '~']
     allowed.forEach((a) =>
-      slug(`foo ${a} bar baz`).should.eql(`foo-${a}-bar-baz`))
+      assert.strictEqual(slug(`foo ${a} bar baz`), `foo-${a}-bar-baz`))
   })
 
   it('should replace latin chars', function () {
@@ -115,7 +112,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
@@ -193,7 +190,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
@@ -214,7 +211,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
@@ -299,7 +296,7 @@ describe('slug', function () {
       const replacement = charMap[char]
       let expected = `foo-${replacement}-bar-baz`
       if (!replacement) { expected = 'foo-bar-baz' }
-      slug(`foo ${char} bar baz`).should.eql(expected)
+      assert.strictEqual(slug(`foo ${char} bar baz`), expected)
     }
   })
 
@@ -326,7 +323,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
@@ -352,7 +349,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
@@ -383,7 +380,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
@@ -492,7 +489,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
@@ -533,7 +530,7 @@ describe('slug', function () {
     for (const char in charMap) {
       let replacement = charMap[char]
       replacement = replacement.replace(' ', '-')
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
@@ -562,8 +559,8 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`,
-        { mode: 'rfc3986' }).should.eql(
+      assert.strictEqual(slug(`foo ${char} bar baz`,
+        { mode: 'rfc3986' }),
                       `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
@@ -592,7 +589,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
@@ -601,18 +598,18 @@ describe('slug', function () {
       '…': '...'
     }
     for (const char in charMap) {
-      slug(`foo ${char} bar baz`).should.eql('foo-bar-baz')
+      assert.strictEqual(slug(`foo ${char} bar baz`), 'foo-bar-baz')
     }
   })
 
-  it('should strip … symbols in pretty mode', () => slug('foo … bar baz').should.eql('foo-bar-baz'))
+  it('should strip … symbols in pretty mode', () => assert.strictEqual(slug('foo … bar baz'), 'foo-bar-baz'))
 
   it('should strip symbols', function () {
     const charMap = [
       '†', '“', '”', '‘', '’', '•'
     ]
     charMap.forEach((char) =>
-      slug(`foo ${char} bar baz`).should.eql('foo-bar-baz'))
+      assert.strictEqual(slug(`foo ${char} bar baz`), 'foo-bar-baz'))
   })
 
   it('should replace unicode', function () {
@@ -637,46 +634,46 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      slug(`foo ${char} bar baz`).should.eql(`foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
     }
   })
 
   it('should replace no unicode when disabled', function () {
     const charMap = '😹☢☠☤☣☭☯☮☏☔☎☀★☂☃✈✉✊'.split('')
     charMap.forEach((char) =>
-      slug(`foo ${char} bar baz`, { symbols: false }).should.eql('foo-bar-baz'))
+      assert.strictEqual(slug(`foo ${char} bar baz`, { symbols: false }), 'foo-bar-baz'))
   })
 
   it('should allow altering the charmap', function () {
     const charmap = {
       f: 'ph', o: '0', b: '8', a: '4', r: '2', z: '5'
     }
-    slug('foo bar baz', { charmap }).toUpperCase().should.eql('PH00-842-845')
+    assert.strictEqual(slug('foo bar baz', { charmap }).toUpperCase(), 'PH00-842-845')
   })
 
-  it('should replace lithuanian characters', () => slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ').should.eql('aceeisuuzACEEISUUZ'))
+  it('should replace lithuanian characters', () => assert.strictEqual(slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ'), 'aceeisuuzACEEISUUZ'))
 
-  it('should replace multichars', () => slug('w/ <3 && sugar || ☠').should.eql('with-love-and-sugar-or-skull-and-bones'))
+  it('should replace multichars', () => assert.strictEqual(slug('w/ <3 && sugar || ☠'), 'with-love-and-sugar-or-skull-and-bones'))
 
   it('should be flavourable', function () {
     const text = "It's your journey ... we guide you through."
     const expected = 'Its-your-journey-we-guide-you-through'
-    slug(text, { mode: 'pretty' }).should.eql(expected)
+    assert.strictEqual(slug(text, { mode: 'pretty' }), expected)
   })
 
   it('should default to lowercase in rfc3986 mode', function () {
     const text = "It's Your Journey We Guide You Through."
     const expected = 'its-your-journey-we-guide-you-through.'
-    slug(text, { mode: 'rfc3986' }).should.eql(expected)
+    assert.strictEqual(slug(text, { mode: 'rfc3986' }), expected)
   })
 
   it('should allow disabling of lowercase', function () {
     const text = "It's Your Journey We Guide You Through."
     const expected = 'Its-Your-Journey-We-Guide-You-Through.'
-    slug(text, { mode: 'rfc3986', lower: false }).should.eql(expected)
+    assert.strictEqual(slug(text, { mode: 'rfc3986', lower: false }), expected)
   })
 
-  it('should replace arabic characters', () => slug('مرحبا بك').should.eql('mrhba-bk'))
+  it('should replace arabic characters', () => assert.strictEqual(slug('مرحبا بك'), 'mrhba-bk'))
 
-  it('should replace zh characters', () => slug('鳄梨').should.eql('6bOE5qKo'))
+  it('should replace zh characters', () => assert.strictEqual(slug('鳄梨'), '6bOE5qKo'))
 })

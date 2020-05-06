@@ -18,6 +18,10 @@ describe('slug', function () {
     slug('foo bar baz', '').should.eql('foobarbaz')
   })
 
+  it('should replace multiple spaces and dashes with a single instance by default', () => {
+    slug('foo  bar--baz').should.eql('foo-bar-baz')
+  })
+
   it('should remove trailing space if any', () => slug(' foo bar baz ').should.eql('foo-bar-baz'))
 
   it('should remove not allowed chars', function () {

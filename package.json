@@ -19,7 +19,7 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && c8 mocha ./test/*.test.* --require should --reporter spec --colors"
+        "test": "standard && c8 mocha ./test/*.test.* --reporter spec --colors"
     },
     "dependencies": {
         "unicode": ">= 0.3.1"
@@ -27,7 +27,6 @@
     "devDependencies": {
         "c8": "^7.0.0",
         "mocha": "^7.0.0",
-        "should": "~13.2.3",
         "standard": "^14.3.3"
     },
     "bin": {

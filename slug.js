@@ -78,7 +78,8 @@
           char = char.trim()
         }
       }
-      char = char.replace(/[^\w\s\-._~]/g, '') // allowed
+      const allowedChars = opts.mode === 'rfc3986' ? /[^\w\s\-.~]/g : /[^A-Za-z0-9\s-]/g
+      char = char.replace(allowedChars, '') // allowed
       if (opts.remove) char = char.replace(opts.remove, '') // add flavour
       result += char
     }

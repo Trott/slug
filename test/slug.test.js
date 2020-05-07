@@ -21,23 +21,22 @@ describe('slug', function () {
 
   it('should remove trailing space if any', () => assert.strictEqual(slug(' foo bar baz '), 'foo-bar-baz'))
 
-  it('should remove not allowed chars', function () {
-    assert.strictEqual(slug('foo, bar baz'), 'foo-bar-baz')
+  it('should remove punctuation by default', () => {
+    const punctuation = ['*', '_', '+', '~', '.', ',', '[', ']', '(', ')', '\'', '"', '!', ':', '@']
+    punctuation.forEach((symbol) => {
+      assert.strictEqual(slug('foo ' + symbol + ' bar baz'), 'foo-bar-baz')
+    })
+  })
+
+  it('should consolidate hyphen and space chars', function () {
     assert.strictEqual(slug('foo- bar baz'), 'foo-bar-baz')
-    assert.strictEqual(slug('foo] bar baz'), 'foo-bar-baz')
   })
 
   it('should leave allowed chars in rfc3986 mode', function () {
     const allowed = ['.', '_', '~']
-    allowed.forEach((a) =>
-      assert.strictEqual(slug(`foo ${a} bar baz`,
-        { mode: 'rfc3986' }), `foo-${a}-bar-baz`))
-  })
-
-  it('should leave allowed chars in pretty mode', function () {
-    const allowed = ['_', '~']
-    allowed.forEach((a) =>
-      assert.strictEqual(slug(`foo ${a} bar baz`), `foo-${a}-bar-baz`))
+    allowed.forEach((a) => {
+      assert.strictEqual(slug(`foo ${a} bar baz`, { mode: 'rfc3986' }), `foo-${a}-bar-baz`)
+    })
   })
 
   it('should replace latin chars', function () {

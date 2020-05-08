@@ -78,7 +78,9 @@
           char = char.trim()
         }
       }
-      const allowedChars = opts.mode === 'rfc3986' ? /[^\w\s\-.~]/g : /[^A-Za-z0-9\s-]/g
+      const allowedChars = opts.mode === 'rfc3986' ? /[^\w\s\-.~]/g : /[^A-Za-z0-9\s]/g
+      // next line preserves the replacement character in case it is included in allowedChars
+      char = char.replace(opts.replacement, ' ')
       char = char.replace(allowedChars, '') // allowed
       if (opts.remove) char = char.replace(opts.remove, '') // add flavour
       result += char

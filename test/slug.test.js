@@ -26,6 +26,7 @@ describe('slug', function () {
     punctuation.forEach((symbol) => {
       assert.strictEqual(slug('foo ' + symbol + ' bar baz'), 'foo-bar-baz')
     })
+    assert.strictEqual(slug('foo_bar. -baz!'), 'foobar-baz')
   })
 
   it('should consolidate hyphen and space chars', function () {

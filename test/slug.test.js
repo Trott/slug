@@ -113,7 +113,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 
@@ -191,7 +191,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 
@@ -212,7 +212,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 
@@ -295,7 +295,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      let expected = `foo-${replacement}-bar-baz`
+      let expected = `foo-${replacement}-bar-baz`.toLowerCase()
       if (!replacement) { expected = 'foo-bar-baz' }
       assert.strictEqual(slug(`foo ${char} bar baz`), expected)
     }
@@ -324,7 +324,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 
@@ -350,7 +350,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 
@@ -381,7 +381,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 
@@ -490,7 +490,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 
@@ -515,7 +515,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 
@@ -615,7 +615,7 @@ describe('slug', function () {
     }
     for (const char in charMap) {
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 
@@ -677,13 +677,13 @@ describe('slug', function () {
     assert.strictEqual(slug('foo bar baz', { charmap }).toUpperCase(), 'PH00-842-845')
   })
 
-  it('should replace lithuanian characters', () => assert.strictEqual(slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ'), 'aceeisuuzACEEISUUZ'))
+  it('should replace lithuanian characters', () => assert.strictEqual(slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ'), 'aceeisuuzaceeisuuz'))
 
   it('should replace multichars', () => assert.strictEqual(slug('w/ <3 && sugar || ☠'), 'with-love-and-sugar-or-skull-and-bones'))
 
   it('should be flavourable', function () {
     const text = "It's your journey ... we guide you through."
-    const expected = 'Its-your-journey-we-guide-you-through'
+    const expected = 'its-your-journey-we-guide-you-through'
     assert.strictEqual(slug(text, { mode: 'pretty' }), expected)
   })
 
@@ -701,5 +701,5 @@ describe('slug', function () {
 
   it('should replace arabic characters', () => assert.strictEqual(slug('مرحبا بك'), 'mrhba-bk'))
 
-  it('should replace zh characters', () => assert.strictEqual(slug('鳄梨'), '6bOE5qKo'))
+  it('should replace zh characters', () => assert.strictEqual(slug('鳄梨'), '6boe5qko'))
 })

@@ -624,7 +624,7 @@
       replacement: '-',
       symbols: true,
       remove: /[.]/g,
-      lower: false,
+      lower: true,
       charmap: slug.defaults.charmap,
       multicharmap: slug.defaults.multicharmap
     }

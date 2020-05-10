@@ -494,6 +494,31 @@ describe('slug', function () {
     }
   })
 
+  it('should replace kazakh chars', function () {
+    const charMap = {
+      Ә: 'AE',
+      ә: 'ae',
+      Ғ: 'GH',
+      ғ: 'gh',
+      Қ: 'KH',
+      қ: 'kh',
+      Ң: 'NG',
+      ң: 'ng',
+      Ү: 'UE',
+      ү: 'ue',
+      Ұ: 'U',
+      ұ: 'u',
+      Һ: 'H',
+      һ: 'h',
+      Ө: 'OE',
+      ө: 'oe'
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
+    }
+  })
+
   it('should replace currencies', function () {
     const charMap = {
       '€': 'euro',

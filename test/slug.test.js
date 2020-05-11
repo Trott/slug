@@ -15,7 +15,7 @@ describe('slug', function () {
     assert.strictEqual(slug('foo bar baz', ''), 'foobarbaz')
   })
 
-  it('should replace multiple spaces and dashes with a single instance by default', () => {
+  it('should replace multiple spaces and dashes with a single instance', () => {
     assert.strictEqual(slug('foo  bar--baz'), 'foo-bar-baz')
   })
 
@@ -516,6 +516,19 @@ describe('slug', function () {
     for (const char in charMap) {
       const replacement = charMap[char]
       assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase())
+    }
+  })
+
+  it('should replace serbian chars', function () {
+    const charMap = { ђ: 'dj', ј: 'j', љ: 'lj', њ: 'nj', ћ: 'c', џ: 'dz', đ: 'dj', Ђ: 'Dj', Ј: 'j', Љ: 'Lj', Њ: 'Nj', Ћ: 'C', Џ: 'Dz', Đ: 'Dj' }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      // Default transliteration of đ and Đ is Vietnamese ('d' and 'D' respectively).
+      // Users expecting the Serbian transliteration instead need to specify it.
+      const customCharmap = Object.assign({}, slug.defaults.charmap)
+      customCharmap['đ'] = 'dj'
+      customCharmap['Đ'] = 'DJ'
+      assert.strictEqual(slug(`foo ${char} bar baz`, { charmap: customCharmap }), `foo-${replacement}-bar-baz`.toLowerCase())
     }
   })
 

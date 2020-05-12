@@ -564,7 +564,10 @@ describe('slug', function () {
       '₠': 'ecu',
       '¤': 'currency',
       '฿': 'baht',
-      $: 'dollar'
+      $: 'dollar',
+      '₽': 'russian ruble',
+      '₿': 'bitcoin',
+      '₸': 'kazakhstani tenge'
     }
     for (const char in charMap) {
       let replacement = charMap[char]

@@ -595,6 +595,9 @@
     '฿': 'baht',
     $: 'dollar',
     '₹': 'indian rupee',
+    '₽': 'russian ruble',
+    '₿': 'bitcoin',
+    '₸': 'kazakhstani tenge',
     // symbols
     '©': '(c)',
     œ: 'oe',

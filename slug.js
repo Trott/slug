@@ -563,6 +563,10 @@
     Њ: 'Nj',
     Ћ: 'C',
     Џ: 'Dz',
+    ǌ: 'nj',
+    ǉ: 'lj',
+    ǋ: 'NJ',
+    ǈ: 'LJ',
     // currency
     '€': 'euro',
     '₢': 'cruzeiro',

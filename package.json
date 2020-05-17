@@ -21,9 +21,7 @@
     "scripts": {
         "test": "standard && c8 mocha ./test/*.test.* --reporter spec --colors"
     },
-    "dependencies": {
-        "unicode": ">= 0.3.1"
-    },
+    "dependencies": {},
     "devDependencies": {
         "c8": "^7.0.0",
         "mocha": "^7.0.0",

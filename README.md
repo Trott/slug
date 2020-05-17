@@ -36,6 +36,23 @@ print(slug('Telephone-Number', {lower: false})) // If you want to preserve case
 
 print(slug('i <3 unicode'))
 // > i-love-unicode
+
+print(slug('unicode ♥ is ☢')
+// > unicode-love-is
+
+slug.extend({'☢': 'radioactive'})
+print(slug('unicode ♥ is ☢')
+// > unicode-love-is-radioactive
+
+// slug.extend() modifies the default charmap for the entire process.
+// If you need a fresh instance, clear the module from cache first:
+
+delete require.cache[require.resolve('slugify')]
+slug = require('slug')
+
+print(slug('unicode ♥ is ☢')
+// > unicode-love-is
+```
 ```
 
 ## options

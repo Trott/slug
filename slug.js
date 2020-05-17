@@ -604,6 +604,10 @@
     '>': 'greater'
   }
 
+  slug.extend = function (customMap) {
+    Object.assign(slug.charmap, customMap)
+  }
+
   slug.defaults.modes = {
     rfc3986: {
       replacement: '-',

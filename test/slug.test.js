@@ -1,10 +1,18 @@
-/* global describe, it */
-
-const slug = require('../slug')
+/* global afterEach, beforeEach, describe, it */
 
 const assert = require('assert')
 
 describe('slug', function () {
+  let slug
+
+  beforeEach(() => {
+    slug = require('../slug')
+  })
+
+  afterEach(() => {
+    delete require.cache[require.resolve('../slug')]
+  })
+
   it('requires an argument', function () {
     assert.throws(slug, { message: 'slug() requires a string argument' })
   })
@@ -657,7 +665,7 @@ describe('slug', function () {
   it('should replace no unicode when disabled', function () {
     const charMap = '😹☢☠☤☣☭☯☮☏☔☎☀★☂☃✈✉✊'.split('')
     charMap.forEach((char) =>
-      assert.strictEqual(slug(`foo ${char} bar baz`, { symbols: false }), 'foo-bar-baz'))
+      assert.strictEqual(slug(`foo ${char} bar baz`), 'foo-bar-baz'))
   })
 
   it('should allow altering the charmap', function () {
@@ -692,4 +700,13 @@ describe('slug', function () {
   it('should replace arabic characters', () => assert.strictEqual(slug('مرحبا بك'), 'mrhba-bk'))
 
   it('should replace zh characters', () => assert.strictEqual(slug('鳄梨'), '6boe5qko'))
+
+  it('should permit replacing custom characters using .extend()', () => {
+    slug.extend({ '☢': 'radioactive' })
+    assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-love-is-radioactive')
+  })
+
+  it('should ignore symbols if they are not in the charmap', () => {
+    assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-love-is')
+  })
 })

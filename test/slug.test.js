@@ -654,32 +654,6 @@ describe('slug', function () {
       assert.strictEqual(slug(`foo ${char} bar baz`), 'foo-bar-baz'))
   })
 
-  it('should replace unicode', function () {
-    const charMap = {
-      '☢': 'radioactive',
-      '☠': 'skull-and-bones',
-      '☤': 'caduceus',
-      '☣': 'biohazard',
-      '☭': 'hammer-and-sickle',
-      '☯': 'yin-yang',
-      '☮': 'peace',
-      '☏': 'telephone',
-      '☔': 'umbrella-with-rain-drops',
-      '☎': 'telephone',
-      '☀': 'sun-with-rays',
-      '★': 'star',
-      '☂': 'umbrella',
-      '☃': 'snowman',
-      '✈': 'airplane',
-      '✉': 'envelope',
-      '✊': 'raised-fist'
-    }
-    for (const char in charMap) {
-      const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`)
-    }
-  })
-
   it('should replace no unicode when disabled', function () {
     const charMap = '😹☢☠☤☣☭☯☮☏☔☎☀★☂☃✈✉✊'.split('')
     charMap.forEach((char) =>
@@ -695,7 +669,7 @@ describe('slug', function () {
 
   it('should replace lithuanian characters', () => assert.strictEqual(slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ'), 'aceeisuuzaceeisuuz'))
 
-  it('should replace multichars', () => assert.strictEqual(slug('w/ <3 && sugar || ☠'), 'with-love-and-sugar-or-skull-and-bones'))
+  it('should replace multichars', () => assert.strictEqual(slug('w/ <3 && sugar || cinnamon'), 'with-love-and-sugar-or-cinnamon'))
 
   it('should be flavourable', function () {
     const text = "It's your journey ... we guide you through."

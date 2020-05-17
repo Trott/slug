@@ -1,14 +1,4 @@
 (function (root) {
-// lazy require symbols table
-  var _symbols, removelist
-  function symbols (code) {
-    if (_symbols) return _symbols[code]
-    _symbols = require('unicode/category/So')
-    removelist = ['sign', 'cross', 'of', 'symbol', 'staff', 'hand', 'black', 'white']
-      .map(function (word) { return new RegExp(word, 'gi') })
-    return _symbols[code]
-  }
-
   var base64
   if (typeof window === 'undefined') {
     base64 = function (input) {
@@ -43,7 +33,6 @@
       key = keys[i]
       opts[key] = (key in opts) ? opts[key] : defaults[key]
     }
-    if (typeof opts.symbols === 'undefined') { opts.symbols = defaults.symbols }
 
     var lengths = []
     for (const key in opts.multicharmap) {
@@ -53,7 +42,7 @@
       if (lengths.indexOf(len) === -1) { lengths.push(len) }
     }
 
-    var code; var unicode; var result = ''
+    var result = ''
     for (let char, i = 0, l = string.length; i < l; i++) {
       char = string[i]
       if (!lengths.some(function (len) {
@@ -66,16 +55,6 @@
       })) {
         if (opts.charmap[char]) {
           char = opts.charmap[char]
-          code = char.charCodeAt(0)
-        } else {
-          code = string.charCodeAt(i)
-        }
-        if (opts.symbols && (unicode = symbols(code))) {
-          char = unicode.name.toLowerCase()
-          for (var j = 0, rl = removelist.length; j < rl; j++) {
-            char = char.replace(removelist[j], '')
-          }
-          char = char.trim()
         }
       }
       const allowedChars = opts.mode === 'rfc3986' ? /[^\w\s\-.~]/g : /[^A-Za-z0-9\s]/g
@@ -628,7 +607,6 @@
   slug.defaults.modes = {
     rfc3986: {
       replacement: '-',
-      symbols: true,
       remove: null,
       lower: true,
       charmap: slug.defaults.charmap,
@@ -636,7 +614,6 @@
     },
     pretty: {
       replacement: '-',
-      symbols: true,
       remove: /[.]/g,
       lower: true,
       charmap: slug.defaults.charmap,
@@ -648,23 +625,10 @@
   // Be compatible with different module systems
 
   if (typeof define !== 'undefined' && define.amd) { // AMD
-    // dont load symbols table in the browser
-    for (const key in slug.defaults.modes) {
-      if (!Object.prototype.hasOwnProperty.call(slug.defaults.modes, key)) { continue }
-
-      slug.defaults.modes[key].symbols = false
-    }
     define([], function () { return slug })
   } else if (typeof module !== 'undefined' && module.exports) { // CommonJS
-    symbols() // preload symbols table
     module.exports = slug
   } else { // Script tag
-    // dont load symbols table in the browser
-    for (const key in slug.defaults.modes) {
-      if (!Object.prototype.hasOwnProperty.call(slug.defaults.modes, key)) { continue }
-
-      slug.defaults.modes[key].symbols = false
-    }
     root.slug = slug
   }
 }(this))

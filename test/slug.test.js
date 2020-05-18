@@ -1,20 +1,13 @@
-/* global afterEach, beforeEach, describe, it */
+/* global beforeEach, chai, describe, it */
 
-const assert = require('assert')
+const slug = (typeof window !== 'undefined' && window.slug) || require('../slug')
+const assert = typeof chai === 'undefined' ? require('assert') : chai.assert
 
 describe('slug', function () {
-  let slug
-
-  beforeEach(() => {
-    slug = require('../slug')
-  })
-
-  afterEach(() => {
-    delete require.cache[require.resolve('../slug')]
-  })
+  beforeEach(slug.reset)
 
   it('requires an argument', function () {
-    assert.throws(slug, { message: 'slug() requires a string argument' })
+    assert.throws(slug, /slug\(\) requires a string argument/)
   })
 
   it('should replace whitespaces with replacement', function () {

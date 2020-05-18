@@ -1,4 +1,4 @@
-.eslintrc.js
+.github
 coverage/
-karma.config.js
+.karma.config.js
 test/

@@ -1,4 +1,4 @@
 .eslintrc.js
-.travis.yml
 coverage/
+karma.config.js
 test/

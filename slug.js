@@ -77,12 +77,13 @@
     mode: 'pretty'
   }
 
-  slug.multicharmap = slug.defaults.multicharmap = {
+  const initialMulticharmap = {
     '<3': 'love', '&&': 'and', '||': 'or', 'w/': 'with'
   }
+  slug.multicharmap = slug.defaults.multicharmap = Object.assign({}, initialMulticharmap)
 
   // https://github.com/django/django/blob/master/django/contrib/admin/static/admin/js/urlify.js
-  slug.charmap = slug.defaults.charmap = {
+  const initialCharmap = {
     // latin
     À: 'A',
     Á: 'A',
@@ -602,6 +603,12 @@
     '|': 'or',
     '<': 'less',
     '>': 'greater'
+  }
+  slug.charmap = slug.defaults.charmap = Object.assign({}, initialCharmap)
+
+  slug.reset = function () {
+    slug.defaults.modes.rfc3986.charmap = slug.defaults.modes.pretty.charmap = slug.charmap = slug.defaults.charmap = Object.assign({}, initialCharmap)
+    slug.defaults.modes.rfc3986.multiCharmap = slug.defaults.modes.pretty.multiCharmap = slug.multicharmap = slug.defaults.multicharmap = Object.assign({}, initialMulticharmap)
   }
 
   slug.extend = function (customMap) {

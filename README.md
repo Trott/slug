@@ -45,11 +45,9 @@ print(slug('unicode ♥ is ☢')
 // > unicode-love-is-radioactive
 
 // slug.extend() modifies the default charmap for the entire process.
-// If you need a fresh instance, clear the module from cache first:
+// If you need to reset charmap and multicharmap, use slug.reset():
 
-delete require.cache[require.resolve('slugify')]
-slug = require('slug')
-
+slug.reset()
 print(slug('unicode ♥ is ☢')
 // > unicode-love-is
 ```
@@ -78,12 +76,4 @@ slug.defaults.modes['pretty'] = {
     charmap: slug.charmap,
     multicharmap: slug.multicharmap
 };
-```
-
-## browser
-
-When using browserify:
-```bash
-# generates a standalone slug browser bundle:
-browserify slug.js --detect-globals false -s slug > slug-browser.js
 ```

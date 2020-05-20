@@ -33,9 +33,6 @@
         "mocha": "^7.0.0",
         "standard": "^14.3.3"
     },
-    "bin": {
-        "slug": "bin/slug.js"
-    },
     "licenses": [
         {
             "type": "MIT",

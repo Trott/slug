@@ -1,3 +1,28 @@
+3.0.0
+-----
+
+BREAKING CHANGE: make output lowercase by default (#43)
+
+BREAKING CHANGE: more aggressively remove punctuation by default (#39)
+
+BREAKING CHANGE: do not load/use unicode symbol table (#50)
+
+BREAKING CHANGE: require first argument to be a string (#32)
+
+BREAKING CHANGE: remove CLI (#52)
+  
+feat: support Devanagari for Hindi, Sanskrit, and other languages (#55)
+
+feat: add Kazakh characters (#42)
+
+feat: add Serbian transliterations (#45)
+
+feat: add ruble, bitcoin, tenge (#47)
+
+feat: implement .extend() (#51)
+
+feat: implement .reset() and browser testing (#53)
+
 2.1.1
 -----
 

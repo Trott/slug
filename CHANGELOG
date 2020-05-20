@@ -1,3 +1,8 @@
+3.0.1
+-----
+
+fix: remove erroneous "bin" entry in package.json
+
 3.0.0
 -----
 

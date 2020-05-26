@@ -51,7 +51,6 @@ slug.reset()
 print(slug('unicode ♥ is ☢')
 // > unicode-love-is
 ```
-```
 
 ## options
 

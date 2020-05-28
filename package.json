@@ -19,7 +19,7 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && c8 mocha ./test/*.test.* --reporter spec --colors && karma start --single-run --browsers ChromeHeadless,FirefoxHeadless .karma.config.js"
+        "test": "standard && c8 mocha test/**/*.js --reporter spec --colors && karma start --single-run --browsers ChromeHeadless,FirefoxHeadless .karma.config.js"
     },
     "dependencies": {},
     "devDependencies": {

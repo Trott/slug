@@ -37,6 +37,15 @@ print(slug('Telephone-Number', {lower: false})) // If you want to preserve case
 print(slug('i <3 unicode'))
 // > i-love-unicode
 
+// We try to provide sensible defaults.
+// So Cyrillic text will be transliterated as if it were Russian:
+print(slug('компютъра'))
+// > kompyutura
+
+// But maybe you know it's Bulgarian:
+print(slug('компютъра', { locale: 'bg' }))
+// > kompyutara
+
 print(slug('unicode ♥ is ☢')
 // > unicode-love-is
 

@@ -1,4 +1,4 @@
-# [slug](https://github.com/Trott/node-slug)
+# [slug](https://github.com/Trott/slug)
 
 Slugifies strings, even when they contain Unicode.
 

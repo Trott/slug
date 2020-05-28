@@ -21,9 +21,12 @@
   }
 
   const locales = {
-    // https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/811509/ROMANIZATION_OF_BULGARIAN.pdf
-    bg: { Й: 'Y', й: 'y', X: 'H', x: 'h', Ц: 'Ts', ц: 'ts', Щ: 'Sht', щ: 'sht', Ъ: 'A', ъ: 'a', Ь: 'Y', ь: 'y' }
+    // http://www.eki.ee/wgrs/rom1_bg.pdf
+    bg: { Й: 'Y', й: 'y', X: 'H', x: 'h', Ц: 'Ts', ц: 'ts', Щ: 'Sht', щ: 'sht', Ъ: 'A', ъ: 'a', Ь: 'Y', ь: 'y' },
+    // Need a reference URL for Serbian.
+    sr: { đ: 'dj', Đ: 'DJ' }
   }
+
   function slugify (string, opts) {
     if (typeof string !== 'string') {
       throw new Error('slug() requires a string argument')

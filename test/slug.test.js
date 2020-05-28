@@ -662,16 +662,11 @@ describe('slug', function () {
     }
   })
 
-  it('should replace serbian chars', function () {
+  it('should replace serbian chars if locale provided', function () {
     const charMap = { ђ: 'dj', ј: 'j', љ: 'lj', њ: 'nj', ћ: 'c', џ: 'dz', đ: 'dj', Ђ: 'Dj', Ј: 'j', Љ: 'Lj', Њ: 'Nj', Ћ: 'C', Џ: 'Dz', Đ: 'Dj', ǉ: 'lj', ǋ: 'NJ', ǈ: 'LJ' }
     for (const char in charMap) {
       const replacement = charMap[char]
-      // Default transliteration of đ and Đ is Vietnamese ('d' and 'D' respectively).
-      // Users expecting the Serbian transliteration instead need to specify it.
-      const customCharmap = Object.assign({}, slug.defaults.charmap)
-      customCharmap['đ'] = 'dj'
-      customCharmap['Đ'] = 'DJ'
-      assert.strictEqual(slug(`foo ${char} bar baz`, { charmap: customCharmap }), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug(`foo ${char} bar baz`, { locale: 'sr' }), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
     }
   })
 

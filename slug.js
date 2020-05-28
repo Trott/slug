@@ -20,6 +20,10 @@
     return result
   }
 
+  const locales = {
+    // https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/811509/ROMANIZATION_OF_BULGARIAN.pdf
+    bg: { Й: 'Y', й: 'y', X: 'H', x: 'h', Ц: 'Ts', ц: 'ts', Щ: 'Sht', щ: 'sht', Ъ: 'A', ъ: 'a', Ь: 'Y', ь: 'y' }
+  }
   function slugify (string, opts) {
     if (typeof string !== 'string') {
       throw new Error('slug() requires a string argument')
@@ -33,6 +37,7 @@
       key = keys[i]
       opts[key] = (key in opts) ? opts[key] : defaults[key]
     }
+    const localeMap = locales[opts.locale] || {}
 
     var lengths = []
     for (const key in opts.multicharmap) {
@@ -53,7 +58,9 @@
           return true
         } else return false
       })) {
-        if (opts.charmap[char]) {
+        if (localeMap[char]) {
+          char = localeMap[char]
+        } else if (opts.charmap[char]) {
           char = opts.charmap[char]
         }
       }

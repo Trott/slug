@@ -640,6 +640,9 @@
     य: 'Ya',
     य़: 'Yi',
     ज़: 'Za',
+    // azerbaijani
+    ə: 'e',
+    Ə: 'E',
     // georgian
     ა: 'a',
     ბ: 'b',

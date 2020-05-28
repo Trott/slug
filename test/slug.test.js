@@ -636,6 +636,29 @@ describe('slug', function () {
     }
   })
 
+  it('should replace azerbaijani chars', function () {
+    const charMap = {
+      ç: 'c',
+      ə: 'e',
+      ğ: 'g',
+      ı: 'i',
+      ö: 'o',
+      ş: 's',
+      ü: 'u',
+      Ç: 'C',
+      Ə: 'E',
+      Ğ: 'G',
+      İ: 'I',
+      Ö: 'O',
+      Ş: 'S',
+      Ü: 'U'
+    }
+    for (const char in charMap) {
+      const replacement = charMap[char]
+      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+    }
+  })
+
   it('should replace georgian chars', function () {
     const charMap = {
       ა: 'a',

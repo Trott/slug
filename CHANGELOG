@@ -1,3 +1,14 @@
+3.1.0
+-----
+
+feat: add support for Georgian characters
+
+feat: add locale sr (Serbian)
+
+feat: support locale bg (Bulgarian)
+
+fix: repair markdown layout for README file
+
 3.0.1
 -----
 

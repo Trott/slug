@@ -26,12 +26,12 @@ describe('fuzz-testing slug', function () {
     }
 
     for (let i = 0; i < FUZZ_TESTS; i++) {
-      const { fuzzyString, codePoints } = getString(MAX_BMP_CODE_POINT)
-      assert(slug(fuzzyString), `STRING: ${fuzzyString}\nCODEPOINTS: ${JSON.stringify(codePoints)}`)
-      // TODO: Fix so we don't need to skip this in the browser. Maybe see the
-      // "fixing" vesions of charCodeAt() in
-      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charCodeAt
-      if (typeof window === 'undefined') {
+      {
+        const { fuzzyString, codePoints } = getString(MAX_BMP_CODE_POINT)
+        assert(slug(fuzzyString), `STRING: ${fuzzyString}\nCODEPOINTS: ${JSON.stringify(codePoints)}`)
+      }
+
+      {
         const { fuzzyString, codePoints } = getString(MAX_CODE_POINT)
         assert(slug(fuzzyString), `STRING: ${fuzzyString}\nCODEPOINTS: ${JSON.stringify(codePoints)}`)
       }

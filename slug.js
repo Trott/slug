@@ -1,63 +1,63 @@
 /* global btoa */
 (function (root) {
   var base64
+
+  // This function's sole purpose is to help us ignore lone surrogates so that
+  // malformed strings don't throw in the browser while being processed
+  // permissively in Node.js. If we didn't care about parity, we could get rid
+  // of it.
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt
+  function getWholeCharAndI (str, i) {
+    const code = str.charCodeAt(i)
+
+    if (Number.isNaN(code)) {
+      // TODO: MDN has this as `return ''`. We probably don't cover this line
+      // in our tests. Cover it and see which is right for our use case.
+      return ['', i] // Position not found
+    }
+    if (code < 0xD800 || code > 0xDFFF) {
+      return [str.charAt(i), i] // Non-surrogate character, keeping 'i' the same
+    }
+
+    // High surrogate
+    if (code >= 0xD800 && code <= 0xDBFF) {
+      if (str.length <= (i + 1)) {
+        // High surrogate without following low surrogate
+        return ['', i + 1]
+      }
+      const next = str.charCodeAt(i + 1)
+      if (next < 0xDC00 || next > 0xDFFF) {
+        // High surrogate without following low surrogate
+        return ['', i + 1]
+      }
+      return [str.charAt(i) + str.charAt(i + 1), i + 1]
+    }
+
+    // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
+    if (i === 0) {
+      // Low surrogate without preceding high surrogate
+      return ['', i]
+    }
+
+    const prev = str.charCodeAt(i - 1)
+
+    if (prev < 0xD800 || prev > 0xDBFF) {
+      // Low surrogate without preceding high surrogate
+      return ['', i + 1]
+    }
+
+    // Return the next character instead (and increment)
+    // TODO: is this right?
+    return [str.charAt(i + 1), i + 1]
+  }
+
   if (typeof window === 'undefined') {
     base64 = function (input) {
       return Buffer.from(input).toString('base64')
     }
   } else {
-    base64 = function (str) {
-      let input = ''
-      for (let i = 0, chr; i < str.length; i++) {
-        [chr, i] = getWholeCharAndI(str, i)
-        input += chr
-      }
+    base64 = function (input) {
       return btoa(unescape(encodeURIComponent(input)))
-
-      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt
-      function getWholeCharAndI (str, i) {
-        const code = str.charCodeAt(i)
-
-        if (Number.isNaN(code)) {
-          // TODO: MDN has this as `return ''`. We probably don't cover this line
-          // in our tests. Cover it and see which is right for our use case.
-          return ['', i] // Position not found
-        }
-        if (code < 0xD800 || code > 0xDFFF) {
-          return [str.charAt(i), i] // Non-surrogate character, keeping 'i' the same
-        }
-
-        // High surrogate
-        if (code >= 0xD800 && code <= 0xDBFF) {
-          if (str.length <= (i + 1)) {
-            // High surrogate without following low surrogate
-            return ['', i + 1]
-          }
-          const next = str.charCodeAt(i + 1)
-          if (next < 0xDC00 || next > 0xDFFF) {
-            // High surrogate without following low surrogate
-            return ['', i + 1]
-          }
-          return [str.charAt(i) + str.charAt(i + 1), i + 1]
-        }
-
-        // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
-        if (i === 0) {
-          // Low surrogate without preceding high surrogate
-          return ['', i + 1]
-        }
-
-        const prev = str.charCodeAt(i - 1)
-
-        if (prev < 0xD800 || prev > 0xDBFF) {
-          // Low surrogate without preceding high surrogate
-          return ['', i + 1]
-        }
-
-        // Return the next character instead (and increment)
-        // TODO: is this right?
-        return [str.charAt(i + 1), i + 1]
-      }
     }
   }
 
@@ -65,7 +65,13 @@
     var result = slugify(string, opts)
     // If output is an empty string, try slug for base64 of string.
     if (result === '') {
-      result = slugify(base64(string), opts)
+      // Get rid of lone surrogates.
+      let input = ''
+      for (let i = 0, chr; i < string.length; i++) {
+        [chr, i] = getWholeCharAndI(string, i)
+        input += chr
+      }
+      result = slugify(base64(input), opts)
     }
     return result
   }

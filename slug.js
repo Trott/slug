@@ -1,3 +1,4 @@
+/* global btoa */
 (function (root) {
   var base64
   if (typeof window === 'undefined') {
@@ -5,9 +6,58 @@
       return Buffer.from(input).toString('base64')
     }
   } else {
-    base64 = function (input) {
-      // eslint-disable-next-line no-undef
+    base64 = function (str) {
+      let input = ''
+      for (let i = 0, chr; i < str.length; i++) {
+        [chr, i] = getWholeCharAndI(str, i)
+        input += chr
+      }
       return btoa(unescape(encodeURIComponent(input)))
+
+      // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt
+      function getWholeCharAndI (str, i) {
+        const code = str.charCodeAt(i)
+
+        if (Number.isNaN(code)) {
+          // TODO: MDN has this as `return ''`. We probably don't cover this line
+          // in our tests. Cover it and see which is right for our use case.
+          return ['', i] // Position not found
+        }
+        if (code < 0xD800 || code > 0xDFFF) {
+          return [str.charAt(i), i] // Non-surrogate character, keeping 'i' the same
+        }
+
+        // High surrogate
+        if (code >= 0xD800 && code <= 0xDBFF) {
+          if (str.length <= (i + 1)) {
+            // High surrogate without following low surrogate
+            return ['', i + 1]
+          }
+          const next = str.charCodeAt(i + 1)
+          if (next < 0xDC00 || next > 0xDFFF) {
+            // High surrogate without following low surrogate
+            return ['', i + 1]
+          }
+          return [str.charAt(i) + str.charAt(i + 1), i + 1]
+        }
+
+        // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
+        if (i === 0) {
+          // Low surrogate without preceding high surrogate
+          return ['', i + 1]
+        }
+
+        const prev = str.charCodeAt(i - 1)
+
+        if (prev < 0xD800 || prev > 0xDBFF) {
+          // Low surrogate without preceding high surrogate
+          return ['', i + 1]
+        }
+
+        // Return the next character instead (and increment)
+        // TODO: is this right?
+        return [str.charAt(i + 1), i + 1]
+      }
     }
   }
 
@@ -29,7 +79,7 @@
 
   function slugify (string, opts) {
     if (typeof string !== 'string') {
-      throw new Error('slug() requires a string argument')
+      throw new Error(`slug() requires a string argument, received ${typeof string}`)
     }
     if (typeof opts === 'string') { opts = { replacement: opts } }
     opts = opts || {}

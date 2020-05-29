@@ -1,9 +1,9 @@
 /* global beforeEach, chai, describe, it */
 
-const slug = (typeof window !== 'undefined' && window.slug) || require('../slug')
-const assert = typeof chai === 'undefined' ? require('assert') : chai.assert
-
 describe('slug', function () {
+  const slug = (typeof window !== 'undefined' && window.slug) || require('../slug')
+  const assert = typeof chai === 'undefined' ? require('assert') : chai.assert
+
   beforeEach(slug.reset)
 
   it('requires an argument', function () {

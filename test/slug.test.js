@@ -947,7 +947,12 @@ describe('slug', function () {
   it('should ignore symbols if they are not in the charmap', () => {
     assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-love-is')
   })
+
   it('should ignore lone surrogates', () => {
-    assert.strictEqual(slug(String.fromCodePoint(56714, 36991)), '6yg')
+    assert.strictEqual(slug(String.fromCodePoint(56714, 36991)), 'iombvw')
+  })
+
+  it('should handle a lone surrogate by itself', () => {
+    assert.strictEqual(slug(String.fromCodePoint(56714)), 'ia')
   })
 })

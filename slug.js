@@ -23,12 +23,12 @@
     if (code >= 0xD800 && code <= 0xDBFF) {
       if (str.length <= (i + 1)) {
         // High surrogate without following low surrogate
-        return ['', i + 1]
+        return [' ', i]
       }
       const next = str.charCodeAt(i + 1)
       if (next < 0xDC00 || next > 0xDFFF) {
         // High surrogate without following low surrogate
-        return ['', i + 1]
+        return [' ', i]
       }
       return [str.charAt(i) + str.charAt(i + 1), i + 1]
     }
@@ -36,14 +36,14 @@
     // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
     if (i === 0) {
       // Low surrogate without preceding high surrogate
-      return ['', i]
+      return [' ', i]
     }
 
     const prev = str.charCodeAt(i - 1)
 
     if (prev < 0xD800 || prev > 0xDBFF) {
       // Low surrogate without preceding high surrogate
-      return ['', i + 1]
+      return [' ', i]
     }
 
     // Return the next character instead (and increment)

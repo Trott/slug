@@ -3,10 +3,11 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai'],
     files: [
       'slug.js',
-      'test/**/*.js'
+      'node_modules/requirejs/require.js', // Used to test loading via AMD.
+      'test/**/*.js',
     ],
     preprocessors: { 'slug.js': 'coverage' },
-    reporters: ['coverage'],
+    reporters: ['progress', 'coverage'],
     coverageReporter: {
       dir: '.nyc_output',
       reporters: [

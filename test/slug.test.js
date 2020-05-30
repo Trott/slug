@@ -1,7 +1,9 @@
 /* global beforeEach, chai, describe, it */
 
+const inBrowser = typeof window !== 'undefined'
+
 describe('slug', function () {
-  const slug = (typeof window !== 'undefined' && window.slug) || require('../slug')
+  const slug = (inBrowser && window.slug) || require('../slug')
   const assert = typeof chai === 'undefined' ? require('assert') : chai.assert
 
   beforeEach(slug.reset)
@@ -958,5 +960,22 @@ describe('slug', function () {
 
   it('should handle a lone high surrogate by itself', () => {
     assert.strictEqual(slug(String.fromCodePoint(55296)), 'ia')
+  })
+
+  it('should be able to be loaded via amd', (done) => {
+    const modulePath = inBrowser ? 'base/slug' : '../slug'
+    const requirejs = (inBrowser && window.requirejs) || require('requirejs')
+
+    if (!inBrowser) {
+      requirejs.config({
+        nodeRequire: require
+      })
+    }
+
+    requirejs([modulePath], function (amdSlug) {
+      // Use toString() to compare source code.
+      assert.deepStrictEqual(amdSlug.toString(), slug.toString())
+      done()
+    })
   })
 })

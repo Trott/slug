@@ -1,3 +1,12 @@
+3.3.0
+-----
+
+feat: make Base64 fallback in browser far more robust
+
+fix: disregard lone surrogates in Node.js, as in the browser
+
+fix: enable browser compatibility for all code points
+
 3.2.0
 -----
 

@@ -41,14 +41,14 @@
 
     const prev = str.charCodeAt(i - 1)
 
+    /* istanbul ignore else */
     if (prev < 0xD800 || prev > 0xDBFF) {
       // Low surrogate without preceding high surrogate
       return [' ', i]
     }
 
-    // Return the next character instead (and increment)
-    // TODO: is this right?
-    return [str.charAt(i + 1), i + 1]
+    /* istanbul ignore next */
+    throw new Error(`String "${str}" reaches code believed to be unreachable; please open an issue at https://github.com/Trott/slug/issues/new`)
   }
 
   if (typeof window === 'undefined') {

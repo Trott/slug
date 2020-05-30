@@ -952,7 +952,11 @@ describe('slug', function () {
     assert.strictEqual(slug(String.fromCodePoint(56714, 36991)), 'iombvw')
   })
 
-  it('should handle a lone surrogate by itself', () => {
+  it('should handle a lone low surrogate by itself', () => {
     assert.strictEqual(slug(String.fromCodePoint(56714)), 'ia')
+  })
+
+  it('should handle a lone high surrogate by itself', () => {
+    assert.strictEqual(slug(String.fromCodePoint(55296)), 'ia')
   })
 })

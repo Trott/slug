@@ -10,10 +10,10 @@
   function getWholeCharAndI (str, i) {
     const code = str.charCodeAt(i)
 
+    // This is a coherence check. `code` should never be `NaN`.
+    /* istanbul ignore if */
     if (Number.isNaN(code)) {
-      // TODO: MDN has this as `return ''`. We probably don't cover this line
-      // in our tests. Cover it and see which is right for our use case.
-      return ['', i] // Position not found
+      throw new RangeError(`Index ${i} out of range for string "${str}"; please open an issue at https://github.com/Trott/slug/issues/new`)
     }
     if (code < 0xD800 || code > 0xDFFF) {
       return [str.charAt(i), i] // Non-surrogate character, keeping 'i' the same

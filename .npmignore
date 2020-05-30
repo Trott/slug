@@ -1,4 +1,5 @@
 .github
-coverage/
 .karma.config.js
+.nyc_output/
+coverage/
 test/

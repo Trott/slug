@@ -978,4 +978,16 @@ describe('slug', function () {
       done()
     })
   })
+
+  it('should ignore inherited properties in multicharmap', () => {
+    const multicharmapPrototype = { justin: 'this-just-in' }
+    function Multicharmap () {
+      this.babysitter = 'dadbysitter'
+    }
+    Multicharmap.prototype = multicharmapPrototype
+
+    const multicharmap = new Multicharmap()
+    assert.strictEqual(multicharmap.justin, 'this-just-in')
+    assert.strictEqual(slug('justin babysitter', { multicharmap }), 'justin-dadbysitter')
+  })
 })

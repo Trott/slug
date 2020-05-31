@@ -19,7 +19,8 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && nyc --reporter none mocha test/**/*.js && karma start --single-run --browsers ChromeHeadless,FirefoxHeadless .karma.config.js && nyc report --reporter=text --reporter=html && nyc check-coverage --lines 100 --branches 100 --statements 100 --functions 100"
+        "test": "standard && nyc --reporter none mocha test/**/*.js && karma start --single-run --browsers ChromeHeadless,FirefoxHeadless .karma.config.js && nyc report --reporter=text --reporter=html && nyc check-coverage --lines 100 --branches 100 --statements 100 --functions 100",
+        "benchmark": "node benchmark/benchmark.js"
     },
     "dependencies": {},
     "devDependencies": {

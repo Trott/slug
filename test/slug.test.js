@@ -990,4 +990,10 @@ describe('slug', function () {
     assert.strictEqual(multicharmap.justin, 'this-just-in')
     assert.strictEqual(slug('justin babysitter', { multicharmap }), 'justin-dadbysitter')
   })
+
+  it('should respect the remove option', () => {
+    assert.strictEqual(slug('food', { remove: /[od]/g }), 'f')
+    assert.strictEqual(slug('one 1 two 2 three 3', { remove: /[0-9]/g }), 'one-two-three')
+    assert.strictEqual(slug('one 1 two 2 three 3'), 'one-1-two-2-three-3')
+  })
 })

@@ -30,7 +30,7 @@ describe('slug', function () {
       assert.strictEqual(slug('foo ' + symbol + ' bar baz'), 'foo-bar-baz')
     })
     assert.strictEqual(slug('foo_bar. -baz!'), 'foobar-baz')
-    assert.strictEqual(slug('foo_bar-baz!', { replacement: '_' }), 'foo_barbaz')
+    assert.strictEqual(slug('foo_bar-baz_bing!', { replacement: '_' }), 'foo_barbaz_bing')
   })
 
   it('should consolidate hyphen and space chars', function () {

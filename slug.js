@@ -127,8 +127,10 @@
       // next line preserves the replacement character in case it is included in allowedChars
       char = char.replace(opts.replacement, ' ')
       char = char.replace(allowedChars, '') // allowed
-      if (opts.remove) char = char.replace(opts.remove, '') // add flavour
       result += char
+    }
+    if (opts.remove) {
+      result = result.replace(opts.remove, '')
     }
     result = result.trim()
     result = result.replace(/[-\s]+/g, opts.replacement) // convert spaces
@@ -811,7 +813,7 @@
     },
     pretty: {
       replacement: '-',
-      remove: /[.]/g,
+      remove: null,
       lower: true,
       charmap: slug.defaults.charmap,
       multicharmap: slug.defaults.multicharmap

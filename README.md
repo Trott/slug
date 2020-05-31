@@ -59,6 +59,13 @@ print(slug('unicode ♥ is ☢')
 slug.reset()
 print(slug('unicode ♥ is ☢')
 // > unicode-love-is
+
+// Custom removal of characters from resulting slug. Let's say that we want to
+// remove all numbers for some reason.
+print(slug('one 1 two 2 three 3'))
+// > one-1-two-2-three-3
+print(slug('one 1 two 2 three 3', { remove: /[0-9]/g }))
+// > one-two-three
 ```
 
 ## options
@@ -79,7 +86,7 @@ slug.defaults.modes['rfc3986'] = {
 };
 slug.defaults.modes['pretty'] = {
     replacement: '-',
-    remove: /[.]/g,
+    remove: null,
     lower: false,
     charmap: slug.charmap,
     multicharmap: slug.multicharmap

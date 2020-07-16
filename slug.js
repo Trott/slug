@@ -99,7 +99,8 @@
     const localeMap = locales[opts.locale] || {}
 
     var lengths = []
-    for (const key in opts.multicharmap) {
+    // "let" instead of "const" in next line is for IE11 compatibilty
+    for (let key in opts.multicharmap) { // eslint-disable-line prefer-const
       if (!Object.prototype.hasOwnProperty.call(opts.multicharmap, key)) { continue }
 
       var len = key.length

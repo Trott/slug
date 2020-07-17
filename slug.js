@@ -12,7 +12,7 @@
 
     // This is a coherence check. `code` should never be `NaN`.
     /* istanbul ignore if */
-    if (Number.isNaN(code)) {
+    if (isNaN(code)) {
       throw new RangeError('Index ' + i + ' out of range for string "' + str + '"; please open an issue at https://github.com/Trott/slug/issues/new')
     }
     if (code < 0xD800 || code > 0xDFFF) {
@@ -61,15 +61,48 @@
     }
   }
 
+  // IE11 doesn't have Object.assign(), hence this MDN-supplied polyfill.
+  /* istanbul ignore if */
+  if (typeof Object.assign !== 'function') {
+    // Must be writable: true, enumerable: false, configurable: true
+    Object.defineProperty(Object, 'assign', {
+      value: function assign (target, varArgs) { // .length of function is 2
+        'use strict'
+        if (target === null || target === undefined) {
+          throw new TypeError('Cannot convert undefined or null to object')
+        }
+
+        var to = Object(target)
+
+        for (var index = 1; index < arguments.length; index++) {
+          var nextSource = arguments[index]
+
+          if (nextSource !== null && nextSource !== undefined) {
+            for (var nextKey in nextSource) {
+              // Avoid bugs when hasOwnProperty is shadowed
+              if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
+                to[nextKey] = nextSource[nextKey]
+              }
+            }
+          }
+        }
+        return to
+      },
+      writable: true,
+      configurable: true
+    })
+  }
+
   function slug (string, opts) {
     var result = slugify(string, opts)
     // If output is an empty string, try slug for base64 of string.
     if (result === '') {
       // Get rid of lone surrogates.
       let input = ''
-      for (let i = 0, chr; i < string.length; i++) {
-        [chr, i] = getWholeCharAndI(string, i)
-        input += chr
+      for (let i = 0; i < string.length; i++) {
+        const charAndI = getWholeCharAndI(string, i)
+        i = charAndI[1]
+        input += charAndI[0]
       }
       result = slugify(base64(input), opts)
     }

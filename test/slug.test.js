@@ -2,6 +2,44 @@
 
 const inBrowser = typeof window !== 'undefined'
 
+// Polyfill for IE11.
+if (!String.fromCodePoint) {
+  (function (stringFromCharCode) {
+    var fromCodePoint = function (_) {
+      var codeUnits = []; var codeLen = 0; var result = ''
+      for (var index = 0, len = arguments.length; index !== len; ++index) {
+        var codePoint = +arguments[index]
+        // correctly handles all cases including `NaN`, `-Infinity`, `+Infinity`
+        // The surrounding `!(...)` is required to correctly handle `NaN` cases
+        // The (codePoint>>>0) === codePoint clause handles decimals and negatives
+        if (!(codePoint < 0x10FFFF && (codePoint >>> 0) === codePoint)) { throw RangeError('Invalid code point: ' + codePoint) }
+        if (codePoint <= 0xFFFF) { // BMP code point
+          codeLen = codeUnits.push(codePoint)
+        } else { // Astral code point; split in surrogate halves
+        // https://mathiasbynens.be/notes/javascript-encoding#surrogate-formulae
+          codePoint -= 0x10000
+          codeLen = codeUnits.push(
+            (codePoint >> 10) + 0xD800, // highSurrogate
+            (codePoint % 0x400) + 0xDC00 // lowSurrogate
+          )
+        }
+        if (codeLen >= 0x3fff) {
+          result += stringFromCharCode.apply(null, codeUnits)
+          codeUnits.length = 0
+        }
+      }
+      return result + stringFromCharCode.apply(null, codeUnits)
+    }
+    try { // IE 8 only supports `Object.defineProperty` on DOM elements
+      Object.defineProperty(String, 'fromCodePoint', {
+        value: fromCodePoint, configurable: true, writable: true
+      })
+    } catch (e) {
+      String.fromCodePoint = fromCodePoint
+    }
+  }(String.fromCharCode))
+}
+
 describe('slug', function () {
   const slug = (inBrowser && window.slug) || require('../slug')
   const assert = typeof chai === 'undefined' ? require('assert') : chai.assert
@@ -18,15 +56,15 @@ describe('slug', function () {
     assert.strictEqual(slug('foo bar baz', ''), 'foobarbaz')
   })
 
-  it('should replace multiple spaces and dashes with a single instance', () => {
+  it('should replace multiple spaces and dashes with a single instance', function () {
     assert.strictEqual(slug('foo  bar--baz'), 'foo-bar-baz')
   })
 
-  it('should remove trailing space if any', () => assert.strictEqual(slug(' foo bar baz '), 'foo-bar-baz'))
+  it('should remove trailing space if any', function () { assert.strictEqual(slug(' foo bar baz '), 'foo-bar-baz') })
 
-  it('should remove punctuation by default', () => {
+  it('should remove punctuation by default', function () {
     const punctuation = ['*', '_', '+', '~', '.', ',', '[', ']', '(', ')', '\'', '"', '!', ':', '@']
-    punctuation.forEach((symbol) => {
+    punctuation.forEach(function (symbol) {
       assert.strictEqual(slug('foo ' + symbol + ' bar baz'), 'foo-bar-baz')
     })
     assert.strictEqual(slug('foo_bar. -baz!'), 'foobar-baz')
@@ -39,8 +77,8 @@ describe('slug', function () {
 
   it('should leave allowed chars in rfc3986 mode', function () {
     const allowed = ['.', '_', '~']
-    allowed.forEach((a) => {
-      assert.strictEqual(slug(`foo ${a} bar baz`, { mode: 'rfc3986' }), `foo-${a}-bar-baz`)
+    allowed.forEach(function (a) {
+      assert.strictEqual(slug('foo ' + a + ' bar baz', { mode: 'rfc3986' }), 'foo-' + a + '-bar-baz')
     })
   })
 
@@ -114,9 +152,9 @@ describe('slug', function () {
       ÿ: 'y',
       ẞ: 'SS'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -192,9 +230,9 @@ describe('slug', function () {
       Ϊ: 'I',
       Ϋ: 'Y'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -213,9 +251,9 @@ describe('slug', function () {
       ğ: 'g',
       Ğ: 'G'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -296,11 +334,11 @@ describe('slug', function () {
       ї: 'yi',
       ґ: 'g'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      let expected = `foo-${replacement}-bar-baz`.toLowerCase()
+      let expected = 'foo-' + replacement.toLowerCase() + '-bar-baz'
       if (!replacement) { expected = 'foo-bar-baz' }
-      assert.strictEqual(slug(`foo ${char} bar baz`), expected, `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), expected, 'replacing \'' + char + '\'')
     }
   })
 
@@ -325,9 +363,9 @@ describe('slug', function () {
       Ů: 'U',
       Ž: 'Z'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -368,9 +406,9 @@ describe('slug', function () {
       Ý: 'Y',
       Ž: 'Z'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -394,9 +432,9 @@ describe('slug', function () {
       Ź: 'Z',
       Ż: 'Z'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -425,9 +463,9 @@ describe('slug', function () {
       Ū: 'U',
       Ž: 'Z'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -534,9 +572,9 @@ describe('slug', function () {
       ỹ: 'y',
       đ: 'd'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -559,9 +597,9 @@ describe('slug', function () {
       Ө: 'OE',
       ө: 'oe'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -632,9 +670,9 @@ describe('slug', function () {
       य़: 'Yi',
       ज़: 'Za'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -655,9 +693,9 @@ describe('slug', function () {
       Ş: 'S',
       Ü: 'U'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -697,9 +735,9 @@ describe('slug', function () {
       ჯ: 'j',
       ჰ: 'h'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -766,17 +804,17 @@ describe('slug', function () {
       Я: 'Ya',
       я: 'ya'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`, { locale: 'bg' }), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz', { locale: 'bg' }), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
   it('should replace serbian chars if locale provided', function () {
     const charMap = { ђ: 'dj', ј: 'j', љ: 'lj', њ: 'nj', ћ: 'c', џ: 'dz', đ: 'dj', Ђ: 'Dj', Ј: 'j', Љ: 'Lj', Њ: 'Nj', Ћ: 'C', Џ: 'Dz', Đ: 'Dj', ǉ: 'lj', ǋ: 'NJ', ǈ: 'LJ' }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`, { locale: 'sr' }), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz', { locale: 'sr' }), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -817,10 +855,10 @@ describe('slug', function () {
       '₿': 'bitcoin',
       '₸': 'kazakhstani tenge'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       let replacement = charMap[char]
       replacement = replacement.replace(' ', '-')
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`, `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -847,11 +885,12 @@ describe('slug', function () {
       '<': 'less',
       '>': 'greater'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`,
-        { mode: 'rfc3986' }),
-                      `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(
+        slug('foo ' + char + ' bar baz', { mode: 'rfc3986' }),
+        'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\''
+      )
     }
   })
 
@@ -877,9 +916,9 @@ describe('slug', function () {
       '<': 'less',
       '>': 'greater'
     }
-    for (const char in charMap) {
+    for (let char in charMap) { // eslint-disable-line prefer-const
       const replacement = charMap[char]
-      assert.strictEqual(slug(`foo ${char} bar baz`), `foo-${replacement}-bar-baz`.toLowerCase(), `replacing '${char}'`)
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
@@ -887,37 +926,39 @@ describe('slug', function () {
     const charMap = {
       '…': '...'
     }
-    for (const char in charMap) {
-      assert.strictEqual(slug(`foo ${char} bar baz`), 'foo-bar-baz', `replacing '${char}'`)
+    for (let char in charMap) { // eslint-disable-line prefer-const
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-bar-baz', 'replacing \'' + char + '\'')
     }
   })
 
-  it('should strip … symbols in pretty mode', () => assert.strictEqual(slug('foo … bar baz'), 'foo-bar-baz'))
+  it('should strip … symbols in pretty mode', function () { assert.strictEqual(slug('foo … bar baz'), 'foo-bar-baz') })
 
   it('should strip symbols', function () {
     const charMap = [
       '†', '“', '”', '‘', '’', '•'
     ]
-    charMap.forEach((char) =>
-      assert.strictEqual(slug(`foo ${char} bar baz`), 'foo-bar-baz', `replacing '${char}'`))
+    charMap.forEach(function (char) {
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-bar-baz', 'replacing \'' + char + '\'')
+    })
   })
 
   it('should replace no unicode when disabled', function () {
     const charMap = '😹☢☠☤☣☭☯☮☏☔☎☀★☂☃✈✉✊'.split('')
-    charMap.forEach((char) =>
-      assert.strictEqual(slug(`foo ${char} bar baz`), 'foo-bar-baz', `replacing '${char}'`))
+    charMap.forEach(function (char) {
+      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-bar-baz', 'replacing \'' + char + '\'')
+    })
   })
 
   it('should allow altering the charmap', function () {
     const charmap = {
       f: 'ph', o: '0', b: '8', a: '4', r: '2', z: '5'
     }
-    assert.strictEqual(slug('foo bar baz', { charmap }).toUpperCase(), 'PH00-842-845')
+    assert.strictEqual(slug('foo bar baz', { charmap: charmap }), 'ph00-842-845')
   })
 
-  it('should replace lithuanian characters', () => assert.strictEqual(slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ'), 'aceeisuuzaceeisuuz'))
+  it('should replace lithuanian characters', function () { assert.strictEqual(slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ'), 'aceeisuuzaceeisuuz') })
 
-  it('should replace multichars', () => assert.strictEqual(slug('w/ <3 && sugar || cinnamon'), 'with-love-and-sugar-or-cinnamon'))
+  it('should replace multichars', function () { assert.strictEqual(slug('w/ <3 && sugar || cinnamon'), 'with-love-and-sugar-or-cinnamon') })
 
   it('should be flavourable', function () {
     const text = "It's your journey ... we guide you through."
@@ -937,32 +978,32 @@ describe('slug', function () {
     assert.strictEqual(slug(text, { mode: 'rfc3986', lower: false }), expected)
   })
 
-  it('should replace arabic characters', () => assert.strictEqual(slug('مرحبا بك'), 'mrhba-bk'))
+  it('should replace arabic characters', function () { assert.strictEqual(slug('مرحبا بك'), 'mrhba-bk') })
 
-  it('should replace zh characters', () => assert.strictEqual(slug('鳄梨'), '6boe5qko'))
+  it('should replace zh characters', function () { assert.strictEqual(slug('鳄梨'), '6boe5qko') })
 
-  it('should permit replacing custom characters using .extend()', () => {
+  it('should permit replacing custom characters using .extend()', function () {
     slug.extend({ '☢': 'radioactive' })
     assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-love-is-radioactive')
   })
 
-  it('should ignore symbols if they are not in the charmap', () => {
+  it('should ignore symbols if they are not in the charmap', function () {
     assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-love-is')
   })
 
-  it('should ignore lone surrogates', () => {
+  it('should ignore lone surrogates', function () {
     assert.strictEqual(slug(String.fromCodePoint(56714, 36991)), 'iombvw')
   })
 
-  it('should handle a lone low surrogate by itself', () => {
+  it('should handle a lone low surrogate by itself', function () {
     assert.strictEqual(slug(String.fromCodePoint(56714)), 'ia')
   })
 
-  it('should handle a lone high surrogate by itself', () => {
+  it('should handle a lone high surrogate by itself', function () {
     assert.strictEqual(slug(String.fromCodePoint(55296)), 'ia')
   })
 
-  it('should be able to be loaded via amd', (done) => {
+  it('should be able to be loaded via amd', function (done) {
     const modulePath = inBrowser ? 'base/slug' : '../slug'
     const requirejs = (inBrowser && window.requirejs) || require('requirejs')
 
@@ -979,7 +1020,7 @@ describe('slug', function () {
     })
   })
 
-  it('should ignore inherited properties in multicharmap', () => {
+  it('should ignore inherited properties in multicharmap', function () {
     const multicharmapPrototype = { justin: 'this-just-in' }
     function Multicharmap () {
       this.babysitter = 'dadbysitter'
@@ -988,10 +1029,10 @@ describe('slug', function () {
 
     const multicharmap = new Multicharmap()
     assert.strictEqual(multicharmap.justin, 'this-just-in')
-    assert.strictEqual(slug('justin babysitter', { multicharmap }), 'justin-dadbysitter')
+    assert.strictEqual(slug('justin babysitter', { multicharmap: multicharmap }), 'justin-dadbysitter')
   })
 
-  it('should respect the remove option', () => {
+  it('should respect the remove option', function () {
     assert.strictEqual(slug('food', { remove: /[od]/g }), 'f')
     assert.strictEqual(slug('one 1 two 2 three 3', { remove: /[0-9]/g }), 'one-two-three')
     assert.strictEqual(slug('one 1 two 2 three 3'), 'one-1-two-2-three-3')

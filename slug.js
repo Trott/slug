@@ -13,7 +13,7 @@
     // This is a coherence check. `code` should never be `NaN`.
     /* istanbul ignore if */
     if (Number.isNaN(code)) {
-      throw new RangeError(`Index ${i} out of range for string "${str}"; please open an issue at https://github.com/Trott/slug/issues/new`)
+      throw new RangeError('Index ' + i + ' out of range for string "' + str + '"; please open an issue at https://github.com/Trott/slug/issues/new')
     }
     if (code < 0xD800 || code > 0xDFFF) {
       return [str.charAt(i), i] // Non-surrogate character, keeping 'i' the same
@@ -48,7 +48,7 @@
     }
 
     /* istanbul ignore next */
-    throw new Error(`String "${str}" reaches code believed to be unreachable; please open an issue at https://github.com/Trott/slug/issues/new`)
+    throw new Error('String "' + str + '" reaches code believed to be unreachable; please open an issue at https://github.com/Trott/slug/issues/new')
   }
 
   if (typeof window === 'undefined') {
@@ -85,7 +85,7 @@
 
   function slugify (string, opts) {
     if (typeof string !== 'string') {
-      throw new Error(`slug() requires a string argument, received ${typeof string}`)
+      throw new Error('slug() requires a string argument, received ' + typeof string)
     }
     if (typeof opts === 'string') { opts = { replacement: opts } }
     opts = opts || {}

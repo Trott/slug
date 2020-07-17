@@ -1,3 +1,9 @@
+3.3.2
+-----
+
+fix: remove template strings for IE11 compatibility
+
+
 3.3.1
 -----
 

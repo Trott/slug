@@ -112,6 +112,8 @@
   const locales = {
     // http://www.eki.ee/wgrs/rom1_bg.pdf
     bg: { Й: 'Y', й: 'y', X: 'H', x: 'h', Ц: 'Ts', ц: 'ts', Щ: 'Sht', щ: 'sht', Ъ: 'A', ъ: 'a', Ь: 'Y', ь: 'y' },
+    // Need a reference URL for German, although this is pretty well-known.
+    de: { Ä: 'AE', ä: 'ae', Ö: 'OE', ö: 'oe', Ü: 'UE', ü: 'ue' },
     // Need a reference URL for Serbian.
     sr: { đ: 'dj', Đ: 'DJ' }
   }

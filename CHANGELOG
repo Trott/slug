@@ -1,3 +1,8 @@
+3.3.4
+-----
+
+fix: add German locale for parity with slugify
+
 3.3.3
 -----
 

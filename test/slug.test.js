@@ -818,6 +818,14 @@ describe('slug', function () {
     }
   })
 
+  it('should replace german chars if locale provided', function () {
+    const charMap = { Ä: 'AE', ä: 'ae', Ö: 'OE', ö: 'oe', Ü: 'UE', ü: 'ue' }
+    for (let char in charMap) { // eslint-disable-line prefer-const
+      const replacement = charMap[char]
+      assert.strictEqual(slug('foo ' + char + ' bar baz', { locale: 'de' }), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
+    }
+  })
+
   it('should replace currencies', function () {
     const charMap = {
       '€': 'euro',

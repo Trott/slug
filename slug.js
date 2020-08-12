@@ -142,17 +142,25 @@
       if (lengths.indexOf(len) === -1) { lengths.push(len) }
     }
 
+    // We want to match the longest string if there are multiple matches, so
+    // sort lengths in descending order.
+    lengths = lengths.sort(function (a, b) { return b - a })
+
     var result = ''
     for (let char, i = 0, l = string.length; i < l; i++) {
       char = string[i]
-      if (!lengths.some(function (len) {
+      let matchedMultichar = false
+      for (let j = 0; j < lengths.length; j++) {
+        const len = lengths[j]
         var str = string.substr(i, len)
         if (opts.multicharmap[str]) {
           i += len - 1
           char = opts.multicharmap[str]
-          return true
-        } else return false
-      })) {
+          matchedMultichar = true
+          break
+        }
+      }
+      if (!matchedMultichar) {
         if (localeMap[char]) {
           char = localeMap[char]
         } else if (opts.charmap[char]) {
@@ -190,7 +198,31 @@
     ड़: 'ugDha',
     ढ़: 'ugDhha',
     य़: 'Yi',
-    ज़: 'Za'
+    ज़: 'Za',
+    // hebrew
+    // Refs: http://www.eki.ee/wgrs/rom1_he.pdf
+    // Refs: https://en.wikipedia.org/wiki/Niqqud
+    בִי: 'i',
+    בֵ: 'e',
+    בֵי: 'e',
+    בֶ: 'e',
+    בַ: 'a',
+    בָ: 'a',
+    בֹ: 'o',
+    וֹ: 'o',
+    בֻ: 'u',
+    וּ: 'u',
+    בּ: 'b',
+    כּ: 'k',
+    ךּ: 'k',
+    פּ: 'p',
+    שׁ: 'sh',
+    שׂ: 's',
+    בְ: 'e',
+    חֱ: 'e',
+    חֲ: 'a',
+    חֳ: 'o',
+    בִ: 'i'
   }
 
   // https://github.com/django/django/blob/master/django/contrib/admin/static/admin/js/urlify.js
@@ -768,6 +800,34 @@
     ხ: 'kh',
     ჯ: 'j',
     ჰ: 'h',
+    // hebrew
+    ב: 'v',
+    גּ: 'g',
+    ג: 'g',
+    ד: 'd',
+    דּ: 'd',
+    ה: 'h',
+    ו: 'v',
+    ז: 'z',
+    ח: 'h',
+    ט: 't',
+    י: 'y',
+    כ: 'kh',
+    ך: 'kh',
+    ל: 'l',
+    מ: 'm',
+    ם: 'm',
+    נ: 'n',
+    ן: 'n',
+    ס: 's',
+    פ: 'f',
+    ף: 'f',
+    ץ: 'ts',
+    צ: 'ts',
+    ק: 'k',
+    ר: 'r',
+    תּ: 't',
+    ת: 't',
     // currency
     '€': 'euro',
     '₢': 'cruzeiro',

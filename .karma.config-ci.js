@@ -27,7 +27,6 @@ module.exports = function (config) {
     files: [
       'slug.js',
       'node_modules/requirejs/require.js', // Used to test loading via AMD.
-      'test/slug.test.js',
       'test/**/*.js'
     ],
     reporters: ['dots', 'saucelabs'],

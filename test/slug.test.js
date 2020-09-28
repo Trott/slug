@@ -1045,4 +1045,10 @@ describe('slug', function () {
     assert.strictEqual(slug('one 1 two 2 three 3', { remove: /[0-9]/g }), 'one-two-three')
     assert.strictEqual(slug('one 1 two 2 three 3'), 'one-1-two-2-three-3')
   })
+
+  it('should not mutate a passed options object', function () {
+    const opts = {}
+    slug('fhqwhgads', opts)
+    assert.deepStrictEqual(opts, {})
+  })
 })

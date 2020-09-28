@@ -123,7 +123,7 @@
       throw new Error('slug() requires a string argument, received ' + typeof string)
     }
     if (typeof opts === 'string') { opts = { replacement: opts } }
-    opts = opts || {}
+    opts = opts ? Object.assign({}, opts) : {}
     opts.mode = opts.mode || slug.defaults.mode
     var defaults = slug.defaults.modes[opts.mode]
     var keys = ['replacement', 'multicharmap', 'charmap', 'remove', 'lower']

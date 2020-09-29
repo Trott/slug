@@ -1,7 +1,7 @@
 {
     "name": "slug",
     "description": "slugifies even utf-8 chars!",
-    "version": "3.3.4",
+    "version": "3.3.5",
     "homepage": "https://github.com/Trott/slug",
     "author": "dodo (https://github.com/dodo)",
     "repository": {
@@ -37,6 +37,7 @@
         "mocha": "^8.0.1",
         "nyc": "^15.0.1",
         "requirejs": "^2.3.6",
+        "semantic-release": "^17.1.2",
         "standard": "^14.3.3"
     },
     "licenses": [
@@ -44,5 +45,8 @@
             "type": "MIT",
             "url": "http://github.com/Trott/slug/raw/master/LICENSE"
         }
-    ]
+    ],
+    "release": {
+
+    }
 }

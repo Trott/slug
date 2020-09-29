@@ -1,7 +1,14 @@
-3.3.4
------
+## 3.3.5 (https://github.com/Trott/slug/compare/v3.3.4...v3.3.5) (2020-09-29)
 
-fix: add German locale for parity with slugify
+### Bug Fixes
+
+    * prevent slug function from mutating option object (41916a3 (https://github.com/Trott/slug/commit/41916a32c6a6cdd3af1fe2405224e8b91c7760d4))
+    
+### 3.3.4 (https://github.com/Trott/slug/compare/v3.3.3...v3.3.4)
+
+### Bug Fixes
+
+    * fix: add German locale for parity with slugify
 
 3.3.3
 -----

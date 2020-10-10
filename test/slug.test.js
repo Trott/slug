@@ -1051,4 +1051,27 @@ describe('slug', function () {
     slug('fhqwhgads', opts)
     assert.deepStrictEqual(opts, {})
   })
+
+  it('should have charmaps reset by reset()', function () {
+    function checkAll (expectedCharmap, expectedMulticharmap, comparison) {
+      [slug, slug.defaults.modes.rfc3986, slug.defaults.modes.pretty, slug.defaults]
+        .forEach(function (actual) {
+          comparison(actual.charmap, expectedCharmap)
+          comparison(actual.multicharmap, expectedMulticharmap)
+        })
+    }
+    const charmap = slug.charmap
+    const multicharmap = slug.multicharmap
+    delete slug.charmap
+    delete slug.defaults.modes.rfc3986.charmap
+    delete slug.defaults.modes.pretty.charmap
+    delete slug.defaults.charmap
+    delete slug.multicharmap
+    delete slug.defaults.modes.rfc3986.multicharmap
+    delete slug.defaults.modes.pretty.multicharmap
+    delete slug.defaults.multicharmap
+    checkAll(undefined, undefined, assert.strictEqual)
+    slug.reset()
+    checkAll(charmap, multicharmap, assert.deepStrictEqual)
+  })
 })

@@ -177,10 +177,6 @@
     return result
   }
 
-  slug.defaults = {
-    mode: 'pretty'
-  }
-
   const initialMulticharmap = {
     '<3': 'love',
     '&&': 'and',
@@ -196,7 +192,6 @@
     य़: 'Yi',
     ज़: 'Za'
   }
-  slug.multicharmap = slug.defaults.multicharmap = Object.assign({}, initialMulticharmap)
 
   // https://github.com/django/django/blob/master/django/contrib/admin/static/admin/js/urlify.js
   const initialCharmap = {
@@ -830,32 +825,38 @@
     '<': 'less',
     '>': 'greater'
   }
-  slug.charmap = slug.defaults.charmap = Object.assign({}, initialCharmap)
+
+  slug.charmap = Object.assign({}, initialCharmap)
+  slug.multicharmap = Object.assign({}, initialMulticharmap)
+  slug.defaults = {
+    charmap: slug.charmap,
+    mode: 'pretty',
+    modes: {
+      rfc3986: {
+        replacement: '-',
+        remove: null,
+        lower: true,
+        charmap: slug.charmap,
+        multicharmap: slug.multicharmap
+      },
+      pretty: {
+        replacement: '-',
+        remove: null,
+        lower: true,
+        charmap: slug.charmap,
+        multicharmap: slug.multicharmap
+      }
+    },
+    multicharmap: slug.multicharmap
+  }
 
   slug.reset = function () {
     slug.defaults.modes.rfc3986.charmap = slug.defaults.modes.pretty.charmap = slug.charmap = slug.defaults.charmap = Object.assign({}, initialCharmap)
-    slug.defaults.modes.rfc3986.multiCharmap = slug.defaults.modes.pretty.multiCharmap = slug.multicharmap = slug.defaults.multicharmap = Object.assign({}, initialMulticharmap)
+    slug.defaults.modes.rfc3986.multicharmap = slug.defaults.modes.pretty.multicharmap = slug.multicharmap = slug.defaults.multicharmap = Object.assign({}, initialMulticharmap)
   }
 
   slug.extend = function (customMap) {
     Object.assign(slug.charmap, customMap)
-  }
-
-  slug.defaults.modes = {
-    rfc3986: {
-      replacement: '-',
-      remove: null,
-      lower: true,
-      charmap: slug.defaults.charmap,
-      multicharmap: slug.defaults.multicharmap
-    },
-    pretty: {
-      replacement: '-',
-      remove: null,
-      lower: true,
-      charmap: slug.defaults.charmap,
-      multicharmap: slug.defaults.multicharmap
-    }
   }
 
   /* global define */

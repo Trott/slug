@@ -25,6 +25,7 @@
     },
     "dependencies": {},
     "devDependencies": {
+        "@semantic-release/changelog": "^5.0.1",
         "@semantic-release/git": "^9.0.0",
         "chai": "^4.2.0",
         "karma": "^5.0.9",
@@ -51,10 +52,13 @@
         "plugins": [
             "@semantic-release/commit-analyzer",
             "@semantic-release/release-notes-generator",
-            "@semantic-release/git", {
-                "assets": ["package.json"],
+            ["@semantic-release/changelog", {
+                "changelogFile": "docs/CHANGELOG.md"
+            }],
+            ["@semantic-release/git", {
+                "assets": ["package.json", "CHANGELOG"],
                 "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-            }
+            }]
         ]
     }
 }

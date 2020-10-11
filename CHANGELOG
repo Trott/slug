@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/Trott/slug/compare/v3.4.0...v3.5.0) (2020-10-11)
+
+
+### Features
+
+* add support for React Native ([7962f8b](https://github.com/Trott/slug/commit/7962f8b52ed00c3114e745a804664aa1956d59d4))
+
 # [3.4.0](https://github.com/Trott/slug/compare/v3.3.6...v3.4.0) (2020-10-11)
 
 

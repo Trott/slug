@@ -1,6 +1,8 @@
 .github
 .karma.config.js
+.karma.config-ci.js
 .nyc_output/
+CODE_OF_CONDUCT.md
 benchmark/
 coverage/
 test/

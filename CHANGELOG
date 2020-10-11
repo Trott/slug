@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/Trott/slug/compare/v3.3.6...v3.4.0) (2020-10-11)
+
+
+### Features
+
+* add support for Hebrew ([04851c4](https://github.com/Trott/slug/commit/04851c47f82c5c3c695070956ae687041d963c8a))
+
 ## [3.3.6](https://github.com/Trott/slug/compare/v3.3.5...v3.3.6) (2020-10-11)
 
 

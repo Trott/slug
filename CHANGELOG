@@ -1,3 +1,10 @@
+## [3.3.6](https://github.com/Trott/slug/compare/v3.3.5...v3.3.6) (2020-10-11)
+
+
+### Bug Fixes
+
+* reset() should reset all multicharmap defaults ([a429809](https://github.com/Trott/slug/commit/a429809aed4f13b80664e866436931646043e124))
+
 ## 3.3.5 (https://github.com/Trott/slug/compare/v3.3.4...v3.3.5) (2020-09-29)
 
 ### Bug Fixes
@@ -106,5 +113,3 @@ Add support for Farsi. (Thanks, @hassan-jahan!)
 This is being released as a breaking change because it changes some of
 the slugs for Arabic strings. It probably won't break anything, but just
 in case....
-
-

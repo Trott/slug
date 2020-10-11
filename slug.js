@@ -51,13 +51,36 @@
     throw new Error('String "' + str + '" reaches code believed to be unreachable; please open an issue at https://github.com/Trott/slug/issues/new')
   }
 
-  if (typeof window === 'undefined') {
-    base64 = function (input) {
-      return Buffer.from(input).toString('base64')
+  if (typeof window !== 'undefined') {
+    if (window.btoa) {
+      base64 = function (input) {
+        return btoa(unescape(encodeURIComponent(input)))
+      }
+    } else {
+      // Polyfill for environments that don't have btoa or Buffer class (notably, React Native).
+      // Based on https://github.com/davidchambers/Base64.js/blob/a121f75bb10c8dd5d557886c4b1069b31258d230/base64.js
+      base64 = function (input) {
+        var str = unescape(encodeURIComponent(input + ''))
+        for (
+          var block, charCode, idx = 0, map = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=', output = '';
+          str.charAt(idx | 0) || (map = '=', idx % 1);
+          output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+        ) {
+          charCode = str.charCodeAt(idx += 3 / 4)
+          // TODO: The if condition may be guaranteed to be false. Verify and
+          // remove or otherwise write a test to cover it.
+          /* istanbul ignore if */
+          if (charCode > 0xFF) {
+            throw new Error("'btoa' failed: The string to be encoded contains characters outside of the Latin1 range.")
+          }
+          block = block << 8 | charCode
+        }
+        return output
+      }
     }
   } else {
     base64 = function (input) {
-      return btoa(unescape(encodeURIComponent(input)))
+      return Buffer.from(input).toString('base64')
     }
   }
 

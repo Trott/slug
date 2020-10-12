@@ -986,7 +986,45 @@ describe('slug', function () {
     assert.strictEqual(slug(text, { mode: 'rfc3986', lower: false }), expected)
   })
 
-  it('should replace arabic characters', function () { assert.strictEqual(slug('مرحبا بك'), 'mrhba-bk') })
+  it('should replace arabic characters', function () {
+    assert.strictEqual(slug('مرحبا بك'), 'mrhba-bk')
+    const charMap = {
+      أ: 'a',
+      ب: 'b',
+      ت: 't',
+      ث: 'th',
+      ج: 'g',
+      ح: 'h',
+      خ: 'kh',
+      د: 'd',
+      ذ: 'th',
+      ر: 'r',
+      ز: 'z',
+      س: 's',
+      ش: 'sh',
+      ص: 's',
+      ض: 'd',
+      ط: 't',
+      ظ: 'th',
+      ع: 'aa',
+      غ: 'gh',
+      ف: 'f',
+      ق: 'k',
+      ك: 'k',
+      ل: 'l',
+      م: 'm',
+      ن: 'n',
+      ه: 'h',
+      و: 'o',
+      ي: 'y',
+      ء: 'aa',
+      ة: 'a'
+    }
+    for (let char in charMap) { // eslint-disable-line prefer-const
+      const replacement = charMap[char]
+      assert.strictEqual(slug('foo' + char + ' bar baz'), 'foo' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
+    }
+  })
 
   it('should replace zh characters', function () { assert.strictEqual(slug('鳄梨'), '6boe5qko') })
 

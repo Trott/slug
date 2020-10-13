@@ -1,3 +1,10 @@
+## [3.5.1](https://github.com/Trott/slug/compare/v3.5.0...v3.5.1) (2020-10-13)
+
+
+### Bug Fixes
+
+* add ة،ء missing Arabic characters ([#1](https://github.com/Trott/slug/issues/1)) ([0366d3a](https://github.com/Trott/slug/commit/0366d3a7b67d60f656d76e12c1a5eaba6f49a9de))
+
 # [3.5.0](https://github.com/Trott/slug/compare/v3.4.0...v3.5.0) (2020-10-11)
 
 

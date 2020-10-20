@@ -1,18 +1,19 @@
-## [3.5.1](https://github.com/Trott/slug/compare/v3.5.0...v3.5.1) (2020-10-13)
+# Changelog
 
+## [3.5.1](https://github.com/Trott/slug/compare/v3.5.0...v3.5.1) (2020-10-13)
 
 ### Bug Fixes
 
 * add ة،ء missing Arabic characters ([#1](https://github.com/Trott/slug/issues/1)) ([0366d3a](https://github.com/Trott/slug/commit/0366d3a7b67d60f656d76e12c1a5eaba6f49a9de))
 
-# [3.5.0](https://github.com/Trott/slug/compare/v3.4.0...v3.5.0) (2020-10-11)
+## [3.5.0](https://github.com/Trott/slug/compare/v3.4.0...v3.5.0) (2020-10-11)
 
 
 ### Features
 
 * add support for React Native ([7962f8b](https://github.com/Trott/slug/commit/7962f8b52ed00c3114e745a804664aa1956d59d4))
 
-# [3.4.0](https://github.com/Trott/slug/compare/v3.3.6...v3.4.0) (2020-10-11)
+## [3.4.0](https://github.com/Trott/slug/compare/v3.3.6...v3.4.0) (2020-10-11)
 
 
 ### Features

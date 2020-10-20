@@ -26,7 +26,7 @@ print(slug('i ♥ unicode', '_')) // If you prefer something else than `-` as se
 
 slug.charmap['♥'] = 'freaking love' // change default charmap or use option {charmap:{…}} as 2. argument
 print(slug('I ♥ UNICODE'))
-// > I-freaking-love-UNICODE
+// > i-freaking-love-unicode
 
 print(slug('Telephone-Number')) // lower case by default
 // > telephone-number
@@ -46,18 +46,18 @@ print(slug('компютъра'))
 print(slug('компютъра', { locale: 'bg' }))
 // > kompyutara
 
-print(slug('unicode ♥ is ☢')
+print(slug('unicode ♥ is ☢'))
 // > unicode-love-is
 
 slug.extend({'☢': 'radioactive'})
-print(slug('unicode ♥ is ☢')
+print(slug('unicode ♥ is ☢'))
 // > unicode-love-is-radioactive
 
 // slug.extend() modifies the default charmap for the entire process.
 // If you need to reset charmap and multicharmap, use slug.reset():
 
 slug.reset()
-print(slug('unicode ♥ is ☢')
+print(slug('unicode ♥ is ☢'))
 // > unicode-love-is
 
 // Custom removal of characters from resulting slug. Let's say that we want to

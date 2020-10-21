@@ -1,3 +1,15 @@
+# [4.0.0](https://github.com/Trott/slug/compare/v3.5.2...v4.0.0) (2020-10-21)
+
+
+### chore
+
+* remove symbols ([853ad52](https://github.com/Trott/slug/commit/853ad52816c4ee4910ec4a7ab5497b5d530de242))
+
+
+### BREAKING CHANGES
+
+* symbols are removed
+
 ## [3.5.2](https://github.com/Trott/slug/compare/v3.5.1...v3.5.2) (2020-10-20)
 
 

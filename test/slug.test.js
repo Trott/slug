@@ -826,110 +826,6 @@ describe('slug', function () {
     }
   })
 
-  it('should replace currencies', function () {
-    const charMap = {
-      '€': 'euro',
-      '₢': 'cruzeiro',
-      '₣': 'french franc',
-      '£': 'pound',
-      '₤': 'lira',
-      '₥': 'mill',
-      '₦': 'naira',
-      '₧': 'peseta',
-      '₨': 'rupee',
-      '₹': 'indian rupee',
-      '₩': 'won',
-      '₪': 'new shequel',
-      '₫': 'dong',
-      '₭': 'kip',
-      '₮': 'tugrik',
-      '₯': 'drachma',
-      '₰': 'penny',
-      '₱': 'peso',
-      '₲': 'guarani',
-      '₳': 'austral',
-      '₴': 'hryvnia',
-      '₵': 'cedi',
-      '¢': 'cent',
-      '¥': 'yen',
-      元: 'yuan',
-      円: 'yen',
-      '﷼': 'rial',
-      '₠': 'ecu',
-      '¤': 'currency',
-      '฿': 'baht',
-      $: 'dollar',
-      '₽': 'russian ruble',
-      '₿': 'bitcoin',
-      '₸': 'kazakhstani tenge'
-    }
-    for (let char in charMap) { // eslint-disable-line prefer-const
-      let replacement = charMap[char]
-      replacement = replacement.replace(' ', '-')
-      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement + '-bar-baz', 'replacing \'' + char + '\'')
-    }
-  })
-
-  it('should replace symbols in rfc3986 mode', function () {
-    const charMap = {
-      '©': 'c',
-      œ: 'oe',
-      Œ: 'OE',
-      '∑': 'sum',
-      '®': 'r',
-      '∂': 'd',
-      ƒ: 'f',
-      '™': 'tm',
-      '℠': 'sm',
-      '…': '...',
-      '˚': 'o',
-      º: 'o',
-      ª: 'a',
-      '∆': 'delta',
-      '∞': 'infinity',
-      '♥': 'love',
-      '&': 'and',
-      '|': 'or',
-      '<': 'less',
-      '>': 'greater'
-    }
-    for (let char in charMap) { // eslint-disable-line prefer-const
-      const replacement = charMap[char]
-      assert.strictEqual(
-        slug('foo ' + char + ' bar baz', { mode: 'rfc3986' }),
-        'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\''
-      )
-    }
-  })
-
-  it('should replace symbols in pretty mode', function () {
-    const charMap = {
-      '©': 'c',
-      œ: 'oe',
-      Œ: 'OE',
-      '∑': 'sum',
-      '®': 'r',
-      '∂': 'd',
-      ƒ: 'f',
-      '™': 'tm',
-      '℠': 'sm',
-      '˚': 'o',
-      º: 'o',
-      ª: 'a',
-      '∆': 'delta',
-      '∞': 'infinity',
-      '♥': 'love',
-      '&': 'and',
-      '|': 'or',
-      '<': 'less',
-      '>': 'greater'
-    }
-    for (let char in charMap) { // eslint-disable-line prefer-const
-      const replacement = charMap[char]
-      assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
-    }
-  })
-
   it('should remove ellipsis in pretty mode', function () {
     const charMap = {
       '…': '...'
@@ -965,8 +861,6 @@ describe('slug', function () {
   })
 
   it('should replace lithuanian characters', function () { assert.strictEqual(slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ'), 'aceeisuuzaceeisuuz') })
-
-  it('should replace multichars', function () { assert.strictEqual(slug('w/ <3 && sugar || cinnamon'), 'with-love-and-sugar-or-cinnamon') })
 
   it('should be flavourable', function () {
     const text = "It's your journey ... we guide you through."
@@ -1029,12 +923,12 @@ describe('slug', function () {
   it('should replace zh characters', function () { assert.strictEqual(slug('鳄梨'), '6boe5qko') })
 
   it('should permit replacing custom characters using .extend()', function () {
-    slug.extend({ '☢': 'radioactive' })
+    slug.extend({ '♥': 'love', '☢': 'radioactive' })
     assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-love-is-radioactive')
   })
 
   it('should ignore symbols if they are not in the charmap', function () {
-    assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-love-is')
+    assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-is')
   })
 
   it('should ignore lone surrogates', function () {

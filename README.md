@@ -18,10 +18,10 @@ npm install slug
 var slug = require('slug')
 var print = console.log.bind(console, '>')
 
-print(slug('i ♥ unicode'))
+print(slug('i love unicode'))
 // > i-love-unicode
 
-print(slug('i ♥ unicode', '_')) // If you prefer something else than `-` as separator
+print(slug('i love unicode', '_')) // If you prefer something else than `-` as separator
 // > i_love_unicode
 
 slug.charmap['♥'] = 'freaking love' // change default charmap or use option {charmap:{…}} as 2. argument
@@ -33,9 +33,6 @@ print(slug('Telephone-Number')) // lower case by default
 
 print(slug('Telephone-Number', {lower: false})) // If you want to preserve case
 // > Telephone-Number
-
-print(slug('i <3 unicode'))
-// > i-love-unicode
 
 // We try to provide sensible defaults.
 // So Cyrillic text will be transliterated as if it were Russian:

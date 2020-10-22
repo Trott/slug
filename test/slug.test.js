@@ -142,6 +142,8 @@ describe('slug', function () {
       ö: 'o',
       ő: 'o',
       ø: 'o',
+      Œ: 'OE',
+      œ: 'oe',
       ù: 'u',
       ú: 'u',
       û: 'u',

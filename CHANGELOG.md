@@ -1,3 +1,10 @@
+## [4.0.1](https://github.com/Trott/slug/compare/v4.0.0...v4.0.1) (2020-10-22)
+
+
+### Bug Fixes
+
+* add Œ/œ ([5abe081](https://github.com/Trott/slug/commit/5abe081a633a2905257e861292d43923c900939a))
+
 # [4.0.0](https://github.com/Trott/slug/compare/v3.5.2...v4.0.0) (2020-10-21)
 
 

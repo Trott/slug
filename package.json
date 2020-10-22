@@ -40,7 +40,7 @@
         "nyc": "^15.0.1",
         "requirejs": "^2.3.6",
         "semantic-release": "^17.1.2",
-        "standard": "^14.3.3"
+        "standard": "^15.0.0"
     },
     "licenses": [
         {

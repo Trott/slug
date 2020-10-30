@@ -42,12 +42,7 @@
         "semantic-release": "^17.1.2",
         "standard": "^16.0.0"
     },
-    "licenses": [
-        {
-            "type": "MIT",
-            "url": "http://github.com/Trott/slug/raw/master/LICENSE"
-        }
-    ],
+    "license": "MIT",
     "release": {
         "plugins": [
             "@semantic-release/commit-analyzer",

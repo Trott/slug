@@ -1,6 +1,6 @@
 /* global btoa */
 (function (root) {
-  var base64
+  let base64
 
   // This function's sole purpose is to help us ignore lone surrogates so that
   // malformed strings don't throw in the browser while being processed
@@ -60,9 +60,10 @@
       // Polyfill for environments that don't have btoa or Buffer class (notably, React Native).
       // Based on https://github.com/davidchambers/Base64.js/blob/a121f75bb10c8dd5d557886c4b1069b31258d230/base64.js
       base64 = function (input) {
-        var str = unescape(encodeURIComponent(input + ''))
+        const str = unescape(encodeURIComponent(input + ''))
+        let output = ''
         for (
-          var block, charCode, idx = 0, map = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=', output = '';
+          let block, charCode, idx = 0, map = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
           str.charAt(idx | 0) || (map = '=', idx % 1);
           output += map.charAt(63 & block >> 8 - idx % 1 * 8)
         ) {
@@ -95,12 +96,13 @@
           throw new TypeError('Cannot convert undefined or null to object')
         }
 
-        var to = Object(target)
+        const to = Object(target)
 
-        for (var index = 1; index < arguments.length; index++) {
-          var nextSource = arguments[index]
+        for (let index = 1; index < arguments.length; index++) {
+          const nextSource = arguments[index]
 
           if (nextSource !== null && nextSource !== undefined) {
+            // eslint-disable-next-line no-var
             for (var nextKey in nextSource) {
               // Avoid bugs when hasOwnProperty is shadowed
               if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
@@ -117,7 +119,7 @@
   }
 
   function slug (string, opts) {
-    var result = slugify(string, opts)
+    let result = slugify(string, opts)
     // If output is an empty string, try slug for base64 of string.
     if (result === '') {
       // Get rid of lone surrogates.
@@ -148,20 +150,20 @@
     if (typeof opts === 'string') { opts = { replacement: opts } }
     opts = opts ? Object.assign({}, opts) : {}
     opts.mode = opts.mode || slug.defaults.mode
-    var defaults = slug.defaults.modes[opts.mode]
-    var keys = ['replacement', 'multicharmap', 'charmap', 'remove', 'lower']
+    const defaults = slug.defaults.modes[opts.mode]
+    const keys = ['replacement', 'multicharmap', 'charmap', 'remove', 'lower']
     for (let key, i = 0, l = keys.length; i < l; i++) {
       key = keys[i]
       opts[key] = (key in opts) ? opts[key] : defaults[key]
     }
     const localeMap = locales[opts.locale] || {}
 
-    var lengths = []
+    let lengths = []
     // "let" instead of "const" in next line is for IE11 compatibilty
     for (let key in opts.multicharmap) { // eslint-disable-line prefer-const
       if (!Object.prototype.hasOwnProperty.call(opts.multicharmap, key)) { continue }
 
-      var len = key.length
+      const len = key.length
       if (lengths.indexOf(len) === -1) { lengths.push(len) }
     }
 
@@ -169,13 +171,13 @@
     // sort lengths in descending order.
     lengths = lengths.sort(function (a, b) { return b - a })
 
-    var result = ''
+    let result = ''
     for (let char, i = 0, l = string.length; i < l; i++) {
       char = string[i]
       let matchedMultichar = false
       for (let j = 0; j < lengths.length; j++) {
         const len = lengths[j]
-        var str = string.substr(i, len)
+        const str = string.substr(i, len)
         if (opts.multicharmap[str]) {
           i += len - 1
           char = opts.multicharmap[str]

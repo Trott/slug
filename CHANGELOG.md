@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/Trott/slug/compare/v4.0.1...v4.0.2) (2020-10-30)
+
+
+### Bug Fixes
+
+* update from deprecated license specification ([bc16c49](https://github.com/Trott/slug/commit/bc16c4917e2303a71c0767166156351d3b3c6369))
+
 ## [4.0.1](https://github.com/Trott/slug/compare/v4.0.0...v4.0.1) (2020-10-22)
 
 

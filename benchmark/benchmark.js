@@ -1,4 +1,4 @@
-var slug = require('../slug')
+const slug = require('../slug')
 
 const BENCHMARK_RUNS = 2048
 const MAX_WORD_LENGTH = 16

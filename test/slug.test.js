@@ -5,10 +5,10 @@ const inBrowser = typeof window !== 'undefined'
 // Polyfill for IE11.
 if (!String.fromCodePoint) {
   (function (stringFromCharCode) {
-    var fromCodePoint = function (_) {
-      var codeUnits = []; var codeLen = 0; var result = ''
-      for (var index = 0, len = arguments.length; index !== len; ++index) {
-        var codePoint = +arguments[index]
+    const fromCodePoint = function (_) {
+      const codeUnits = []; let codeLen = 0; let result = ''
+      for (let index = 0, len = arguments.length; index !== len; ++index) {
+        let codePoint = +arguments[index]
         // correctly handles all cases including `NaN`, `-Infinity`, `+Infinity`
         // The surrounding `!(...)` is required to correctly handle `NaN` cases
         // The (codePoint>>>0) === codePoint clause handles decimals and negatives

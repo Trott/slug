@@ -20,7 +20,7 @@
     ],
     "scripts": {
         "test": "standard && mocha --experimental-modules test/*.mjs && nyc --reporter none mocha test/**/*.js && karma start --single-run --browsers ChromeHeadless,FirefoxHeadless .karma.config.js && nyc report --reporter=text --reporter=html && nyc check-coverage --lines 100 --branches 100 --statements 100 --functions 100",
-        "test-ci": "cp temporary-stuff/karma.js node_modules/karma/static/karma.js && ./node_modules/.bin/karma start .karma.config-ci.js",
+        "test-ci": "cp temporary-stuff/karma node_modules/karma/static/karma.js && ./node_modules/.bin/karma start .karma.config-ci.js",
         "benchmark": "node benchmark/benchmark.js"
     },
     "dependencies": {},

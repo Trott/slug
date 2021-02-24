@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/Trott/slug/compare/v4.0.2...v4.0.3) (2021-02-24)
+
+
+### Bug Fixes
+
+* add arabic letter إ i ([ce9ce2f](https://github.com/Trott/slug/commit/ce9ce2fe27ad7caefe557c55eeb9740de52d1e1e))
+
 ## [4.0.2](https://github.com/Trott/slug/compare/v4.0.1...v4.0.2) (2020-10-30)
 
 

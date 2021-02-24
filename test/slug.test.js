@@ -886,6 +886,7 @@ describe('slug', function () {
     assert.strictEqual(slug('مرحبا بك'), 'mrhba-bk')
     const charMap = {
       أ: 'a',
+      إ: 'i',
       ب: 'b',
       ت: 't',
       ث: 'th',

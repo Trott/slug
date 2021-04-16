@@ -82,6 +82,11 @@ describe('slug', function () {
     })
   })
 
+  it('should preserve punctuation added to charmap', function () {
+    slug.charmap._ = '_'
+    assert.strictEqual(slug('foo_bar baz'), 'foo_bar-baz')
+  })
+
   it('should replace latin chars', function () {
     const charMap = {
       À: 'A',

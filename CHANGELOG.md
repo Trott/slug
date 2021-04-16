@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/Trott/slug/compare/v4.0.3...v4.0.4) (2021-04-16)
+
+
+### Bug Fixes
+
+* honor special character replacements in charmap ([f5e18c9](https://github.com/Trott/slug/commit/f5e18c9ff8e21e5c5bc636f34b811b4b73e1b204))
+
 ## [4.0.3](https://github.com/Trott/slug/compare/v4.0.2...v4.0.3) (2021-02-24)
 
 

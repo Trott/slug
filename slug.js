@@ -171,6 +171,8 @@
     // sort lengths in descending order.
     lengths = lengths.sort(function (a, b) { return b - a })
 
+    const disallowedChars = opts.mode === 'rfc3986' ? /[^\w\s\-.~]/ : /[^A-Za-z0-9\s]/
+
     let result = ''
     for (let char, i = 0, l = string.length; i < l; i++) {
       char = string[i]
@@ -190,14 +192,16 @@
           char = localeMap[char]
         } else if (opts.charmap[char]) {
           char = opts.charmap[char]
+        } else if (char.includes(opts.replacement)) {
+          // preserve the replacement character in case it is excluded by disallowedChars
+          char = char.replace(opts.replacement, ' ')
+        } else {
+          char = char.replace(disallowedChars, '')
         }
       }
-      // next line preserves the replacement character in case it is included in allowedChars
-      char = char.replace(opts.replacement, ' ')
       result += char
     }
-    const allowedChars = opts.mode === 'rfc3986' ? /[^\w\s\-.~]/g : /[^A-Za-z0-9\s]/g
-    result = result.replace(allowedChars, '') // allowed
+
     if (opts.remove) {
       result = result.replace(opts.remove, '')
     }

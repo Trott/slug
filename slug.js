@@ -206,7 +206,7 @@
       result = result.replace(opts.remove, '')
     }
     result = result.trim()
-    result = result.replace(/[\s]+/g, opts.replacement) // convert spaces
+    result = result.replace(/\s+/g, opts.replacement) // convert spaces
     if (opts.lower) {
       result = result.toLowerCase()
     }

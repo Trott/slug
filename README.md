@@ -36,12 +36,12 @@ print(slug('Telephone-Number', {lower: false})) // If you want to preserve case
 
 // We try to provide sensible defaults.
 // So Cyrillic text will be transliterated as if it were Russian:
-print(slug('Компьютер'))
-// > kompyuter
+print(slug('маленький и вонючий подъезд'))
+// > malenkij-i-vonyuchij-poduezd
 
 // But maybe you know it's Bulgarian:
-print(slug('Компьютер', { locale: 'bg' }))
-// > kompyyuter
+print(slug('маленький и вонючий подъезд', { locale: 'bg' }))
+// > malenykiy-i-vonyuchiy-podaezd
 
 print(slug('unicode ♥ is ☢'))
 // > unicode-love-is

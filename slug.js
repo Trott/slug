@@ -207,7 +207,7 @@
     }
     result = result.trim()
     result = result.replace(/[-\s]+/g, opts.replacement) // convert spaces
-    result = result.replace(opts.replacement + '$', '') // remove trailing separator
+    // result = result.replace(opts.replacement + '$', '') // remove trailing separator
     if (opts.lower) {
       result = result.toLowerCase()
     }

@@ -1,3 +1,15 @@
+# [5.0.0](https://github.com/Trott/slug/compare/v4.1.0...v5.0.0) (2021-05-03)
+
+
+### chore
+
+* drop support for Node.js 10.x ([#209](https://github.com/Trott/slug/issues/209)) ([e2ee1b8](https://github.com/Trott/slug/commit/e2ee1b8e4ff8285eebbda3375314e2418c8948e4))
+
+
+### BREAKING CHANGES
+
+* Drop support for Node.js 10.x which is now EOL.
+
 # [4.1.0](https://github.com/Trott/slug/compare/v4.0.4...v4.1.0) (2021-05-03)
 
 

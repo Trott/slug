@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/Trott/slug/compare/v4.0.4...v4.1.0) (2021-05-03)
+
+
+### Features
+
+* add Ukrainian locale ([#207](https://github.com/Trott/slug/issues/207)) ([58467f9](https://github.com/Trott/slug/commit/58467f9b7f2489c743906f04184cf84d9dbfd081))
+
 ## [4.0.4](https://github.com/Trott/slug/compare/v4.0.3...v4.0.4) (2021-04-16)
 
 

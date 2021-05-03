@@ -833,6 +833,14 @@ describe('slug', function () {
     }
   })
 
+  it('should replace ukrainian chars if locale provided', function () {
+    const charMap = { И: 'Y', и: 'y', Й: 'Y', й: 'y', Ц: 'Ts', ц: 'ts', Х: 'Kh', х: 'kh', Щ: 'Shch', щ: 'shch', Г: 'H', г: 'h' }
+    for (let char in charMap) { // eslint-disable-line prefer-const
+      const replacement = charMap[char]
+      assert.strictEqual(slug('foo ' + char + ' bar baz', { locale: 'uk' }), 'foo-' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
+    }
+  })
+
   it('should remove ellipsis in pretty mode', function () {
     const charMap = {
       '…': '...'

@@ -891,7 +891,18 @@
   }
 
   slug.extend = function (customMap) {
-    Object.assign(slug.charmap, customMap)
+    const keys = Object.keys(customMap)
+    const multi = {}
+    const single = {}
+    for (let i = 0; i < keys.length; i++) {
+      if (keys[i].length > 1) {
+        multi[keys[i]] = customMap[keys[i]]
+      } else {
+        single[keys[i]] = customMap[keys[i]]
+      }
+    }
+    Object.assign(slug.charmap, single)
+    Object.assign(slug.multicharmap, multi)
   }
 
   /* global define */

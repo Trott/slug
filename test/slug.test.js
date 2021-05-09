@@ -943,6 +943,11 @@ describe('slug', function () {
     assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-love-is-radioactive')
   })
 
+  it('should handle multiple code point characters with .extend()', function () {
+    slug.extend({ फ़: 'fhqwhgads' })
+    assert.strictEqual(slug('फ़'), 'fhqwhgads')
+  })
+
   it('should ignore symbols if they are not in the charmap', function () {
     assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-is')
   })

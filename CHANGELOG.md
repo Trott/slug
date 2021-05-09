@@ -1,3 +1,10 @@
+## [5.0.1](https://github.com/Trott/slug/compare/v5.0.0...v5.0.1) (2021-05-09)
+
+
+### Bug Fixes
+
+* enable characters composed of multiple code points in .extend() ([#217](https://github.com/Trott/slug/issues/217)) ([5919b6d](https://github.com/Trott/slug/commit/5919b6d407b08d58f4ed1ea65d3d01736e0f37a5))
+
 # [5.0.0](https://github.com/Trott/slug/compare/v4.1.0...v5.0.0) (2021-05-03)
 
 

@@ -62,6 +62,10 @@ describe('slug', function () {
 
   it('should remove trailing space if any', function () { assert.strictEqual(slug(' foo bar baz '), 'foo-bar-baz') })
 
+  it('should preserve leading/trailing replacement characters if option set', function () {
+    assert.strictEqual(slug(' foo bar baz ', { trim: false }), '-foo-bar-baz-')
+  })
+
   it('should remove punctuation by default', function () {
     const punctuation = ['*', '_', '+', '~', '.', ',', '[', ']', '(', ')', '\'', '"', '!', ':', '@']
     punctuation.forEach(function (symbol) {

@@ -80,6 +80,7 @@ slug.defaults.modes['rfc3986'] = {
     lower: true,           // result in lower case
     charmap: slug.charmap, // replace special characters
     multicharmap: slug.multicharmap // replace multiple code unit characters
+    trim: true             // trim leading and trailing replacement chars
 };
 slug.defaults.modes['pretty'] = {
     replacement: '-',
@@ -87,6 +88,7 @@ slug.defaults.modes['pretty'] = {
     lower: false,
     charmap: slug.charmap,
     multicharmap: slug.multicharmap
+    trim: true              
 };
 ```
 

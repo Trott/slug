@@ -153,7 +153,7 @@
     opts = opts ? Object.assign({}, opts) : {}
     opts.mode = opts.mode || slug.defaults.mode
     const defaults = slug.defaults.modes[opts.mode]
-    const keys = ['replacement', 'multicharmap', 'charmap', 'remove', 'lower']
+    const keys = ['replacement', 'multicharmap', 'charmap', 'remove', 'lower', 'trim']
     for (let key, i = 0, l = keys.length; i < l; i++) {
       key = keys[i]
       opts[key] = (key in opts) ? opts[key] : defaults[key]
@@ -207,7 +207,9 @@
     if (opts.remove) {
       result = result.replace(opts.remove, '')
     }
-    result = result.trim()
+    if (opts.trim) {
+      result = result.trim()
+    }
     result = result.replace(/\s+/g, opts.replacement) // convert spaces
     if (opts.lower) {
       result = result.toLowerCase()
@@ -872,14 +874,16 @@
         remove: null,
         lower: true,
         charmap: slug.charmap,
-        multicharmap: slug.multicharmap
+        multicharmap: slug.multicharmap,
+        trim: true
       },
       pretty: {
         replacement: '-',
         remove: null,
         lower: true,
         charmap: slug.charmap,
-        multicharmap: slug.multicharmap
+        multicharmap: slug.multicharmap,
+        trim: true
       }
     },
     multicharmap: slug.multicharmap

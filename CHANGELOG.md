@@ -1,3 +1,10 @@
+# [5.1.0](https://github.com/Trott/slug/compare/v5.0.1...v5.1.0) (2021-06-15)
+
+
+### Features
+
+* add "trim" option ([#230](https://github.com/Trott/slug/issues/230)) ([00493cc](https://github.com/Trott/slug/commit/00493cc0ecd1db447397658fa6c23fff74d7290d))
+
 ## [5.0.1](https://github.com/Trott/slug/compare/v5.0.0...v5.0.1) (2021-05-09)
 
 

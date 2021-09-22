@@ -25,7 +25,7 @@
     },
     "dependencies": {},
     "devDependencies": {
-        "@semantic-release/changelog": "^5.0.1",
+        "@semantic-release/changelog": "^6.0.0",
         "@semantic-release/git": "^10.0.0",
         "chai": "^4.2.0",
         "karma": "^6.0.2",

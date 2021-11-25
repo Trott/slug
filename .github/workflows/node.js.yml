@@ -16,15 +16,17 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [12.x, 14.x, 16.x, 17.x]
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
+    - run: npm ci --ignore-scripts
     - run: npm run build --if-present
     - run: npm test
       env:
@@ -33,7 +35,7 @@ jobs:
   browser:
 
     runs-on: windows-latest
-    
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2

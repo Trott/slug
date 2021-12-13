@@ -1,3 +1,10 @@
+## [5.1.1](https://github.com/Trott/slug/compare/v5.1.0...v5.1.1) (2021-12-13)
+
+
+### Bug Fixes
+
+* consolidate replacement chars from extend() ([#267](https://github.com/Trott/slug/issues/267)) ([df7a488](https://github.com/Trott/slug/commit/df7a488a183477c4851868e94eaeab7830a07ff3))
+
 # [5.1.0](https://github.com/Trott/slug/compare/v5.0.1...v5.1.0) (2021-06-15)
 
 

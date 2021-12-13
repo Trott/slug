@@ -952,6 +952,13 @@ describe('slug', function () {
     assert.strictEqual(slug('फ़'), 'fhqwhgads')
   })
 
+  it('consolidates repeated replacement characters from extend()', function () {
+    // https://github.com/simov/slugify/issues/144
+    assert.strictEqual(slug('day + night'), 'day-night')
+    slug.extend({ '+': '-' })
+    assert.strictEqual(slug('day + night'), 'day-night')
+  })
+
   it('should ignore symbols if they are not in the charmap', function () {
     assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-is')
   })

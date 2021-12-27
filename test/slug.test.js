@@ -845,6 +845,17 @@ describe('slug', function () {
     }
   })
 
+  it('should honor a default locale', function () {
+    assert.strictEqual(slug('DÖI'), 'doi')
+    slug.setLocale('de')
+    assert.strictEqual(slug('DÖI'), 'doei')
+    slug.reset()
+    assert.strictEqual(slug('DÖI'), 'doi')
+    // Ignores invalid locale
+    slug.setLocale('fhqwhgads')
+    assert.strictEqual(slug('DÖI'), 'doi')
+  })
+
   it('should remove ellipsis in pretty mode', function () {
     const charMap = {
       '…': '...'

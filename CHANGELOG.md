@@ -1,3 +1,10 @@
+# [5.2.0](https://github.com/Trott/slug/compare/v5.1.1...v5.2.0) (2021-12-27)
+
+
+### Features
+
+* add ability to set default locale via setLocale() ([#269](https://github.com/Trott/slug/issues/269)) ([add368d](https://github.com/Trott/slug/commit/add368dbe5065f953d450f4f917fced42a08bf87))
+
 ## [5.1.1](https://github.com/Trott/slug/compare/v5.1.0...v5.1.1) (2021-12-13)
 
 

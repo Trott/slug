@@ -145,6 +145,8 @@
     uk: { И: 'Y', и: 'y', Й: 'Y', й: 'y', Ц: 'Ts', ц: 'ts', Х: 'Kh', х: 'kh', Щ: 'Shch', щ: 'shch', Г: 'H', г: 'h' }
   }
 
+  let defaultLocale = {}
+
   function slugify (string, opts) {
     if (typeof string !== 'string') {
       throw new Error('slug() requires a string argument, received ' + typeof string)
@@ -158,7 +160,7 @@
       key = keys[i]
       opts[key] = (key in opts) ? opts[key] : defaults[key]
     }
-    const localeMap = locales[opts.locale] || {}
+    const localeMap = locales[opts.locale] || defaultLocale
 
     let lengths = []
     // "let" instead of "const" in next line is for IE11 compatibilty
@@ -892,6 +894,7 @@
   slug.reset = function () {
     slug.defaults.modes.rfc3986.charmap = slug.defaults.modes.pretty.charmap = slug.charmap = slug.defaults.charmap = Object.assign({}, initialCharmap)
     slug.defaults.modes.rfc3986.multicharmap = slug.defaults.modes.pretty.multicharmap = slug.multicharmap = slug.defaults.multicharmap = Object.assign({}, initialMulticharmap)
+    defaultLocale = ''
   }
 
   slug.extend = function (customMap) {
@@ -907,6 +910,10 @@
     }
     Object.assign(slug.charmap, single)
     Object.assign(slug.multicharmap, multi)
+  }
+
+  slug.setLocale = function (locale) {
+    defaultLocale = locales[locale] || {}
   }
 
   /* global define */

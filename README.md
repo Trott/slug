@@ -28,6 +28,11 @@ slug.charmap['♥'] = 'freaking love' // change default charmap or use option {c
 print(slug('I ♥ UNICODE'))
 // > i-freaking-love-unicode
 
+// To reset modifications to slug.charmap, use slug.reset():
+slug.reset()
+print(slug('I ♥ UNICODE'))
+// > i_unicode
+
 print(slug('Telephone-Number')) // lower case by default
 // > telephone-number
 
@@ -43,19 +48,24 @@ print(slug('маленький подъезд'))
 print(slug('маленький подъезд', { locale: 'bg' }))
 // > malenykiy-podaezd
 
-print(slug('unicode ♥ is ☢'))
-// > unicode-love-is
+// To set the default locale:
+slug.setLocale('bg')
+print(slug('маленький подъезд'))
+// > malenykiy-podaezd
+
+print(slug('unicode is ☢'))
+// > unicode-is
 
 slug.extend({'☢': 'radioactive'})
 print(slug('unicode ♥ is ☢'))
-// > unicode-love-is-radioactive
+// > unicode-is-radioactive
 
 // slug.extend() modifies the default charmap for the entire process.
-// If you need to reset charmap and multicharmap, use slug.reset():
+// If you need to reset charmap, multicharmap, and the default locale, use slug.reset():
 
 slug.reset()
 print(slug('unicode ♥ is ☢'))
-// > unicode-love-is
+// > unicode-is
 
 // Custom removal of characters from resulting slug. Let's say that we want to
 // remove all numbers for some reason.

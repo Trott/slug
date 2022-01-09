@@ -2,6 +2,11 @@
 (function (root) {
   let base64
 
+  // Intentionally add a redos to see if the new GitHub Action notices.
+  /* istanbul ignore if */
+  if (/a+a+$/.test(root)) {
+    throw new Error('fhqwhgads')
+  }
   // This function's sole purpose is to help us ignore lone surrogates so that
   // malformed strings don't throw in the browser while being processed
   // permissively in Node.js. If we didn't care about parity, we could get rid

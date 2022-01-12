@@ -14,4 +14,4 @@ jobs:
           fetch-depth: '0'
  
       - name: Scan for redos
-        uses: meekdenzo/vrd@v1.0.2
+        uses: meekdenzo/vrd@v1.0.3

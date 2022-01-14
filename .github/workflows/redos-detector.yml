@@ -1,0 +1,17 @@
+name: vuln-regex-detector
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with: 
+          fetch-depth: '0'
+ 
+      - name: Scan for redos
+        uses: meekdenzo/vrd@v1.0.3

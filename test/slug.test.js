@@ -50,9 +50,10 @@ describe('slug', function () {
     assert.throws(slug, /slug\(\) requires a string argument/)
   })
 
-  it('should replace whitespaces with replacement', function () {
+  it('should replace whitespaces with replacement and preserve default replacement', function () {
     assert.strictEqual(slug('foo bar baz'), 'foo-bar-baz')
     assert.strictEqual(slug('foo bar baz', '_'), 'foo_bar_baz')
+    assert.strictEqual(slug('foo-bar baz', '_'), 'foo-bar_baz')
     assert.strictEqual(slug('foo bar baz', ''), 'foobarbaz')
   })
 

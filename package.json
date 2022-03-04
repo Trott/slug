@@ -8,6 +8,7 @@
         "type": "git",
         "url": "git://github.com/Trott/slug.git"
     },
+    "bugs": "https://github.com/Trott/slug/issues",
     "main": "slug.js",
     "keywords": [
         "slugify",

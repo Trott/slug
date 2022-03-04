@@ -1,3 +1,10 @@
+# [5.3.0](https://github.com/Trott/slug/compare/v5.2.0...v5.3.0) (2022-03-04)
+
+
+### Features
+
+* add bugs entry to package.json ([ca72836](https://github.com/Trott/slug/commit/ca72836f3f2b25ac9476e3f1ebcb997db1ba0f26))
+
 # [5.2.0](https://github.com/Trott/slug/compare/v5.1.1...v5.2.0) (2021-12-27)
 
 

@@ -34,7 +34,7 @@
         "karma-coverage": "^2.1.1",
         "karma-firefox-launcher": "^2.0.0",
         "karma-ie-launcher": "^1.0.0",
-        "karma-jasmine": "^4.0.1",
+        "karma-jasmine": "^5.0.0",
         "karma-mocha": "^2.0.1",
         "mocha": "^9.1.4",
         "nyc": "^15.0.1",

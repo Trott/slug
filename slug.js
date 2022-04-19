@@ -85,6 +85,11 @@
     }
   }
 
+  /* istanbul ignore if */
+  if (typeof Object.assign !== 'function') {
+    throw new Error('Runtime environment does not support Object.assign()')
+  }
+
   function slug (string, opts) {
     let result = slugify(string, opts)
     // If output is an empty string, try slug for base64 of string.

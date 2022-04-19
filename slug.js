@@ -85,37 +85,9 @@
     }
   }
 
-  // IE11 doesn't have Object.assign(), hence this MDN-supplied polyfill.
   /* istanbul ignore if */
   if (typeof Object.assign !== 'function') {
-    // Must be writable: true, enumerable: false, configurable: true
-    Object.defineProperty(Object, 'assign', {
-      value: function assign (target, varArgs) { // .length of function is 2
-        'use strict'
-        if (target === null || target === undefined) {
-          throw new TypeError('Cannot convert undefined or null to object')
-        }
-
-        const to = Object(target)
-
-        for (let index = 1; index < arguments.length; index++) {
-          const nextSource = arguments[index]
-
-          if (nextSource !== null && nextSource !== undefined) {
-            // eslint-disable-next-line no-var
-            for (var nextKey in nextSource) {
-              // Avoid bugs when hasOwnProperty is shadowed
-              if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-                to[nextKey] = nextSource[nextKey]
-              }
-            }
-          }
-        }
-        return to
-      },
-      writable: true,
-      configurable: true
-    })
+    throw new Error('Runtime environment does not support Object.assign()')
   }
 
   function slug (string, opts) {
@@ -163,8 +135,7 @@
     const localeMap = locales[opts.locale] || defaultLocale
 
     let lengths = []
-    // "let" instead of "const" in next line is for IE11 compatibilty
-    for (let key in opts.multicharmap) { // eslint-disable-line prefer-const
+    for (const key in opts.multicharmap) {
       if (!Object.prototype.hasOwnProperty.call(opts.multicharmap, key)) { continue }
 
       const len = key.length

@@ -1,11 +1,18 @@
 /* global beforeEach, chai, describe, it */
 
-const inBrowser = typeof window !== 'undefined'
+import slug from '../slug.js'
+
+let assert
+
+(async function () {
+  if (typeof chai === 'undefined') {
+    assert = (await import('node:assert')).default
+  } else {
+    assert = chai.assert
+  }
+})()
 
 describe('slug', function () {
-  const slug = (inBrowser && window.slug) || require('../slug')
-  const assert = typeof chai === 'undefined' ? require('assert') : chai.assert
-
   beforeEach(slug.reset)
 
   it('requires an argument', function () {

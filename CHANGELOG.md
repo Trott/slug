@@ -1,3 +1,15 @@
+# [6.0.0-beta.2](https://github.com/Trott/slug/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2022-04-20)
+
+
+### chore
+
+* drop support for Node.js 12.x and 17.x ([5b9d4fb](https://github.com/Trott/slug/commit/5b9d4fb372b1ab451f39cc7145c1aaf012195362))
+
+
+### BREAKING CHANGES
+
+* Drop support for Node.js earlier than 14.x.
+
 # [6.0.0-beta.1](https://github.com/Trott/slug/compare/v5.3.0...v6.0.0-beta.1) (2022-04-19)
 
 

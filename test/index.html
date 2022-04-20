@@ -9,16 +9,16 @@
   <body>
     <div id="mocha"></div>
 
-    <script src="https://unpkg.com/chai/chai.js"></script>
-    <script src="https://unpkg.com/mocha/mocha.js"></script>
+    <script type="module" src="https://unpkg.com/chai/chai.js"></script>
+    <script type="module" src="https://unpkg.com/mocha/mocha.js"></script>
 
-    <script class="mocha-init">
+    <script type="module" class="mocha-init">
       mocha.setup('bdd');
       mocha.checkLeaks();
     </script>
-    <script src="../slug.js"></script>
-    <script src="slug.test.js"></script>
-    <script class="mocha-exec">
+    <script type="module" src="../slug.js"></script>
+    <script type="module" src="slug.test.js"></script>
+    <script type="module" class="mocha-exec">
       mocha.run();
     </script>
   </body>

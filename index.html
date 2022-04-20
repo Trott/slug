@@ -6,17 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <form>
+    <form id="slug-form">
       <input type="text" id="slug" />
-      <input type="submit" value="Slug it" onclick="slugIt(); return false;"></input>
+      <input type="submit" value="Slug it"></input>
     </form>
     <p>Result: <span id="slugOutput"></span></p>
-    <script src="./slug.js"></script>
-    <script>
-      function slugIt() {
+    <script type="module">
+      import slug from './slug.js';
+      const slugForm = document.getElementById('slug-form');
+      function slugIt(event) {
         const output = slug(document.getElementById("slug").value);
-        document.getElementById("slugOutput").innerHTML = output;
+        document.getElementById("slugOutput").innerText = output;
+        event.preventDefault();
       }
+      slugForm.addEventListener('submit', slugIt);
     </script>
   </body>
 </html>

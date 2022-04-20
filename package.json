@@ -4,6 +4,7 @@
     "version": "8.2.2",
     "homepage": "https://github.com/Trott/slug",
     "author": "dodo (https://github.com/dodo)",
+    "type": "module",
     "repository": {
         "type": "git",
         "url": "git://github.com/Trott/slug.git"
@@ -23,12 +24,13 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && mocha test/*.mjs && nyc --reporter none mocha test/**/*.js && karma start --single-run --browsers ChromeHeadless .karma.config.js && nyc report --reporter=text --reporter=html && nyc check-coverage --lines 100 --branches 100 --statements 100 --functions 100",
+        "test": "standard && c8 --100 mocha test/**/*.js && karma start --single-run --browsers ChromeHeadless .karma.config.cjs",
         "benchmark": "node benchmark/benchmark.js"
     },
     "devDependencies": {
         "@semantic-release/changelog": "^6.0.1",
         "@semantic-release/git": "^10.0.1",
+        "c8": "^7.11.2",
         "chai": "^4.2.0",
         "karma": "^6.3.19",
         "karma-chai": "^0.1.0",
@@ -37,7 +39,6 @@
         "karma-jasmine": "^5.0.0",
         "karma-mocha": "^2.0.1",
         "mocha": "^10.0.0",
-        "nyc": "^15.0.1",
         "semantic-release": "^21.0.0",
         "standard": "^17.0.0"
     },

@@ -4,13 +4,11 @@ import slug from '../slug.js'
 
 let assert
 
-(async function () {
-  if (typeof chai === 'undefined') {
-    assert = (await import('node:assert')).default
-  } else {
-    assert = chai.assert
-  }
-})()
+if (typeof chai === 'undefined') {
+  assert = (await import('node:assert')).default
+} else {
+  assert = chai.assert
+}
 
 describe('fuzz-testing slug', function () {
   it('should return truthy results for any valid string', function () {

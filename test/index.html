@@ -8,16 +8,17 @@
   </head>
   <body>
     <div id="mocha"></div>
-
+    <p>Open console to see results.</p>
     <script src="https://unpkg.com/chai/chai.js"></script>
     <script src="https://unpkg.com/mocha/mocha.js"></script>
 
     <script class="mocha-init">
       mocha.setup('bdd');
       mocha.checkLeaks();
+      mocha.reporter();
     </script>
     <script type="module" src="../slug.js"></script>
-    <script src="slug.test.js"></script>
+    <script type="module" src="slug.test.js"></script>
     <script class="mocha-exec">
       mocha.run();
     </script>

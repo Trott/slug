@@ -6,7 +6,7 @@ Make strings URL-safe.
 
 - Respects [RFC 3986](https://tools.ietf.org/html/rfc3986)
 - No dependencies
-- Works in browser (`window.slug`) and AMD/CommonJS-flavoured module loaders
+- Works in the browser or in Node.js
 
 ```
 npm install slug
@@ -36,7 +36,7 @@ Here are some key differences between this package and [`slugify`](https://githu
 ## Example
 
 ```javascript
-var slug = require('slug')
+import slug from 'slug'
 var print = console.log.bind(console, '>')
 
 print(slug('i love unicode'))

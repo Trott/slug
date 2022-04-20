@@ -2,18 +2,10 @@ module.exports = function (config) {
   config.set({
     frameworks: ['mocha', 'chai'],
     files: [
-      'slug.js',
-      'node_modules/requirejs/require.js', // Used to test loading via AMD.
-      'test/**/*.js',
+      { pattern: 'slug.js', type: 'module' },
+      { pattern: 'test/**/*.js', type: 'module' }
     ],
-    preprocessors: { 'slug.js': 'coverage' },
-    reporters: ['progress', 'coverage'],
-    coverageReporter: {
-      dir: '.nyc_output',
-      reporters: [
-        { type: 'json', subdir: '.', file: 'karma.json' }
-      ]
-    },
+    reporters: ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

@@ -1,7 +1,16 @@
-/* global chai, describe, it, window */
+/* global chai, describe, it */
 
-const slug = (typeof window !== 'undefined' && window.slug) || require('../slug')
-const assert = typeof chai === 'undefined' ? require('assert') : chai.assert
+import slug from '../slug.js'
+
+let assert
+
+(async function () {
+  if (typeof chai === 'undefined') {
+    assert = (await import('node:assert')).default
+  } else {
+    assert = chai.assert
+  }
+})()
 
 describe('fuzz-testing slug', function () {
   it('should return truthy results for any valid string', function () {

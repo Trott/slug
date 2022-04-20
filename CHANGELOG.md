@@ -1,6 +1,4 @@
-<<<<<<< HEAD
 # [6.0.0](https://github.com/Trott/slug/compare/v5.3.0...v6.0.0) (2022-08-16)
-
 
 ### chore
 

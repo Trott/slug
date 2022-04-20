@@ -1,3 +1,15 @@
+# [6.0.0-beta.3](https://github.com/Trott/slug/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2022-04-20)
+
+
+### chore
+
+* remove AMD support ([aaf8683](https://github.com/Trott/slug/commit/aaf8683bdfef11709d699a542bc843912dc0f58d))
+
+
+### BREAKING CHANGES
+
+* Loading via AMD will no longer work out-of-the-box.
+
 # [6.0.0-beta.2](https://github.com/Trott/slug/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2022-04-20)
 
 

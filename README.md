@@ -6,7 +6,7 @@ Make strings URL-safe.
 
 - Respects [RFC 3986](https://tools.ietf.org/html/rfc3986)
 - No dependencies
-- Works in browser (`window.slug`) and AMD/CommonJS-flavoured module loaders
+- Works in the browser or in Node.js
 
 ```
 npm install slug
@@ -21,7 +21,7 @@ npm install --save-dev @types/slug
 ## Example
 
 ```javascript
-var slug = require('slug')
+import slug from 'slug'
 var print = console.log.bind(console, '>')
 
 print(slug('i love unicode'))
@@ -114,6 +114,8 @@ slug.defaults.modes['pretty'] = {
 
 Here are some key differences between this package and [`slugify`](https://github.com/simov/slugify).
 
+- **Stability:** `slug` is ESM-only.  
+  `slugify` supports CommonJS and ESM.
 - **Defaults:** `slug` has the `lower` option enabled by default, lowercasing all slugs
   (`'On SALE'` becomes `'on-sale'`).  
   `slugify` has the `lower` option disabled by default (`'On SALE'` becomes `'On-SALE'`).
@@ -121,9 +123,6 @@ Here are some key differences between this package and [`slugify`](https://githu
   `slugify` maps them to words (`'$100'` becomes `'dollar100'`, `'<5'` becomes `'less5'`, etc.).
 - **Empty Output:** `slug` will return a short, predictable hash (`'   '` becomes `'icag'` and `'🎉'` becomes `'8joiq'`).  
   `slugify` will return an empty string (`'   '` and `'🎉'` become `''`).
-- **Stability:** `slug` is planning [a new release](https://github.com/Trott/slug/blob/beta/CHANGELOG.md) that will drop support for CommonJS
-  and only support ESM modules.  
-  `slugify` will continue to support CommonJS and is likely to remain stable for the foreseeable future.
 
 ## Playground
 

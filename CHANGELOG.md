@@ -1,3 +1,15 @@
+# [6.0.0-beta.4](https://github.com/Trott/slug/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2022-04-20)
+
+
+### chore
+
+* ESM only ([40a6c0d](https://github.com/Trott/slug/commit/40a6c0dd661058650e073fa8893284e0439ffd1d))
+
+
+### BREAKING CHANGES
+
+* module is now ESM only
+
 # [6.0.0-beta.3](https://github.com/Trott/slug/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2022-04-20)
 
 

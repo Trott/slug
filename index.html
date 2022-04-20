@@ -42,7 +42,16 @@
 				</fieldset>
 			</form>
 		</main>
-		<script src="./slug.js"></script>
+    <script type="module">
+      import slug from './slug.js';
+      const slugForm = document.getElementById('slug-form');
+      function slugIt(event) {
+        const output = slug(document.getElementById("slug").value);
+        document.getElementById("slugOutput").innerText = output;
+        event.preventDefault();
+      }
+      slugForm.addEventListener('submit', slugIt);
+    </script>
     <script src="./playground.js"></script>
   </body>
 </html>

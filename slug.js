@@ -884,12 +884,7 @@
     defaultLocale = locales[locale] || {}
   }
 
-  /* global define */
-  // Be compatible with different module systems
-
-  if (typeof define !== 'undefined' && define.amd) { // AMD
-    define([], function () { return slug })
-  } else if (typeof module !== 'undefined' && module.exports) { // CommonJS
+  if (typeof module !== 'undefined' && module.exports) { // CommonJS
     module.exports = slug
   } else { // Script tag
     root.slug = slug

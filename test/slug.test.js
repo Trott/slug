@@ -3,14 +3,11 @@
 import slug from '../slug.js'
 
 let assert
-
-(async function () {
-  if (typeof chai === 'undefined') {
-    assert = (await import('node:assert')).default
-  } else {
-    assert = chai.assert
-  }
-})()
+if (typeof chai === 'undefined') {
+  assert = (await import('node:assert')).default
+} else {
+  assert = chai.assert
+}
 
 describe('slug', function () {
   beforeEach(slug.reset)

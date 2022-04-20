@@ -948,23 +948,6 @@ describe('slug', function () {
     assert.strictEqual(slug(String.fromCodePoint(55296)), 'ia')
   })
 
-  it('should be able to be loaded via amd', function (done) {
-    const modulePath = inBrowser ? 'base/slug' : '../slug'
-    const requirejs = (inBrowser && window.requirejs) || require('requirejs')
-
-    if (!inBrowser) {
-      requirejs.config({
-        nodeRequire: require
-      })
-    }
-
-    requirejs([modulePath], function (amdSlug) {
-      // Use toString() to compare source code.
-      assert.deepStrictEqual(amdSlug.toString(), slug.toString())
-      done()
-    })
-  })
-
   it('should ignore inherited properties in multicharmap', function () {
     const multicharmapPrototype = { justin: 'this-just-in' }
     function Multicharmap () {

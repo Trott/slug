@@ -2,10 +2,7 @@
 
 // Only run in Node.js.
 if (typeof window === 'undefined') {
-  let assert
-  (async function () {
-    assert = (await import('node:assert')).default
-  })()
+  const assert = (await import('node:assert')).default
 
   describe('Browser-like environment', function () {
     before(function () {

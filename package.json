@@ -5,6 +5,7 @@
     "type": "module",
     "homepage": "https://github.com/Trott/slug",
     "author": "dodo (https://github.com/dodo)",
+    "type": "module",
     "repository": {
         "type": "git",
         "url": "git://github.com/Trott/slug.git"
@@ -14,6 +15,9 @@
     "bin": {
         "slug": "cli.js"
     },
+    "files": [
+        "slug.js"
+    ],
     "keywords": [
         "slugify",
         "slug",

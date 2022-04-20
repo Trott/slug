@@ -5,7 +5,6 @@ module.exports = function (config) {
       { pattern: 'slug.js', type: 'module' },
       { pattern: 'test/**/*.js', type: 'module' }
     ],
-    reporters: ['progress'],
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,

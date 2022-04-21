@@ -11,6 +11,9 @@
     },
     "bugs": "https://github.com/Trott/slug/issues",
     "main": "slug.js",
+    "files": [
+        "slug.js"
+    ],
     "keywords": [
         "slugify",
         "slug",

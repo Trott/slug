@@ -12,6 +12,12 @@ Make strings URL-safe.
 npm install slug
 ```
 
+If you are using TypeScript you can install the accompanying types
+
+```
+npm install --save-dev @types/slug
+```
+
 ## Example
 
 ```javascript

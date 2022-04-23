@@ -11,15 +11,12 @@
     },
     "bugs": "https://github.com/Trott/slug/issues",
     "main": "slug.js",
-<<<<<<< HEAD
     "bin": {
         "slug": "cli.js"
     },
-=======
     "files": [
         "slug.js"
     ],
->>>>>>> 6f394e2 (chore: replace .npmignore with files entry in package.json)
     "keywords": [
         "slugify",
         "slug",
@@ -36,9 +33,9 @@
     "devDependencies": {
         "@semantic-release/changelog": "^6.0.1",
         "@semantic-release/git": "^10.0.1",
-        "c8": "^7.11.2",
+        "c8": "^7.11.3",
         "chai": "^4.2.0",
-        "karma": "^6.3.19",
+        "karma": "^6.3.20",
         "karma-chai": "^0.1.0",
         "karma-chrome-launcher": "^3.1.0",
         "karma-coverage": "^2.1.1",

@@ -45,20 +45,6 @@ print(slug('Telephone-Number')) // lower case by default
 print(slug('Telephone-Number', {lower: false})) // If you want to preserve case
 // > Telephone-Number
 
-// We try to provide sensible defaults.
-// So Cyrillic text will be transliterated as if it were Russian:
-print(slug('маленький подъезд'))
-// > malenkij-poduezd
-
-// But maybe you know it's Bulgarian:
-print(slug('маленький подъезд', { locale: 'bg' }))
-// > malenykiy-podaezd
-
-// To set the default locale:
-slug.setLocale('bg')
-print(slug('маленький подъезд'))
-// > malenykiy-podaezd
-
 print(slug('unicode is ☢'))
 // > unicode-is
 
@@ -67,7 +53,7 @@ print(slug('unicode ♥ is ☢'))
 // > unicode-is-radioactive
 
 // slug.extend() modifies the default charmap for the entire process.
-// If you need to reset charmap, multicharmap, and the default locale, use slug.reset():
+// If you need to reset charmap and multicharmap, use slug.reset():
 
 slug.reset()
 print(slug('unicode ♥ is ☢'))

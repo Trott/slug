@@ -6,7 +6,7 @@ Make strings URL-safe.
 
 - Respects [RFC 3986](https://tools.ietf.org/html/rfc3986)
 - No dependencies
-- Works in browser (window.slug) and AMD/CommonJS-flavoured module loaders
+- Works in browser (`window.slug`) and AMD/CommonJS-flavoured module loaders
 
 ```
 npm install slug
@@ -17,6 +17,25 @@ If you are using TypeScript you can install the accompanying types
 ```
 npm install --save-dev @types/slug
 ```
+
+## Differences between `slug` and `slugify` packages
+
+Here are some key differences between this package and [`slugify`](https://github.com/simov/slugify).
+
+- **Defaults:** `slug` has the `lower` option enabled by default, lowercasing all slugs
+  (`'On SALE'` becomes `'on-sale'`).  
+  `slugify` has the `lower` option disabled by default (`'On SALE'` becomes `'On-SALE'`).
+- **IE11 Support:** `slug` currently still supports IE11
+  (_However, [support will be dropped June 2022](https://github.com/Trott/slug/blob/beta/CHANGELOG.md)!_).  
+  `slugify` dropped support for IE11 some time ago.
+ **Symbols:** `slug` removes unrecognized symbols (`'$100'` becomes `'100'`, `'<5'` becomes `'5'`, etc.).  
+  `slugify` maps them to words (`'$100'` becomes `'dollar100'`, `'<5'` becomes `'less5'`, etc.).
+- **Empty Output:** `slug` will return a short, predictable hash (`'   '` becomes `'icag'` and `'🎉'` becomes `'8joiq'`).  
+  `slugify` will return an empty string (`'   '` and `'🎉'` become `''`).
+- **Stability:** `slug` is planning a new release in
+  [June 2022](https://github.com/Trott/slug/blob/beta/CHANGELOG.md) that will drop support for CommonJS
+  and only support ESM modules.  
+  `slugify` will continue to support CommonJS and is likely to remain stable for the foreseeable future.
 
 ## Example
 

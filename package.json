@@ -14,6 +14,9 @@
     "bin": {
         "slug": "cli.js"
     },
+    "files": [
+        "slug.js"
+    ],
     "keywords": [
         "slugify",
         "slug",

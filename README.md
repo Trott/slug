@@ -34,7 +34,6 @@ Here are the key differences.
 - **Empty Output:** If an input string contains only spaces, or other unrecognized/unmapped characters,
   it would result in an empty slug.  
   `slug` will return a short, predictable hash instead (`'   '` becomes `'icag'` and `'🎉'` becomes `'8joiq'`).
-  Better a slug with no meaning than no slug at all.  
   `slugify` will return an empty string (`'   '` and `'🎉'` becomes `''`).
 - **Stability:** `slug` is planning a new release in
   [June 2022](https://github.com/Trott/slug/blob/beta/CHANGELOG.md) that will drop support for CommonJS

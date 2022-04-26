@@ -20,8 +20,7 @@ npm install --save-dev @types/slug
 
 ## Differences between `slug` and `slugify` packages
 
-I also contribute to a similar package called [`slugify`](https://github.com/simov/slugify).
-Here are the key differences.
+Here are some key differences between this package and [`slugify`](https://github.com/simov/slugify).
 
 - **Defaults:** `slug` has the `lower` option enabled by default, lowercasing all slugs
   (`'On SALE'` becomes `'on-sale'`).  

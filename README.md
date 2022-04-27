@@ -28,8 +28,8 @@ Here are some key differences between this package and [`slugify`](https://githu
 - **IE11 Support:** `slug` currently still supports IE11
   (_However, [support will be dropped June 2022](https://github.com/Trott/slug/blob/beta/CHANGELOG.md)!_).  
   `slugify` dropped support for IE11 some time ago.
-- **Symbols:** `slug` removes unrecognized symbols (`'$100'` becomes `'100'`, `'<5'` becomes `'5'`, etc).  
-  `slugify` maps them to words (`'$100'` becomes `'dollar100'`, `'<5'` becomes `'less5'`, etc).
+ **Symbols:** `slug` removes unrecognized symbols (`'$100'` becomes `'100'`, `'<5'` becomes `'5'`, etc.).  
+  `slugify` maps them to words (`'$100'` becomes `'dollar100'`, `'<5'` becomes `'less5'`, etc.).
 - **Empty Output:** `slug` will return a short, predictable hash (`'   '` becomes `'icag'` and `'🎉'` becomes `'8joiq'`).  
   `slugify` will return an empty string (`'   '` and `'🎉'` becomes `''`).
 - **Stability:** `slug` is planning a new release in

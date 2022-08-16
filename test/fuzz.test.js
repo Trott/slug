@@ -22,7 +22,7 @@ describe('fuzz-testing slug', function () {
       const wordLengths = Array.from({ length: wordCount }, function () { return random(MAX_WORD_LENGTH) })
       const codePoints = wordLengths.map(function (wordLength) { return Array.from({ length: wordLength }, function () { return random(maxCodePoint) }) })
       const words = codePoints.map(function (wordCodePoints) { return String.fromCodePoint.apply(null, wordCodePoints) })
-      return { fuzzyString: words.join(' '), codePoints: codePoints }
+      return { fuzzyString: words.join(' '), codePoints }
     }
 
     for (let i = 0; i < FUZZ_TESTS; i++) {

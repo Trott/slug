@@ -849,7 +849,7 @@ describe('slug', function () {
     const charmap = {
       f: 'ph', o: '0', b: '8', a: '4', r: '2', z: '5'
     }
-    assert.strictEqual(slug('foo bar baz', { charmap: charmap }), 'ph00-842-845')
+    assert.strictEqual(slug('foo bar baz', { charmap }), 'ph00-842-845')
   })
 
   it('should replace lithuanian characters', function () { assert.strictEqual(slug('ąčęėįšųūžĄČĘĖĮŠŲŪŽ'), 'aceeisuuzaceeisuuz') })
@@ -974,7 +974,7 @@ describe('slug', function () {
 
     const multicharmap = new Multicharmap()
     assert.strictEqual(multicharmap.justin, 'this-just-in')
-    assert.strictEqual(slug('justin babysitter', { multicharmap: multicharmap }), 'justin-dadbysitter')
+    assert.strictEqual(slug('justin babysitter', { multicharmap }), 'justin-dadbysitter')
   })
 
   it('should respect the remove option', function () {

@@ -1,3 +1,15 @@
+# [6.0.0](https://github.com/Trott/slug/compare/v5.3.0...v6.0.0) (2022-08-16)
+
+
+### chore
+
+* drop support for IE11 ([9927860](https://github.com/Trott/slug/commit/99278607be3bfe52dea8fcba9e699f5c7f05931d))
+
+
+### BREAKING CHANGES
+
+* drop support for IE11
+
 # [5.3.0](https://github.com/Trott/slug/compare/v5.2.0...v5.3.0) (2022-03-04)
 
 

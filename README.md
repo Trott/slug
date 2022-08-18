@@ -29,8 +29,7 @@ Here are some key differences between this package and [`slugify`](https://githu
   `slugify` maps them to words (`'$100'` becomes `'dollar100'`, `'<5'` becomes `'less5'`, etc.).
 - **Empty Output:** `slug` will return a short, predictable hash (`'   '` becomes `'icag'` and `'🎉'` becomes `'8joiq'`).  
   `slugify` will return an empty string (`'   '` and `'🎉'` become `''`).
-- **Stability:** `slug` is planning a new release in
-  [June 2022](https://github.com/Trott/slug/blob/beta/CHANGELOG.md) that will drop support for CommonJS
+- **Stability:** `slug` is planning [a new release](https://github.com/Trott/slug/blob/beta/CHANGELOG.md) that will drop support for CommonJS
   and only support ESM modules.  
   `slugify` will continue to support CommonJS and is likely to remain stable for the foreseeable future.
 

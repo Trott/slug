@@ -87,9 +87,9 @@
 
   function slug (string, opts) {
     let result = slugify(string, opts)
-    const fallback = opts?.fallback ?? slug.defaults.fallback
+    const fallback = opts && opts.fallback !== undefined ? opts.fallback : slug.defaults.fallback
     // If output is an empty string, try slug for base64 of string.
-    if (fallback !== false && result === '') {
+    if (fallback === true && result === '') {
       // Get rid of lone surrogates.
       let input = ''
       for (let i = 0; i < string.length; i++) {

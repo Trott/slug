@@ -110,16 +110,17 @@ slug.defaults.modes['rfc3986'] = {
     remove: null,          // (optional) regex to remove characters
     lower: true,           // result in lower case
     charmap: slug.charmap, // replace special characters
-    multicharmap: slug.multicharmap // replace multiple code unit characters
-    trim: true             // trim leading and trailing replacement chars
+    multicharmap: slug.multicharmap, // replace multiple code unit characters
+    trim: true,             // trim leading and trailing replacement chars
+    fallback: true          // use base64 to generate slug for empty results
 };
 slug.defaults.modes['pretty'] = {
     replacement: '-',
     remove: null,
     lower: false,
     charmap: slug.charmap,
-    multicharmap: slug.multicharmap
-    trim: true              
+    multicharmap: slug.multicharmap,
+    trim: true,
+    fallback: true
 };
-slug.defaults.fallback = true // convert input with base64 if slug cannot be generated
 ```

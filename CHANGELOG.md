@@ -1,3 +1,15 @@
+# [8.0.0](https://github.com/Trott/slug/compare/v7.0.0...v8.0.0) (2022-08-31)
+
+
+### chore
+
+* remove AMD support ([#345](https://github.com/Trott/slug/issues/345)) ([2f30cd9](https://github.com/Trott/slug/commit/2f30cd9b1f226753cc7728f258975a0986125229))
+
+
+### BREAKING CHANGES
+
+* Loading via AMD will no longer work out-of-the-box.
+
 # [7.0.0](https://github.com/Trott/slug/compare/v6.1.0...v7.0.0) (2022-08-31)
 
 

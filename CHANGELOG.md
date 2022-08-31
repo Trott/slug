@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/Trott/slug/compare/v6.0.0...v6.1.0) (2022-08-31)
+
+
+### Features
+
+* add fallback option ([#342](https://github.com/Trott/slug/issues/342)) ([b703043](https://github.com/Trott/slug/commit/b703043ff369392b141fb6d44d6b554516d9fc69)), closes [#341](https://github.com/Trott/slug/issues/341)
+
 # [6.0.0](https://github.com/Trott/slug/compare/v5.3.0...v6.0.0) (2022-08-16)
 
 

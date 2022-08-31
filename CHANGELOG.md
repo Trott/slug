@@ -1,3 +1,15 @@
+# [9.0.0-beta.1](https://github.com/Trott/slug/compare/v8.0.0...v9.0.0-beta.1) (2022-08-31)
+
+
+### chore
+
+* ESM only ([910c20f](https://github.com/Trott/slug/commit/910c20f31a1198bf5e693c37ef30691585a77b65))
+
+
+### BREAKING CHANGES
+
+* module is now ESM only
+
 # [8.0.0](https://github.com/Trott/slug/compare/v7.0.0...v8.0.0) (2022-08-31)
 
 

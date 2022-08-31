@@ -1070,4 +1070,12 @@ describe('slug', function () {
       assert.strictEqual(slug('foo' + char + ' bar baz'), 'foo' + replacement.toLowerCase() + '-bar-baz', 'replacing \'' + char + '\'')
     }
   })
+
+  it('should use base64 fallback', function () {
+    assert.strictEqual(slug('=)'), 'psk')
+  })
+
+  it('should return empty result when fallback is disabled', function () {
+    assert.strictEqual(slug('=(', { fallback: false }), '')
+  })
 })

@@ -87,8 +87,9 @@
 
   function slug (string, opts) {
     let result = slugify(string, opts)
+    const fallback = opts && opts.fallback !== undefined ? opts.fallback : slug.defaults.fallback
     // If output is an empty string, try slug for base64 of string.
-    if (result === '') {
+    if (fallback === true && result === '') {
       // Get rid of lone surrogates.
       let input = ''
       for (let i = 0; i < string.length; i++) {
@@ -854,7 +855,8 @@
         trim: true
       }
     },
-    multicharmap: slug.multicharmap
+    multicharmap: slug.multicharmap,
+    fallback: true
   }
 
   slug.reset = function () {

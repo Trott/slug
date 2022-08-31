@@ -121,4 +121,5 @@ slug.defaults.modes['pretty'] = {
     multicharmap: slug.multicharmap
     trim: true              
 };
+slug.defaults.fallback = true // convert input with base64 if slug cannot be generated
 ```

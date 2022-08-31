@@ -3,7 +3,6 @@ module.exports = function (config) {
     frameworks: ['mocha', 'chai'],
     files: [
       'slug.js',
-      'node_modules/requirejs/require.js', // Used to test loading via AMD.
       'test/**/*.js',
     ],
     preprocessors: { 'slug.js': 'coverage' },

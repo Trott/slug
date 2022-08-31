@@ -1,3 +1,15 @@
+# [7.0.0](https://github.com/Trott/slug/compare/v6.1.0...v7.0.0) (2022-08-31)
+
+
+### chore
+
+* drop support for Node.js 12.x and 17.x ([#344](https://github.com/Trott/slug/issues/344)) ([a109d37](https://github.com/Trott/slug/commit/a109d3740dc4f0776b313b7033f7de87229dcfcd))
+
+
+### BREAKING CHANGES
+
+* Drop support for Node.js earlier than 14.x.
+
 # [6.1.0](https://github.com/Trott/slug/compare/v6.0.0...v6.1.0) (2022-08-31)
 
 

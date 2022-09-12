@@ -124,3 +124,13 @@ slug.defaults.modes['pretty'] = {
     fallback: true
 };
 ```
+
+```javascript
+// using an options object while deconstructing slug mode
+  const options = {
+    ...slug.defaults.modes['rfc3986'],
+    charmap: { ...slug.charmap, '/': '-' },
+  };
+print(slug('organization/feature/fix-broken-code', options)) //organization-feature-fix-broken-code
+
+```

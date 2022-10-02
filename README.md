@@ -127,5 +127,10 @@ Here are some key differences between this package and [`slugify`](https://githu
 
 ## Playground
 
-A (painfully minimal) web playground is available at https://trott.github.io/slug/. It doesn't allow you to specify options, so it's utility is
-minimal. Pull requests welcome to add the ability to specify options.
+A (painfully minimal) web playground is available at
+https://trott.github.io/slug/. It doesn't allow you to specify options, so it's utility is minimal. Pull requests welcome to add the ability to
+specify options.
+
+There is also a (similarly minimal) CLI tool available via `npx slug`.
+As with the web playground, it doesn't allow you to specify options, so
+it's utility is minimal.

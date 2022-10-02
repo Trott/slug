@@ -1,3 +1,10 @@
+## [8.2.1](https://github.com/Trott/slug/compare/v8.2.0...v8.2.1) (2022-10-02)
+
+
+### Bug Fixes
+
+* use correct path for CLI ([#352](https://github.com/Trott/slug/issues/352)) ([f163bd2](https://github.com/Trott/slug/commit/f163bd2be141390358b52fa80261d66dfe5ed71d))
+
 # [8.2.0](https://github.com/Trott/slug/compare/v8.1.0...v8.2.0) (2022-10-02)
 
 

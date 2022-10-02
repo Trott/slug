@@ -1,3 +1,10 @@
+# [8.1.0](https://github.com/Trott/slug/compare/v8.0.0...v8.1.0) (2022-10-02)
+
+
+### Features
+
+* add a (painfully minimal) web playground ([#350](https://github.com/Trott/slug/issues/350)) ([4e1aa40](https://github.com/Trott/slug/commit/4e1aa408032e36c59b906464da43888972cc9037))
+
 # [8.0.0](https://github.com/Trott/slug/compare/v7.0.0...v8.0.0) (2022-08-31)
 
 

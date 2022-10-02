@@ -1,3 +1,10 @@
+# [8.2.0](https://github.com/Trott/slug/compare/v8.1.0...v8.2.0) (2022-10-02)
+
+
+### Features
+
+* add a minimal CLI ([#351](https://github.com/Trott/slug/issues/351)) ([92004e7](https://github.com/Trott/slug/commit/92004e7421a145023983eeb956015243f0098ee9))
+
 # [8.1.0](https://github.com/Trott/slug/compare/v8.0.0...v8.1.0) (2022-10-02)
 
 

@@ -11,7 +11,7 @@
     "bugs": "https://github.com/Trott/slug/issues",
     "main": "slug.js",
     "bin": {
-        "slug": "bin/slug"
+        "slug": "cli.js"
     },
     "keywords": [
         "slugify",

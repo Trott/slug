@@ -1,3 +1,10 @@
+## [8.2.2](https://github.com/Trott/slug/compare/v8.2.1...v8.2.2) (2022-10-02)
+
+
+### Bug Fixes
+
+* slugify θ as th ([#354](https://github.com/Trott/slug/issues/354)) ([19e8ca1](https://github.com/Trott/slug/commit/19e8ca111453988d15a09572b8fd3b5336822cd4))
+
 ## [8.2.1](https://github.com/Trott/slug/compare/v8.2.0...v8.2.1) (2022-10-02)
 
 

@@ -18,21 +18,6 @@ If you are using TypeScript you can install the accompanying types
 npm install --save-dev @types/slug
 ```
 
-## Differences between `slug` and `slugify` packages
-
-Here are some key differences between this package and [`slugify`](https://github.com/simov/slugify).
-
-- **Defaults:** `slug` has the `lower` option enabled by default, lowercasing all slugs
-  (`'On SALE'` becomes `'on-sale'`).  
-  `slugify` has the `lower` option disabled by default (`'On SALE'` becomes `'On-SALE'`).
-- **Symbols:** `slug` removes unrecognized symbols (`'$100'` becomes `'100'`, `'<5'` becomes `'5'`, etc.).  
-  `slugify` maps them to words (`'$100'` becomes `'dollar100'`, `'<5'` becomes `'less5'`, etc.).
-- **Empty Output:** `slug` will return a short, predictable hash (`'   '` becomes `'icag'` and `'🎉'` becomes `'8joiq'`).  
-  `slugify` will return an empty string (`'   '` and `'🎉'` become `''`).
-- **Stability:** `slug` is planning [a new release](https://github.com/Trott/slug/blob/beta/CHANGELOG.md) that will drop support for CommonJS
-  and only support ESM modules.  
-  `slugify` will continue to support CommonJS and is likely to remain stable for the foreseeable future.
-
 ## Example
 
 ```javascript
@@ -124,3 +109,23 @@ slug.defaults.modes['pretty'] = {
     fallback: true
 };
 ```
+
+## Differences between `slug` and `slugify` packages
+
+Here are some key differences between this package and [`slugify`](https://github.com/simov/slugify).
+
+- **Defaults:** `slug` has the `lower` option enabled by default, lowercasing all slugs
+  (`'On SALE'` becomes `'on-sale'`).  
+  `slugify` has the `lower` option disabled by default (`'On SALE'` becomes `'On-SALE'`).
+- **Symbols:** `slug` removes unrecognized symbols (`'$100'` becomes `'100'`, `'<5'` becomes `'5'`, etc.).  
+  `slugify` maps them to words (`'$100'` becomes `'dollar100'`, `'<5'` becomes `'less5'`, etc.).
+- **Empty Output:** `slug` will return a short, predictable hash (`'   '` becomes `'icag'` and `'🎉'` becomes `'8joiq'`).  
+  `slugify` will return an empty string (`'   '` and `'🎉'` become `''`).
+- **Stability:** `slug` is planning [a new release](https://github.com/Trott/slug/blob/beta/CHANGELOG.md) that will drop support for CommonJS
+  and only support ESM modules.  
+  `slugify` will continue to support CommonJS and is likely to remain stable for the foreseeable future.
+
+## Playground
+
+A (painfully minimal) web playground is available at https://trott.github.io/slug/. It doesn't allow you to specify options, so it's utility is
+minimal. Pull requests welcome to add the ability to specify options.

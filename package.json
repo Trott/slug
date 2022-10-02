@@ -10,6 +10,9 @@
     },
     "bugs": "https://github.com/Trott/slug/issues",
     "main": "slug.js",
+    "bin": {
+        "slug": "bin/slug"
+    },
     "keywords": [
         "slugify",
         "slug",

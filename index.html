@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>slug playground</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <form>
+      <input type="text" id="slug" />
+      <input type="submit" value="Slug it" onclick="slugIt(); return false;"></input>
+    </form>
+    <p>Result: <span id="slugOutput"></span></p>
+    <script src="./slug.js"></script>
+    <script>
+      function slugIt() {
+        const output = slug(document.getElementById("slug").value);
+        document.getElementById("slugOutput").innerHTML = output;
+      }
+    </script>
+  </body>
+</html>

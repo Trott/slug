@@ -23,7 +23,7 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && mocha test/*.mjs && nyc --reporter none mocha test/**/*.js && karma start --single-run --browsers ChromeHeadless,FirefoxHeadless .karma.config.js && nyc report --reporter=text --reporter=html && nyc check-coverage --lines 100 --branches 100 --statements 100 --functions 100",
+        "test": "standard && mocha test/*.mjs && nyc --reporter none mocha test/**/*.js && karma start --single-run --browsers ChromeHeadless .karma.config.js && nyc report --reporter=text --reporter=html && nyc check-coverage --lines 100 --branches 100 --statements 100 --functions 100",
         "benchmark": "node benchmark/benchmark.js"
     },
     "devDependencies": {
@@ -34,7 +34,6 @@
         "karma-chai": "^0.1.0",
         "karma-chrome-launcher": "^3.1.0",
         "karma-coverage": "^2.1.1",
-        "karma-firefox-launcher": "^2.0.0",
         "karma-jasmine": "^5.0.0",
         "karma-mocha": "^2.0.1",
         "mocha": "^10.0.0",

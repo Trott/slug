@@ -106,7 +106,7 @@
     // http://www.eki.ee/wgrs/rom1_bg.pdf
     bg: { Й: 'Y', й: 'y', X: 'H', x: 'h', Ц: 'Ts', ц: 'ts', Щ: 'Sht', щ: 'sht', Ъ: 'A', ъ: 'a', Ь: 'Y', ь: 'y' },
     // Need a reference URL for German, although this is pretty well-known.
-    de: { Ä: 'AE', ä: 'ae', Ö: 'OE', ö: 'oe', Ü: 'UE', ü: 'ue' },
+    de: { Ä: 'Ae', ä: 'ae', Ö: 'Oe', ö: 'oe', Ü: 'Ue', ü: 'ue', ẞ: 'Ss', ß: 'ss' },
     // Need a reference URL for Serbian.
     sr: { đ: 'dj', Đ: 'DJ' },
     // https://assets.publishing.service.gov.uk/government/uploads/system/uploads/attachment_data/file/864314/ROMANIZATION_OF_UKRAINIAN.pdf

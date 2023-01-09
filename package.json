@@ -38,7 +38,7 @@
         "karma-mocha": "^2.0.1",
         "mocha": "^10.0.0",
         "nyc": "^15.0.1",
-        "semantic-release": "^19.0.1",
+        "semantic-release": "^20.0.2",
         "standard": "^17.0.0"
     },
     "license": "MIT",

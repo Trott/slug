@@ -1,3 +1,10 @@
+## [8.2.3](https://github.com/Trott/slug/compare/v8.2.2...v8.2.3) (2023-07-18)
+
+
+### Bug Fixes
+
+* fix output example in README ([#393](https://github.com/Trott/slug/issues/393)) ([3165852](https://github.com/Trott/slug/commit/3165852d527737bbfaac8ab3f18b2868665024b6))
+
 ## [8.2.2](https://github.com/Trott/slug/compare/v8.2.1...v8.2.2) (2022-10-02)
 
 

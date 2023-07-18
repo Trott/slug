@@ -37,7 +37,7 @@ print(slug('I ♥ UNICODE'))
 // To reset modifications to slug.charmap, use slug.reset():
 slug.reset()
 print(slug('I ♥ UNICODE'))
-// > i_unicode
+// > i-unicode
 
 print(slug('Telephone-Number')) // lower case by default
 // > telephone-number

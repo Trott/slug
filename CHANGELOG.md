@@ -1,3 +1,15 @@
+# [9.0.0](https://github.com/Trott/slug/compare/v8.2.3...v9.0.0) (2024-03-07)
+
+
+### chore
+
+* refresh package-lock.json ([#426](https://github.com/Trott/slug/issues/426)) ([c86632c](https://github.com/Trott/slug/commit/c86632cfc1c1254ac026fd8a29acf28fe2ea59a1))
+
+
+### BREAKING CHANGES
+
+* Drop support for Node.js older than 18.x
+
 ## [8.2.3](https://github.com/Trott/slug/compare/v8.2.2...v8.2.3) (2023-07-18)
 
 

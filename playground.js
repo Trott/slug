@@ -15,7 +15,7 @@ form.addEventListener("submit", function (e) {
 
   const opts = {};
 
-  if (replacement.length === 1) {
+  if (replacement.length > 0) {
     opts.replacement = replacement;
   }
 

@@ -9,26 +9,12 @@ form.addEventListener("submit", function (e) {
 
   const fd = new FormData(form);
 
-  const [replacement, remove, regex_g, regex_i, lowercase, trim] = Array.from(
-    fd.values()
-  );
+  const [replacement, lowercase, trim] = Array.from(fd.values());
 
   const opts = {};
 
   if (replacement.length > 0) {
     opts.replacement = replacement;
-  }
-
-  try {
-    if (regex_g !== undefined) {
-    }
-    const regex = new RegExp(
-      remove,
-      `${regex_g !== undefined ? "g" : ""}${regex_i !== undefined ? "i" : ""}`
-    );
-    opts.remove = regex;
-  } catch (err) {
-    console.error(err);
   }
 
   opts.lower = lowercase !== undefined;

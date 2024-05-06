@@ -9,7 +9,7 @@ form.addEventListener("submit", function (e) {
 
   const fd = new FormData(form);
 
-  const [replacement, lowercase, trim] = Array.from(fd.values());
+  const [replacement, lowercase, trim, fallback] = Array.from(fd.values());
 
   const opts = {};
 
@@ -20,6 +20,8 @@ form.addEventListener("submit", function (e) {
   opts.lower = lowercase !== undefined;
 
   opts.trim = trim !== undefined;
+
+  opts.fallback = fallback !== undefined;
 
   const output = slug(document.getElementById("input").value, opts);
   document.getElementById("slugOutput").innerHTML = output;

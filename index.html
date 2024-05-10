@@ -6,17 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <form>
-      <input type="text" id="slug" />
-      <input type="submit" value="Slug it" onclick="slugIt(); return false;"></input>
+    <form id="form" onSubmit="" style="max-width:60ch">
+			<fieldset>
+
+				<label>Input text</label>
+				<input type="text" id="input" placeholder="An Apple computer" autofocus />
+			</fieldset>
+
+
+
+			<fieldset>
+				<label for="replacement">Replacement character</label>
+				<input type="text" id="replacement" name="replacement" placeholder="-" />
+			</fieldset>
+
+
+			<fieldset>
+			<label>
+				<input type="checkbox" name="lowercase" checked /> Lowercase
+			</label>
+			</fieldset>
+
+			<fieldset>
+			<label>
+				<input type="checkbox" name="trim" checked /> Trim leading and trailing replacement characters
+			</label>
+			</fieldset>
+
+			<fieldset>
+			<label>
+				<input type="checkbox" name="fallback" checked /> Fallback
+			</label>
+			</fieldset>
+
+      <input type="submit" value="Slug it"></input>
+
     </form>
     <p>Result: <span id="slugOutput"></span></p>
     <script src="./slug.js"></script>
-    <script>
-      function slugIt() {
-        const output = slug(document.getElementById("slug").value);
-        document.getElementById("slugOutput").innerHTML = output;
-      }
-    </script>
+    <script src="./playground.js"></script>
   </body>
 </html>

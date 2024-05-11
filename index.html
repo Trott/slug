@@ -13,13 +13,18 @@
 				<input type="text" id="input" placeholder="An Apple computer" autofocus>
 			</fieldset>
 
-
-
 			<fieldset>
 				<label for="replacement">Replacement character</label>
 				<input type="text" id="replacement" name="replacement" placeholder="-">
 			</fieldset>
 
+			 <fieldset style="display: flex; justify-content: flex-start; align-items: center">
+        <label for="remove">Remove chars (regex)</label>
+        /<input type="text" id="remove" name="remove" />/<br />
+        <label> <input type="checkbox" name="regex_g" /> g </label>
+
+        <label> <input type="checkbox" name="regex_i" /> i </label>
+      </fieldset>
 
 			<fieldset>
 			<label>

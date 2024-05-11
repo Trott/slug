@@ -14,10 +14,19 @@ form.addEventListener('submit', function (e) {
   const trim = fd.get('trim')
   const fallback = fd.get('fallback')
 
+  const remove = fd.get('remove')
+  const regexG = fd.get('regex_g') === null ? '' : 'g'
+  const regexI = fd.get('regex_i') === null ? '' : 'i'
+
   const opts = {}
 
   if (replacement.length > 0) {
     opts.replacement = replacement
+  }
+
+  if (remove !== null && remove.length > 0) {
+    const regex = new RegExp(`/${remove}/${regexG}${regexI}`)
+    opts.remove = regex
   }
 
   opts.lower = lowercase !== null

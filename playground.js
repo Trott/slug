@@ -9,8 +9,14 @@ form.addEventListener("submit", function (e) {
 
   const fd = new FormData(form);
 
-  const [replacement, remove, regex_g, regex_i, lowercase, trim, fallback] =
-    Array.from(fd.values());
+  const replacement = fd.get("replacement");
+  const lowercase = fd.get("lowercase");
+  const trim = fd.get("trim");
+  const fallback = fd.get("fallback");
+
+  const remove = fd.get("remove");
+  const regex_i = fd.get("regex_i");
+  const regex_g = fd.get("regex_g");
 
   const opts = {};
 
@@ -18,24 +24,18 @@ form.addEventListener("submit", function (e) {
     opts.replacement = replacement;
   }
 
-  try {
-    if (regex_g !== undefined) {
-    }
-    const regex = new RegExp(
-      remove,
-      `${regex_g !== undefined ? "g" : ""}${regex_i !== undefined ? "i" : ""}`
-    );
-    opts.remove = regex;
-  } catch (err) {
-    console.error(err);
-  }
+  const regex = new RegExp(
+    remove,
+    `${regex_g !== null ? "g" : ""}${regex_i !== null ? "i" : ""}`
+  );
+  opts.remove = regex;
 
-  opts.lower = lowercase !== undefined;
+  opts.lower = lowercase !== null;
 
-  opts.trim = trim !== undefined;
+  opts.trim = trim !== null;
 
-  opts.fallback = fallback !== undefined;
+  opts.fallback = fallback !== null;
 
-  const output = slug(document.getElementById("input").value, opts);
-  document.getElementById("slugOutput").innerHTML = output;
+  const output = window.slug(document.getElementById("input").value, opts);
+  document.getElementById("slugOutput").innerText = output;
 });

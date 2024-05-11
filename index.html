@@ -6,54 +6,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <form id="form" onSubmit="" style="max-width:60ch">
-			<fieldset>
+    <form id="form" onSubmit="" style="max-width: 60ch">
+      <fieldset>
+        <label>Input text</label>
+        <input
+          type="text"
+          id="input"
+          placeholder="An Apple computer"
+          autofocus
+        />
+      </fieldset>
 
-				<label>Input text</label>
-				<input type="text" id="input" value="An Apple computer" />
-			</fieldset>
+      <fieldset>
+        <label for="replacement">Replacement character</label>
+        <input
+          type="text"
+          id="replacement"
+          name="replacement"
+          placeholder="-"
+        />
+      </fieldset>
 
+      <fieldset style="display: flex; justify-content: flex-start">
+        <label for="remove">Remove chars (regex)</label>
+        /<input type="text" id="remove" name="remove" />/<br />
+        <label> <input type="checkbox" name="regex_g" /> g </label>
 
+        <label> <input type="checkbox" name="regex_i" /> i </label>
+      </fieldset>
 
-			<fieldset>
-				<label for="replacement">Replacement character</label>
-				<input type="text" id="replacement" name="replacement" value="-" />
-			</fieldset>
+      <fieldset>
+        <label>
+          <input type="checkbox" name="lowercase" checked /> Lowercase
+        </label>
+      </fieldset>
 
-			<fieldset style="display: flex; justify-content: flex-start;">
+      <fieldset>
+        <label>
+          <input type="checkbox" name="trim" checked /> Trim leading and
+          trailing replacement characters
+        </label>
+      </fieldset>
 
-				<label for="remove">Remove chars (regex)</label>
-      /<input type="text" id="remove" name="remove" />/<br />
-			<label>
-				<input type="checkbox" name="regex_g" /> g
-			</label>
+      <fieldset>
+        <label>
+          <input type="checkbox" name="fallback" checked /> Fallback
+        </label>
+      </fieldset>
 
-			<label>
-				<input type="checkbox" name="regex_i" /> i
-			</label>
-			</fieldset>
-
-
-			<fieldset>
-			<label>
-				<input type="checkbox" name="lowercase" checked /> Lowercase
-			</label>
-			</fieldset>
-
-			<fieldset>
-			<label>
-				<input type="checkbox" name="trim" checked /> Trim leading and trailing replacement characters
-			</label>
-			</fieldset>
-
-			<fieldset>
-			<label>
-				<input type="checkbox" name="fallback" checked /> Fallback
-			</label>
-			</fieldset>
-
-      <input type="submit" value="Slug it"></input>
-
+      <input type="submit" value="Slug it" />
     </form>
     <p>Result: <span id="slugOutput"></span></p>
     <script src="./slug.js"></script>

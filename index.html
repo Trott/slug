@@ -18,14 +18,6 @@
 				<input type="text" id="replacement" name="replacement" placeholder="-">
 			</fieldset>
 
-			 <fieldset style="display: flex; justify-content: flex-start; align-items: center">
-        <label for="remove">Remove chars (regex)</label>&nbsp;
-        /<input type="text" id="remove" name="remove" placeholder="(?<= )((a)|(an)|(the))(?= )" />/<br />
-        <label> <input type="checkbox" name="regex_g" /> g </label>
-
-        <label> <input type="checkbox" name="regex_i" /> i </label>
-      </fieldset>
-
 			<fieldset>
 			<label>
 				<input type="checkbox" name="lowercase" checked> Lowercase
@@ -43,6 +35,17 @@
 				<input type="checkbox" name="fallback" checked> Fallback
 			</label>
 			</fieldset>
+
+			<details>
+				<summary><h4>Advanced options</h4></summary>
+			 <fieldset style="display: flex; justify-content: flex-start; align-items: center">
+        <label for="remove">Remove chars (regex)</label>&nbsp;
+        /<input type="text" id="remove" name="remove" placeholder="(?<= )((a)|(an)|(the))(?= )" />/<br />
+        <label> <input type="checkbox" name="regex_g" /> g </label>
+
+        <label> <input type="checkbox" name="regex_i" /> i </label>
+      </fieldset>
+			</details>
 
       <input type="submit" value="Slug it">
 

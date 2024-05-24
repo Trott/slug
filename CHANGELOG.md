@@ -1,3 +1,10 @@
+# [9.1.0](https://github.com/Trott/slug/compare/v9.0.0...v9.1.0) (2024-05-24)
+
+
+### Features
+
+* add `remove` option field to playground ([#445](https://github.com/Trott/slug/issues/445)) ([8888d69](https://github.com/Trott/slug/commit/8888d69455671bfbe990ae13755735a2a38fa504))
+
 # [9.0.0](https://github.com/Trott/slug/compare/v8.2.3...v9.0.0) (2024-03-07)
 
 

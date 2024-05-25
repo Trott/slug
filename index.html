@@ -9,50 +9,38 @@
 		<main>
 			<h1>Playground for slug module</h1>
 			<form id="form" onSubmit="" style="max-width:60ch">
-				<fieldset>
-
-					<label for="input">Input text</label>
-					<input type="text" id="input" placeholder="An Apple computer" autofocus>
-				</fieldset>
-
-				<fieldset>
-					<label for="replacement">Replacement character</label>
-					<input type="text" id="replacement" name="replacement" placeholder="-">
-				</fieldset>
-
-				<fieldset>
-				<label>
-					<input type="checkbox" name="lowercase" checked> Lowercase
-				</label>
-				</fieldset>
-
-				<fieldset>
-				<label>
-					<input type="checkbox" name="trim" checked> Trim leading and trailing replacement characters
-				</label>
-				</fieldset>
-
-				<fieldset>
-				<label>
-					<input type="checkbox" name="fallback" checked> Fallback
-				</label>
-				</fieldset>
-
-				<details>
-					<summary>Advanced options</summary>
-				<fieldset style="display: flex; justify-content: flex-start; align-items: center">
-					<label for="remove">Remove chars (regex)</label>&nbsp;
-					/<input type="text" id="remove" name="remove" placeholder="(?<= )((a)|(an)|(the))(?= )">/<br>
-					<label> <input type="checkbox" name="regex_g"> g </label>
-
-					<label> <input type="checkbox" name="regex_i"> i </label>
-				</fieldset>
-				</details>
-
+				<label for="input">Input text</label>
+				<input type="text" id="input" placeholder="An Apple computer" autofocus>
 				<input type="submit" value="Slug it">
 
+				<div>Result: <mark id="slugOutput"></mark></div>
+	
+				<fieldset>
+					<legend>Options</legend>
+					<div>
+						<label for="replacement">Replacement character</label>
+						<input type="text" id="replacement" name="replacement" placeholder="-">
+					</div>
+
+					<div>
+						<label>
+							<input type="checkbox" name="lowercase" checked> Lowercase
+						</label>
+					</div>
+
+					<div>
+						<label>
+							<input type="checkbox" name="trim" checked> Trim leading and trailing replacement characters
+						</label>
+					</div>
+
+					<div>
+						<label>
+							<input type="checkbox" name="fallback" checked> Fallback
+						</label>
+					</div>
+				</fieldset>
 			</form>
-			<p>Result: <span id="slugOutput"></span></p>
 		</main>
 		<script src="./slug.js"></script>
     <script src="./playground.js"></script>

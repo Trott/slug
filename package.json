@@ -27,6 +27,7 @@
         "benchmark": "node benchmark/benchmark.js"
     },
     "devDependencies": {
+        "@esm-bundle/chai": "^4.3.4-fix.0",
         "@semantic-release/changelog": "^6.0.1",
         "@semantic-release/git": "^10.0.1",
         "chai": "^4.4.0",

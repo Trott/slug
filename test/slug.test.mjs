@@ -1,11 +1,9 @@
-/* global beforeEach, chai, describe, it */
+/* global beforeEach, describe, it */
 
-const inBrowser = typeof window !== 'undefined'
+import slug from '../slug.js'
+import { assert } from '@esm-bundle/chai'
 
 describe('slug', function () {
-  const slug = (inBrowser && window.slug) || require('../slug')
-  const assert = typeof chai === 'undefined' ? require('assert') : chai.assert
-
   beforeEach(slug.reset)
 
   it('requires an argument', function () {

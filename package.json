@@ -23,7 +23,7 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && mocha test/*.mjs && nyc --reporter none mocha test/**/*.js && nyc check-coverage --lines 97 --branches 96 --statements 97 --functions 90",
+        "test": "standard && nyc --reporter none mocha test/**/*.*js && nyc check-coverage --lines 97 --branches 96 --statements 97 --functions 90",
         "benchmark": "node benchmark/benchmark.js"
     },
     "devDependencies": {

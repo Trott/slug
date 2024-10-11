@@ -1,4 +1,4 @@
-const slug = require('../slug')
+import slug from '../slug.js'
 
 const BENCHMARK_RUNS = 2048
 const MAX_WORD_LENGTH = 16

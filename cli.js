@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const slug = require('./slug.js')
+import slug from './slug.js'
 
 if (process.argv.length < 3) {
   console.log('Usage: slug <string>')

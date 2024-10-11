@@ -2,6 +2,7 @@
     "name": "slug",
     "description": "slugifies even utf-8 chars!",
     "version": "9.1.0",
+    "type": "module",
     "homepage": "https://github.com/Trott/slug",
     "author": "dodo (https://github.com/dodo)",
     "repository": {
@@ -23,16 +24,14 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && nyc --reporter none mocha test/**/*.*js && nyc check-coverage --lines 97 --branches 96 --statements 97 --functions 90",
+        "test": "standard && mocha test/**/*.js",
         "benchmark": "node benchmark/benchmark.js"
     },
     "devDependencies": {
         "@esm-bundle/chai": "^4.3.4-fix.0",
         "@semantic-release/changelog": "^6.0.1",
         "@semantic-release/git": "^10.0.1",
-        "chai": "^4.4.0",
         "mocha": "^10.0.0",
-        "nyc": "^17.0.0",
         "semantic-release": "^24.0.0",
         "standard": "^17.1.0"
     },

@@ -24,13 +24,14 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && mocha test/**/*.js",
+        "test": "standard && mocha test/**/*.js && web-test-runner test/**/*.js --node-resolve",
         "benchmark": "node benchmark/benchmark.js"
     },
     "devDependencies": {
         "@esm-bundle/chai": "^4.3.4-fix.0",
         "@semantic-release/changelog": "^6.0.1",
         "@semantic-release/git": "^10.0.1",
+        "@web/test-runner": "^0.19.0",
         "mocha": "^10.0.0",
         "semantic-release": "^24.0.0",
         "standard": "^17.1.0"

@@ -24,7 +24,7 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && c8 --reporter text --reportDir coverage/cli mocha test/**/*.js && web-test-runner test/**/*.js --node-resolve",
+        "test": "standard && c8 --100 mocha test/**/*.js && web-test-runner test/**/*.js --node-resolve",
         "benchmark": "node benchmark/benchmark.js"
     },
     "devDependencies": {

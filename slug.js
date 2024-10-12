@@ -10,7 +10,7 @@ function getWholeCharAndI (str, i) {
   const code = str.charCodeAt(i)
 
   // This is a coherence check. `code` should never be `NaN`.
-  /* istanbul ignore if */
+  /* c8 ignore next 3 */
   if (isNaN(code)) {
     throw new RangeError('Index ' + i + ' out of range for string "' + str + '"; please open an issue at https://github.com/Trott/slug/issues/new')
   }
@@ -40,17 +40,18 @@ function getWholeCharAndI (str, i) {
 
   const prev = str.charCodeAt(i - 1)
 
-  /* istanbul ignore else */
+  /* c8 ignore next */
   if (prev < 0xD800 || prev > 0xDBFF) {
     // Low surrogate without preceding high surrogate
     return [' ', i]
   }
-
-  /* istanbul ignore next */
+  /* c8 ignore next */
   throw new Error('String "' + str + '" reaches code believed to be unreachable; please open an issue at https://github.com/Trott/slug/issues/new')
 }
 
 if (typeof window !== 'undefined') {
+  // Browser environment. We don't yet merge coverage with CLI tests.
+  /* c8 ignore next 4 */
   if (window.btoa) {
     base64 = function (input) {
       return btoa(unescape(encodeURIComponent(input)))
@@ -69,7 +70,7 @@ if (typeof window !== 'undefined') {
         charCode = str.charCodeAt(idx += 3 / 4)
         // This is a coherence check. The result of unescape(encodeURIComponent()) should always be
         // characters with code points that fit into two bytes.
-        /* istanbul ignore next */
+        /* c8 ignore next 3 */
         if (charCode > 0xFF) {
           throw new Error("'btoa' failed: The string to be encoded contains characters outside of the Latin1 range.")
         }

@@ -2,22 +2,22 @@
 
 // Only run in Node.js.
 if (typeof window === 'undefined') {
-  describe('React Native-like environment', function () {
-    let slug
+  let assert
+  (async function () {
+    assert = (await import('node:assert')).default
+  })()
 
+  describe('React Native-like environment', function () {
     before(function () {
       global.window = {}
-      delete require.cache[require.resolve('../slug')]
     })
     after(function () {
       delete global.window
-      delete require.cache[require.resolve('../slug')]
     })
-    const assert = require('assert')
 
-    it('should work for window object with no btoa function', function () {
+    it('should work for window object with no btoa function', async function () {
       assert.strictEqual(window.btoa, undefined)
-      slug = require('../slug')
+      const slug = (await import('../slug.js?cachebustingreactnative')).default
       assert.strictEqual(slug('鳄梨'), '6boe5qko')
       assert.strictEqual(slug(String.fromCodePoint(56714, 36991)), 'iombvw')
       assert.strictEqual(slug(String.fromCodePoint(56714)), 'ia')

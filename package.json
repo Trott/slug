@@ -2,6 +2,7 @@
     "name": "slug",
     "description": "slugifies even utf-8 chars!",
     "version": "9.1.0",
+    "type": "module",
     "homepage": "https://github.com/Trott/slug",
     "author": "dodo (https://github.com/dodo)",
     "repository": {
@@ -23,21 +24,16 @@
         "url"
     ],
     "scripts": {
-        "test": "standard && mocha test/*.mjs && nyc --reporter none mocha test/**/*.js && karma start --single-run --browsers ChromeHeadless .karma.config.js && nyc report --reporter=text --reporter=html && nyc check-coverage --lines 100 --branches 100 --statements 100 --functions 100",
+        "test": "standard && c8 --100 mocha test/**/*.js && web-test-runner test/**/*.js --node-resolve",
         "benchmark": "node benchmark/benchmark.js"
     },
     "devDependencies": {
+        "@esm-bundle/chai": "^4.3.4-fix.0",
         "@semantic-release/changelog": "^6.0.1",
         "@semantic-release/git": "^10.0.1",
-        "chai": "^4.4.0",
-        "karma": "^6.4.3",
-        "karma-chai": "^0.1.0",
-        "karma-chrome-launcher": "^3.1.0",
-        "karma-coverage": "^2.1.1",
-        "karma-jasmine": "^5.1.0",
-        "karma-mocha": "^2.0.1",
+        "@web/test-runner": "^0.19.0",
+        "c8": "^10.1.2",
         "mocha": "^10.0.0",
-        "nyc": "^17.0.0",
         "semantic-release": "^24.0.0",
         "standard": "^17.1.0"
     },

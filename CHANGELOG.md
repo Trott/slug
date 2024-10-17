@@ -1,3 +1,20 @@
+# [10.0.0](https://github.com/Trott/slug/compare/v9.1.0...v10.0.0) (2024-10-17)
+
+
+* ESM only + move to webtestrunnner ([#467](https://github.com/Trott/slug/issues/467)) ([a8db3ed](https://github.com/Trott/slug/commit/a8db3edebf0dad4b44f6ba5396accca60a7db084))
+
+
+### BREAKING CHANGES
+
+* This module only supports ESM. CommonJS and non-ESM
+script tags are no longer supported.
+
+* chore: add web-test-runner
+
+* chore: add coverage reporting for CLI tests
+
+* chore: fail CLI tests if coverage is not 100%
+
 # [9.1.0](https://github.com/Trott/slug/compare/v9.0.0...v9.1.0) (2024-05-24)
 
 

@@ -40,7 +40,6 @@ function getWholeCharAndI (str, i) {
 
   const prev = str.charCodeAt(i - 1)
 
-  /* c8 ignore next */
   if (prev < 0xD800 || prev > 0xDBFF) {
     // Low surrogate without preceding high surrogate
     return [' ', i]
@@ -50,8 +49,6 @@ function getWholeCharAndI (str, i) {
 }
 
 if (typeof window !== 'undefined') {
-  // Browser environment. We don't yet merge coverage with CLI tests.
-  /* c8 ignore next 4 */
   if (window.btoa) {
     base64 = function (input) {
       return btoa(unescape(encodeURIComponent(input)))

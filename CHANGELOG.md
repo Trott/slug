@@ -1,3 +1,15 @@
+# [11.0.0-beta.1](https://github.com/Trott/slug/compare/v10.0.0...v11.0.0-beta.1) (2024-10-19)
+
+
+### chore
+
+* ESM only ([a938957](https://github.com/Trott/slug/commit/a9389574dcc022c6fc0efdf9a5631caeca3ba583))
+
+
+### BREAKING CHANGES
+
+* module is now ESM only
+
 # [10.0.0](https://github.com/Trott/slug/compare/v9.1.0...v10.0.0) (2024-10-17)
 
 

@@ -31,7 +31,7 @@
         "@esm-bundle/chai": "^4.3.4-fix.0",
         "@semantic-release/changelog": "^6.0.1",
         "@semantic-release/git": "^10.0.1",
-        "@web/test-runner": "^0.19.0",
+        "@web/test-runner": "^0.20.0",
         "c8": "^10.1.2",
         "mocha": "^11.0.1",
         "semantic-release": "^24.0.0",

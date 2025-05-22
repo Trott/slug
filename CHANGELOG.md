@@ -1,3 +1,17 @@
+# [11.0.0](https://github.com/Trott/slug/compare/v10.0.0...v11.0.0) (2025-05-22)
+
+
+### chore
+
+* throw on lone surrogates ([#492](https://github.com/Trott/slug/issues/492)) ([8ea2c6b](https://github.com/Trott/slug/commit/8ea2c6b0a4937b6db8f1c1b44cf7af99d516cf67))
+* update supported Node.js versions to 20.x and later ([#493](https://github.com/Trott/slug/issues/493)) ([d23bfa7](https://github.com/Trott/slug/commit/d23bfa71ad24c1d753acb98e502fef88a8bda8cf))
+
+
+### BREAKING CHANGES
+
+* Strings will throw if not well-formed (lone surrogates).
+* update supported Node.js versions to 20.x and later
+
 # [10.0.0](https://github.com/Trott/slug/compare/v9.1.0...v10.0.0) (2024-10-17)
 
 

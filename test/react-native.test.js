@@ -19,9 +19,10 @@ if (typeof window === 'undefined') {
       assert.strictEqual(window.btoa, undefined)
       const slug = (await import('../slug.js?cachebustingreactnative')).default
       assert.strictEqual(slug('鳄梨'), '6boe5qko')
-      assert.strictEqual(slug(String.fromCodePoint(56714, 36991)), 'iombvw')
-      assert.strictEqual(slug(String.fromCodePoint(56714)), 'ia')
-      assert.strictEqual(slug(String.fromCodePoint(55296)), 'ia')
+      const errMsg = /^Error: slug\(\) received a malformed string with lone surrogates$/
+      assert.throws(() => slug(String.fromCodePoint(56714, 36991)), errMsg)
+      assert.throws(() => slug(String.fromCodePoint(56714)), errMsg)
+      assert.throws(() => slug(String.fromCodePoint(55296)), errMsg)
     })
   })
 }

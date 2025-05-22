@@ -837,7 +837,7 @@ describe('slug', function () {
   })
 
   it('should replace no unicode when disabled', function () {
-    const charMap = '😹☢☠☤☣☭☯☮☏☔☎☀★☂☃✈✉✊'.split('')
+    const charMap = ['😹', '☢', '☠', '☤', '☣', '☭', '☯', '☮', '☏', '☔', '☎', '☀', '★', '☂', '☃', '✈', '✉', '✊']
     charMap.forEach(function (char) {
       assert.strictEqual(slug('foo ' + char + ' bar baz'), 'foo-bar-baz', 'replacing \'' + char + '\'')
     })
@@ -934,16 +934,16 @@ describe('slug', function () {
     assert.strictEqual(slug('unicode ♥ is ☢'), 'unicode-is')
   })
 
-  it('should ignore lone surrogates', function () {
-    assert.strictEqual(slug(String.fromCodePoint(56714, 36991)), 'iombvw')
+  it('should throw on lone surrogates', function () {
+    assert.throw(() => slug(String.fromCodePoint(56714, 36991)))
   })
 
-  it('should handle a lone low surrogate by itself', function () {
-    assert.strictEqual(slug(String.fromCodePoint(56714)), 'ia')
+  it('should throw on a lone low surrogate by itself', function () {
+    assert.throws(() => slug(String.fromCodePoint(56714)))
   })
 
-  it('should handle a lone high surrogate by itself', function () {
-    assert.strictEqual(slug(String.fromCodePoint(55296)), 'ia')
+  it('should throw on a lone high surrogate by itself', function () {
+    assert.throws(() => slug(String.fromCodePoint(55296)))
   })
 
   it('should ignore inherited properties in multicharmap', function () {

@@ -1,53 +1,6 @@
 /* global btoa */
 let base64
 
-// This function's sole purpose is to help us ignore lone surrogates so that
-// malformed strings don't throw in the browser while being processed
-// permissively in Node.js. If we didn't care about parity, we could get rid
-// of it.
-// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/charAt
-function getWholeCharAndI (str, i) {
-  const code = str.charCodeAt(i)
-
-  // This is a coherence check. `code` should never be `NaN`.
-  /* c8 ignore next 3 */
-  if (isNaN(code)) {
-    throw new RangeError('Index ' + i + ' out of range for string "' + str + '"; please open an issue at https://github.com/Trott/slug/issues/new')
-  }
-  if (code < 0xD800 || code > 0xDFFF) {
-    return [str.charAt(i), i] // Non-surrogate character, keeping 'i' the same
-  }
-
-  // High surrogate
-  if (code >= 0xD800 && code <= 0xDBFF) {
-    if (str.length <= (i + 1)) {
-      // High surrogate without following low surrogate
-      return [' ', i]
-    }
-    const next = str.charCodeAt(i + 1)
-    if (next < 0xDC00 || next > 0xDFFF) {
-      // High surrogate without following low surrogate
-      return [' ', i]
-    }
-    return [str.charAt(i) + str.charAt(i + 1), i + 1]
-  }
-
-  // Low surrogate (0xDC00 <= code && code <= 0xDFFF)
-  if (i === 0) {
-    // Low surrogate without preceding high surrogate
-    return [' ', i]
-  }
-
-  const prev = str.charCodeAt(i - 1)
-
-  if (prev < 0xD800 || prev > 0xDBFF) {
-    // Low surrogate without preceding high surrogate
-    return [' ', i]
-  }
-  /* c8 ignore next */
-  throw new Error('String "' + str + '" reaches code believed to be unreachable; please open an issue at https://github.com/Trott/slug/issues/new')
-}
-
 if (typeof window !== 'undefined') {
   if (window.btoa) {
     base64 = function (input) {
@@ -87,14 +40,7 @@ function slug (string, opts) {
   const fallback = opts && opts.fallback !== undefined ? opts.fallback : slug.defaults.fallback
   // If output is an empty string, try slug for base64 of string.
   if (fallback === true && result === '') {
-    // Get rid of lone surrogates.
-    let input = ''
-    for (let i = 0; i < string.length; i++) {
-      const charAndI = getWholeCharAndI(string, i)
-      i = charAndI[1]
-      input += charAndI[0]
-    }
-    result = slugify(base64(input), opts)
+    result = slugify(base64(string), opts)
   }
   return result
 }
@@ -115,6 +61,9 @@ let defaultLocale = {}
 function slugify (string, opts) {
   if (typeof string !== 'string') {
     throw new Error('slug() requires a string argument, received ' + typeof string)
+  }
+  if (!string.isWellFormed()) {
+    throw new Error('slug() received a malformed string with lone surrogates')
   }
   if (typeof opts === 'string') { opts = { replacement: opts } }
   opts = opts ? Object.assign({}, opts) : {}

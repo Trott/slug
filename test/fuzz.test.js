@@ -25,16 +25,18 @@ describe('fuzz-testing slug', function () {
       return { fuzzyString: words.join(' '), codePoints }
     }
 
-    for (let i = 0; i < FUZZ_TESTS; i++) {
-      {
-        const theString = getString(MAX_BMP_CODE_POINT)
+    function runTest (maxCodePoint) {
+      const theString = getString(maxCodePoint)
+      if (theString.fuzzyString.isWellFormed()) {
         assert(slug(theString.fuzzyString), 'STRING: ' + theString.fuzzyString + '\nCODEPOINTS: ' + JSON.stringify(theString.codePoints))
+      } else {
+        assert.throws(() => { slug(theString.fuzzyString) }, 'slug() received a malformed string with lone surrogates', 'STRING: ' + theString.fuzzyString + '\nCODEPOINTS: ' + JSON.stringify(theString.codePoints))
       }
+    }
 
-      {
-        const theString = getString(MAX_CODE_POINT)
-        assert(slug(theString.fuzzyString), 'STRING: ' + theString.fuzzyString + '\nCODEPOINTS: ' + JSON.stringify(theString.codePoints))
-      }
+    for (let i = 0; i < FUZZ_TESTS; i++) {
+      runTest(MAX_BMP_CODE_POINT)
+      runTest(MAX_CODE_POINT)
     }
   })
 })

@@ -108,7 +108,13 @@ function slugify (string, opts) {
       if (localeMap[char]) {
         char = localeMap[char]
       } else if (opts.charmap[char]) {
-        char = opts.charmap[char].replace(opts.replacement, ' ')
+        const mappedValue = opts.charmap[char]
+        // Special case: if explicitly mapping replacement char to itself, preserve it
+        if (char === opts.replacement && mappedValue === opts.replacement) {
+          char = mappedValue
+        } else {
+          char = mappedValue.replace(opts.replacement, ' ')
+        }
       } else if (char.includes(opts.replacement)) {
         // preserve the replacement character in case it is excluded by disallowedChars
         char = char.replace(opts.replacement, ' ')

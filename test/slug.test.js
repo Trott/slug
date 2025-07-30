@@ -1059,4 +1059,8 @@ describe('slug', function () {
   it('should return empty result when fallback is disabled', function () {
     assert.strictEqual(slug('=(', { fallback: false }), '')
   })
+
+  it('should keep hyphen at the end when charmap is provided', function () {
+    assert.strictEqual(slug('a-', { charmap: { '-': '-' } }), 'a-')
+  })
 })

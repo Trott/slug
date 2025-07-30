@@ -1060,7 +1060,7 @@ describe('slug', function () {
     assert.strictEqual(slug('=(', { fallback: false }), '')
   })
 
-  it('should keep hyphen at the end when charmap is provided', function () {
-    assert.strictEqual(slug('a-', { charmap: { '-': '-' } }), 'a-')
+  it('should preserve charmap when replacement is the same as the charmap', function () {
+    assert.strictEqual(slug('abcdefu', { replacement: 'u', charmap: { u: 'u' } }), 'abcdefu')
   })
 })

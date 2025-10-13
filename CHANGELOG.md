@@ -1,3 +1,10 @@
+## [11.0.1](https://github.com/Trott/slug/compare/v11.0.0...v11.0.1) (2025-10-13)
+
+
+### Bug Fixes
+
+* fix error in README documentation of pretty modeE ([59988de](https://github.com/Trott/slug/commit/59988de075d6affc9e8cc958ee4f47fecd8ba6bc))
+
 # [11.0.0](https://github.com/Trott/slug/compare/v10.0.0...v11.0.0) (2025-05-22)
 
 

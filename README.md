@@ -102,7 +102,7 @@ slug.defaults.modes['rfc3986'] = {
 slug.defaults.modes['pretty'] = {
     replacement: '-',
     remove: null,
-    lower: false,
+    lower: true,
     charmap: slug.charmap,
     multicharmap: slug.multicharmap,
     trim: true,

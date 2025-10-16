@@ -34,7 +34,7 @@
         "@web/test-runner": "^0.20.0",
         "c8": "^10.1.2",
         "mocha": "^11.0.1",
-        "semantic-release": "^24.0.0",
+        "semantic-release": "^25.0.0",
         "standard": "^17.1.0"
     },
     "license": "MIT",

@@ -1,7 +1,9 @@
-/* global describe, it */
-
 import slug from '../slug.js'
 import { assert } from '@esm-bundle/chai'
+
+const { describe, it } = globalThis.describe
+  ? globalThis
+  : await import('node:test')
 
 describe('fuzz-testing slug', function () {
   it('should return truthy results for any valid string', function () {

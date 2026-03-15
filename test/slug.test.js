@@ -1,7 +1,9 @@
-/* global beforeEach, describe, it */
-
 import slug from '../slug.js'
 import { assert } from '@esm-bundle/chai'
+
+const { describe, it, beforeEach } = globalThis.describe
+  ? globalThis
+  : await import('node:test')
 
 describe('slug', function () {
   beforeEach(slug.reset)

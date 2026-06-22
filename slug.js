@@ -109,9 +109,14 @@ function slugify (string, opts) {
         char = localeMap[char]
       } else if (opts.charmap[char]) {
         char = opts.charmap[char].replace(opts.replacement, ' ')
-      } else if (char.includes(opts.replacement)) {
-        // preserve the replacement character in case it is excluded by disallowedChars
-        char = char.replace(opts.replacement, ' ')
+      } else if (
+        opts.replacement.length > 0 &&
+        string.substr(i, opts.replacement.length) === opts.replacement
+      ) {
+        // preserve an existing replacement (e.g. when re-slugifying), even when
+        // it is longer than one character or excluded by disallowedChars
+        i += opts.replacement.length - 1
+        char = ' '
       } else {
         char = char.replace(disallowedChars, '')
       }

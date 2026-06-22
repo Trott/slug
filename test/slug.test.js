@@ -22,6 +22,11 @@ describe('slug', function () {
     assert.strictEqual(slug('foo  bar--baz'), 'foo-bar-baz')
   })
 
+  it('should be idempotent with a multi-character replacement', function () {
+    assert.strictEqual(slug('foo bar', { replacement: '__' }), 'foo__bar')
+    assert.strictEqual(slug(slug('foo bar', { replacement: '__' }), { replacement: '__' }), 'foo__bar')
+  })
+
   it('should remove trailing space if any', function () { assert.strictEqual(slug(' foo bar baz '), 'foo-bar-baz') })
 
   it('should preserve leading/trailing replacement characters if option set', function () {

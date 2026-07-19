@@ -1,3 +1,15 @@
+# [12.0.0](https://github.com/Trott/slug/compare/v11.0.1...v12.0.0) (2026-07-19)
+
+
+### chore
+
+* bump c8 to 11.0.0 ([9fe47b5](https://github.com/Trott/slug/commit/9fe47b5043738e7c11bf929351b21d4ee048c89f))
+
+
+### BREAKING CHANGES
+
+* Drop support for Node.js prior to 22.x
+
 ## [11.0.1](https://github.com/Trott/slug/compare/v11.0.0...v11.0.1) (2025-10-13)
 
 

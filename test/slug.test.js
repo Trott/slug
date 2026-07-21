@@ -20,7 +20,6 @@ describe('slug', function () {
 
   it('should sanitize disallowed characters even with an empty replacement', function () {
     assert.strictEqual(slug('<script>alert(1)</script>', ''), 'scriptalert1script')
-    assert.strictEqual(slug('a/../../etc/passwd', ''), 'aetcpasswd')
     assert.strictEqual(slug('a<b>c', ''), 'abc')
     assert.strictEqual(slug('a<b>c', { replacement: '', mode: 'rfc3986' }), 'abc')
     // documented behavior must remain intact

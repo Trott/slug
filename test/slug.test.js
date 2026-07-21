@@ -19,8 +19,6 @@ describe('slug', function () {
   })
 
   it('should sanitize disallowed characters even with an empty replacement', function () {
-    // Regression: String.prototype.includes('') is always true, which used to
-    // bypass the disallowedChars sanitizer when replacement was '' (XSS / path traversal).
     assert.strictEqual(slug('<script>alert(1)</script>', ''), 'scriptalert1script')
     assert.strictEqual(slug('a/../../etc/passwd', ''), 'aetcpasswd')
     assert.strictEqual(slug('a<b>c', ''), 'abc')

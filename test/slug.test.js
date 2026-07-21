@@ -22,7 +22,6 @@ describe('slug', function () {
     assert.strictEqual(slug('<script>alert(1)</script>', ''), 'scriptalert1script')
     assert.strictEqual(slug('a<b>c', ''), 'abc')
     assert.strictEqual(slug('a<b>c', { replacement: '', mode: 'rfc3986' }), 'abc')
-    // documented behavior must remain intact
     assert.strictEqual(slug('foo bar baz', ''), 'foobarbaz')
   })
 

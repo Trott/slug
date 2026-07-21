@@ -1,3 +1,10 @@
+## [12.0.1](https://github.com/Trott/slug/compare/v12.0.0...v12.0.1) (2026-07-21)
+
+
+### Bug Fixes
+
+* sanitize disallowed characters when replacement is an empty string([#559](https://github.com/Trott/slug/issues/559)) ([a330fce](https://github.com/Trott/slug/commit/a330fce3ad198b390e8c6f8385322fe2f739bb51))
+
 # [12.0.0](https://github.com/Trott/slug/compare/v11.0.1...v12.0.0) (2026-07-19)
 
 

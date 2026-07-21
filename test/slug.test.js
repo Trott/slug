@@ -18,6 +18,13 @@ describe('slug', function () {
     assert.strictEqual(slug('foo bar baz', ''), 'foobarbaz')
   })
 
+  it('should sanitize disallowed characters even with an empty replacement', function () {
+    assert.strictEqual(slug('<script>alert(1)</script>', ''), 'scriptalert1script')
+    assert.strictEqual(slug('a<b>c', ''), 'abc')
+    assert.strictEqual(slug('a<b>c', { replacement: '', mode: 'rfc3986' }), 'abc')
+    assert.strictEqual(slug('foo bar baz', ''), 'foobarbaz')
+  })
+
   it('should replace multiple spaces and dashes with a single instance', function () {
     assert.strictEqual(slug('foo  bar--baz'), 'foo-bar-baz')
   })
